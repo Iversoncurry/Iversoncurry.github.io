@@ -7,16 +7,17 @@
   
   <title>JS的类 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JS的类与大多数正规的面向对象编程语言不同，JS从创建之初就不支持类，也没有把类继承作为定义相似对象以及关联对象的主要方式。而从ES1诞生之前知道ES5时期，很多库都创建了一些工具，让JS显得貌似能支持类。 ES5中仿类结构JS在ES5以及更早版本中都不存在类。与类最接近的是：创建一个构造器，然后将方法指派到该构造起的原型上。这种方式通常被称为创建一个自定义类型。例如： 1234567891011">
+  <meta name="description" content="与大多数正规的面向对象编程语言不同，JS从创建之初就不支持类，也没有把类继承作为定义相似对象以及关联对象的主要方式。而从ES1诞生之前知道ES5时期，很多库都创建了一些工具，让JS显得貌似能支持类。 ES5中仿类结构JS在ES5以及更早版本中都不存在类。与类最接近的是：创建一个构造器，然后将方法指派到该构造起的原型上。这种方式通常被称为创建一个自定义类型。例如： 12345678910111213">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS的类">
 <meta property="og:url" content="http://yoursite.com/2020/04/26/JS%E7%9A%84%E7%B1%BB/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="JS的类与大多数正规的面向对象编程语言不同，JS从创建之初就不支持类，也没有把类继承作为定义相似对象以及关联对象的主要方式。而从ES1诞生之前知道ES5时期，很多库都创建了一些工具，让JS显得貌似能支持类。 ES5中仿类结构JS在ES5以及更早版本中都不存在类。与类最接近的是：创建一个构造器，然后将方法指派到该构造起的原型上。这种方式通常被称为创建一个自定义类型。例如： 1234567891011">
+<meta property="og:description" content="与大多数正规的面向对象编程语言不同，JS从创建之初就不支持类，也没有把类继承作为定义相似对象以及关联对象的主要方式。而从ES1诞生之前知道ES5时期，很多库都创建了一些工具，让JS显得貌似能支持类。 ES5中仿类结构JS在ES5以及更早版本中都不存在类。与类最接近的是：创建一个构造器，然后将方法指派到该构造起的原型上。这种方式通常被称为创建一个自定义类型。例如： 12345678910111213">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-26T02:04:36.723Z">
-<meta property="article:modified_time" content="2020-03-02T00:32:13.442Z">
+<meta property="article:modified_time" content="2020-04-26T03:28:04.991Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -88,7 +89,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>JS的类<br>与大多数正规的面向对象编程语言不同，JS从创建之初就不支持类，也没有把类继承作为定义相似对象以及关联对象的主要方式。而从ES1诞生之前知道ES5时期，很多库都创建了一些工具，让JS显得貌似能支持类。</p>
+        <p>与大多数正规的面向对象编程语言不同，JS从创建之初就不支持类，也没有把类继承作为定义相似对象以及关联对象的主要方式。而从ES1诞生之前知道ES5时期，很多库都创建了一些工具，让JS显得貌似能支持类。</p>
 <h3 id="ES5中仿类结构"><a href="#ES5中仿类结构" class="headerlink" title="ES5中仿类结构"></a>ES5中仿类结构</h3><p>JS在ES5以及更早版本中都不存在类。与类最接近的是：创建一个构造器，然后将方法指派到该构造起的原型上。这种方式通常被称为创建一个自定义类型。例如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PersonType</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">PersonType.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person = <span class="keyword">new</span> PersonType(<span class="string">'Nicholas'</span>)</span><br><span class="line">person.sayName()  <span class="comment">//Nicholas</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person <span class="keyword">instanceof</span> PersonType)  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(person <span class="keyword">instanceof</span> <span class="built_in">Object</span>)      <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
 <p>此代码中的 PersonType 是一个构造器函数，并创建了单个属性 name 。 sayName() 方法被指派到原型上，因此在 PersonType 对象的所有实例上都共享了此方法。接下来，使用 new运算符创建了 PersonType 的一个新实例 person ，此对象会被认为是一个通过原型继承了PersonType 与 Object 的实例。</p>
@@ -187,9 +188,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/26/JS%E7%9A%84%E7%B1%BB/" data-id="ck9gev01d00044cr99gzmhzmd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/04/26/JS%E7%9A%84%E7%B1%BB/" data-id="ck9ghxoon000l7kr942t457l1" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
     </footer>
   </div>
   
@@ -221,18 +224,39 @@
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">JavaScript高级程序设计</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/" rel="tag">前端相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/" style="font-size: 10px;">前端相关</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.67px;">计算机网络</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
     </div>
   </div>
 
@@ -245,6 +269,14 @@
       <ul>
         
           <li>
+            <a href="/2020/04/26/%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B/">引用类型之数组</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%80%BB%E7%BB%93/">面向对象的程序设计</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/26/%E4%BA%8B%E4%BB%B6/">事件</a>
           </li>
         
@@ -254,14 +286,6 @@
         
           <li>
             <a href="/2020/04/26/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">防抖与节流</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/26/%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0/">定位元素</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/26/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/">迭代器和生成器</a>
           </li>
         
       </ul>

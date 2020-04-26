@@ -7,16 +7,17 @@
   
   <title>代理和反射接口 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title 代理和反射接口ES5和ES6都推进了JS功能的公开。例如，JS运行环境包含一些不可枚举、不可写入的对象属性。ES5引入了Object.defineProperty()方法以便开发者在这方面能够像JS引擎那样做。SE6让开发者能进一步接近JS引擎的能力，这些能力原先只存在于内置对象上。语言通过代理（proxy）暴露在对象上的内部工作，代理是一种封装，能够拦截并改变JS引擎的底层操作。 数">
+  <meta name="description" content="ES5和ES6都推进了JS功能的公开。例如，JS运行环境包含一些不可枚举、不可写入的对象属性。ES5引入了Object.defineProperty()方法以便开发者在这方面能够像JS引擎那样做。SE6让开发者能进一步接近JS引擎的能力，这些能力原先只存在于内置对象上。语言通过代理（proxy）暴露在对象上的内部工作，代理是一种封装，能够拦截并改变JS引擎的底层操作。 数组问题在ES6之前，JS的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="代理和反射接口">
 <meta property="og:url" content="http://yoursite.com/2020/04/26/%E4%BB%A3%E7%90%86%E5%92%8C%E5%8F%8D%E5%B0%84%E6%8E%A5%E5%8F%A3/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="title 代理和反射接口ES5和ES6都推进了JS功能的公开。例如，JS运行环境包含一些不可枚举、不可写入的对象属性。ES5引入了Object.defineProperty()方法以便开发者在这方面能够像JS引擎那样做。SE6让开发者能进一步接近JS引擎的能力，这些能力原先只存在于内置对象上。语言通过代理（proxy）暴露在对象上的内部工作，代理是一种封装，能够拦截并改变JS引擎的底层操作。 数">
+<meta property="og:description" content="ES5和ES6都推进了JS功能的公开。例如，JS运行环境包含一些不可枚举、不可写入的对象属性。ES5引入了Object.defineProperty()方法以便开发者在这方面能够像JS引擎那样做。SE6让开发者能进一步接近JS引擎的能力，这些能力原先只存在于内置对象上。语言通过代理（proxy）暴露在对象上的内部工作，代理是一种封装，能够拦截并改变JS引擎的底层操作。 数组问题在ES6之前，JS的">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-26T02:04:36.812Z">
-<meta property="article:modified_time" content="2020-03-02T07:14:42.223Z">
+<meta property="article:modified_time" content="2020-04-26T03:26:55.268Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -88,7 +89,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>title 代理和反射接口<br>ES5和ES6都推进了JS功能的公开。例如，JS运行环境包含一些不可枚举、不可写入的对象属性。ES5引入了Object.defineProperty()方法以便开发者在这方面能够像JS引擎那样做。<br>SE6让开发者能进一步接近JS引擎的能力，这些能力原先只存在于内置对象上。语言通过代理（proxy）暴露在对象上的内部工作，代理是一种封装，能够拦截并改变JS引擎的底层操作。</p>
+        <p>ES5和ES6都推进了JS功能的公开。例如，JS运行环境包含一些不可枚举、不可写入的对象属性。ES5引入了Object.defineProperty()方法以便开发者在这方面能够像JS引擎那样做。<br>SE6让开发者能进一步接近JS引擎的能力，这些能力原先只存在于内置对象上。语言通过代理（proxy）暴露在对象上的内部工作，代理是一种封装，能够拦截并改变JS引擎的底层操作。</p>
 <h2 id="数组问题"><a href="#数组问题" class="headerlink" title="数组问题"></a>数组问题</h2><p>在ES6之前，JS的数组对象拥有特定的行为方式，无法被开发者在自定义对象中进行模拟。当你给数组元素赋值时，数组的length属性会受到影响，同时也可以通过修改length属性来变更数组的元素。例如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = [<span class="string">'red'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>]</span><br><span class="line"><span class="built_in">console</span>.log(colors.length)       <span class="comment">//3</span></span><br><span class="line">colors[<span class="number">3</span>] = <span class="string">'black'</span></span><br><span class="line"><span class="built_in">console</span>.log(colors.length)       <span class="comment">//4</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">3</span>])           <span class="comment">//black</span></span><br><span class="line">colors.length = <span class="number">2</span></span><br><span class="line"><span class="built_in">console</span>.log(colors.length)       <span class="comment">//2</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">3</span>])           <span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">2</span>])           <span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">1</span>])           <span class="comment">//green</span></span><br></pre></td></tr></table></figure>
 <h2 id="代理与反射是什么"><a href="#代理与反射是什么" class="headerlink" title="代理与反射是什么"></a>代理与反射是什么</h2><p>通过调用new Proxy()，可以创建一个代理用来替代另一个对象（被称为目标），这个代理对目标对象进行了虚拟，因此该代理与该目标对象表面上可以被当作同一个对象来对待。<br>代理允许拦截在目标对象上的底层操作。拦截行为使用了一个能够响应特定操作的函数（被称为陷阱）。<br>被Reflect对象所代表的反射接口，是给底层操作提供默认行为的方法的集合，这些操作是能够被代理重写的。每个代理陷阱都有一个对应的反射方法，每个方法都与对应的陷阱函数重名，并且接受的参数也与之一致。下表总结了这些行为：<br>每个陷阱函数都可以重写 JS 对象的一个特定内置行为，允许你拦截并修改它。如果你仍然需要使用原先的内置行为，则可使用对应的反射接口方法。一旦创建了代理，你就能清晰了解代理与反射接口之间的关系，因此我们最好通过一些例子来进行深入研究。</p>
@@ -107,9 +108,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/26/%E4%BB%A3%E7%90%86%E5%92%8C%E5%8F%8D%E5%B0%84%E6%8E%A5%E5%8F%A3/" data-id="ck9gev028000f4cr9882m8ued" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/04/26/%E4%BB%A3%E7%90%86%E5%92%8C%E5%8F%8D%E5%B0%84%E6%8E%A5%E5%8F%A3/" data-id="ck9ghxoor000p7kr95qlu5cy6" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
     </footer>
   </div>
   
@@ -141,18 +144,39 @@
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">JavaScript高级程序设计</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/" rel="tag">前端相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/" style="font-size: 10px;">前端相关</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.67px;">计算机网络</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
     </div>
   </div>
 
@@ -165,6 +189,14 @@
       <ul>
         
           <li>
+            <a href="/2020/04/26/%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B/">引用类型之数组</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%80%BB%E7%BB%93/">面向对象的程序设计</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/26/%E4%BA%8B%E4%BB%B6/">事件</a>
           </li>
         
@@ -174,14 +206,6 @@
         
           <li>
             <a href="/2020/04/26/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">防抖与节流</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/26/%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0/">定位元素</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/26/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/">迭代器和生成器</a>
           </li>
         
       </ul>

@@ -64,6 +64,105 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-iframe" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/iframe/" class="article-date">
+  <time datetime="2020-04-26T02:04:36.709Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/26/iframe/">iframe</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>每个嵌入的浏览器上下文（embedded browsing context）都有自己的会话历史记录和dom树。包含嵌入内容的浏览器上下文成为符浏览上下文。顶级浏览上下文（即没有父级）通常是由window对象表示的浏览器窗口。</p>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>该元素包含全局属性。<br>这里只介绍比较常用的几个<br>name： 用于定位嵌入的浏览器上下文的名称。该名称可以用作<a>标签与<form>标签的target属性值，也可以用作<input>标签和<button>标签的formtarget属性值，还可以用作window.open()方法的windowName参数值。</p>
+<p>src：被嵌套的页面的URL地址。使用about:blank值可以嵌入一个遵从同源策略的空白页。</p>
+<h2 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h2><p>内联的框架，就像<frame>元素一样，会被包含在window.frames伪数组中。<br>有了DOMHTMLIFrameElement对象，脚本可以通过contentWindow访问内联框架的window对象。contentDocument属性则引用了<iframe>内部的document元素。<br>在框架内部，脚本可以通过window.parent引用父窗口对象。<br>脚本访问框架内容必须遵守同源策略，并且无法访问同源的window对象的几乎所有属性。同源策略同样适用于子窗体访问父窗体的window对象。跨域通信可以通过window.postMessage实现。</p>
+<p>window.postMessage()方法可以安全地事项跨源通信。通常，对于两个不同页面的脚本，只有当执行它们的页面位于相同的协议通常为https，端口号（443位https的默认值），以及主机（两个页面的模数Document.domain设置相同的值）时，两个脚本才能相互通信。<br>window.postMessage()方法提供了一种受控机制来规避此限制，只要正确的使用，这种方法就很安全。<br>从广义上讲，一个窗口可以获得对另一个窗口的引用（比如targetWindow= window.opener),然后在窗口上调用targetWindow.postMessage()方法分发一个MessageEvent消息。接收消息的窗口可以根据需要自由处理此事件。传递给window.postMessage()的参数（比如message）将通过消息事件对象暴露给接收消息的窗口。</p>
+<h3 id="postMessage语法"><a href="#postMessage语法" class="headerlink" title="postMessage语法"></a>postMessage语法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">otherWindow.postMessage(message, targetOrigin, [transfer])</span><br></pre></td></tr></table></figure>
+<p>otherWindow:其他窗口的一个引用，比如iframe的contentWindow属性、执行window.open返回的窗口对象、或者是明明过或数值索引的window.frames.</p>
+<p>message: 将要发送到其他window的数据。它将会被结构化克隆算法序列化。这意味着可以不受什么限制的将数据对象安全地传送给目标窗口而无需自己序列化。</p>
+<p>targetOrigin：通过窗口的origin属性来指定哪些窗口能接收到消息事件，其值可以是字符串”<em>“</em>（表示无限制）或者一个URI。在发送消息的时候，如果目标窗口的协议、主机地址或端口这三者的任意一项不匹配targetOrigin提供的值，那么消息就不会被发送；只有三者完全匹配，消息才会被发送。这个机制用来控制消息可以发送到哪些窗口；例如，当用postMessage传送密码时，这个参数就显得尤为重要，必须保证它的值与这条包含密码的信息的预期接受者的origin属性完全一致，来防止密码被恶意的第三方截获。如果你明确的知道消息应该发送到哪个窗口，那么请始终提供一个有确切值的targetOrigin，而不是”*”。不提供确切的目标将导致数据泄露到任何对数据感兴趣的恶意站点。</p>
+<p><strong>对otherWindw和targetOrigin的理解</strong>：otherWindow设定了要传递信息的窗口，并不会限制信息只向这个窗口传递信息。targetOrigin设定了要传递窗口所在的URI包括协议，主机和端口。</p>
+<p>transfer 可选<br>是一串和message 同时传递的 Transferable 对象. 这些对象的所有权将被转移给消息的接收方，而发送一方将不再保有所有权。</p>
+<p>利用postMessage可以实现子域和父域相互传递消息以及不同域之间的通信。<br>message事件监听</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"message"</span>, receiveMessage, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">receiveMessage</span>(<span class="params">event</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// For Chrome, the origin property is in the event.originalEvent</span></span><br><span class="line">  <span class="comment">// object. </span></span><br><span class="line">  <span class="comment">// 这里不准确，chrome没有这个属性</span></span><br><span class="line">  <span class="comment">// var origin = event.origin || event.originalEvent.origin; </span></span><br><span class="line">  <span class="keyword">var</span> origin = event.origin</span><br><span class="line">  <span class="keyword">if</span> (origin !== <span class="string">"http://example.org:8080"</span>)</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> message 的属性有:</p>
+<p>data<br>从其他 window 中传递过来的对象。<br>origin<br>调用 postMessage  时消息发送方窗口的 origin . 这个字符串由 协议、“://“、域名、“ : 端口号”拼接而成。例如 “<a href="https://example.org" target="_blank" rel="noopener">https://example.org</a> (隐含端口 443)”、“<a href="http://example.net" target="_blank" rel="noopener">http://example.net</a> (隐含端口 80)”、“<a href="http://example.com:8080”。请注意，这个origin不能保证是该窗口的当前或未来origin，因为postMessage被调用后可能被导航到不同的位置。">http://example.com:8080”。请注意，这个origin不能保证是该窗口的当前或未来origin，因为postMessage被调用后可能被导航到不同的位置。</a><br>source<br>对发送消息的窗口对象的引用; 您可以使用此来在具有不同origin的两个窗口之间建立双向通信</p>
+<p>不同域之间传递</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * A窗口的域名是&lt;http://example.com:8080&gt;，以下是A窗口的script标签下的代码：</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> popup = <span class="built_in">window</span>.open(...popup details...);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果弹出框没有被阻止且加载完成</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 这行语句没有发送信息出去，即使假设当前页面没有改变location（因为targetOrigin设置不对）</span></span><br><span class="line">popup.postMessage(<span class="string">"The user is 'bob' and the password is 'secret'"</span>,</span><br><span class="line">                  <span class="string">"https://secure.example.net"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 假设当前页面没有改变location，这条语句会成功添加message到发送队列中去（targetOrigin设置对了）</span></span><br><span class="line">popup.postMessage(<span class="string">"hello there!"</span>, <span class="string">"http://example.org"</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">receiveMessage</span>(<span class="params">event</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// 我们能相信信息的发送者吗?  (也许这个发送者和我们最初打开的不是同一个页面).</span></span><br><span class="line">  <span class="keyword">if</span> (event.origin !== <span class="string">"http://example.org"</span>)</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// event.source 是我们通过window.open打开的弹出页面 popup</span></span><br><span class="line">  <span class="comment">// event.data 是 popup发送给当前页面的消息 "hi there yourself!  the secret response is: rheeeeet!"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"message"</span>, receiveMessage, <span class="literal">false</span>);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 弹出页 popup 域名是&lt;http://example.org&gt;，以下是script标签中的代码:</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//当A页面postMessage被调用后，这个function被addEventListenner调用</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">receiveMessage</span>(<span class="params">event</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// 我们能信任信息来源吗？</span></span><br><span class="line">  <span class="keyword">if</span> (event.origin !== <span class="string">"http://example.com:8080"</span>)</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// event.source 就当前弹出页的来源页面</span></span><br><span class="line">  <span class="comment">// event.data 是 "hello there!"</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 假设你已经验证了所受到信息的origin (任何时候你都应该这样做), 一个很方便的方式就是把event.source</span></span><br><span class="line">  <span class="comment">// 作为回信的对象，并且把event.origin作为targetOrigin</span></span><br><span class="line">  event.source.postMessage(<span class="string">"hi there yourself!  the secret response "</span> +</span><br><span class="line">                           <span class="string">"is: rheeeeet!"</span>,</span><br><span class="line">                           event.origin);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"message"</span>, receiveMessage, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>跨域POST消息发送<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/JavaScript"</span>&gt;</span>   </span><br><span class="line"><span class="actionscript">            <span class="comment">// sendPost 通过postMessage实现跨域通信将表单信息发送到 moweide.gitcafe.io上,</span></span></span><br><span class="line"><span class="actionscript">            <span class="comment">// 并取得返回的数据   </span></span></span><br><span class="line"><span class="actionscript">            <span class="function"><span class="keyword">function</span> <span class="title">sendPost</span><span class="params">()</span> </span>&#123;       </span></span><br><span class="line"><span class="actionscript">                <span class="comment">// 获取id为otherPage的iframe窗口对象       </span></span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> iframeWin = <span class="built_in">document</span>.getElementById(<span class="string">"otherPage"</span>).contentWindow;       </span></span><br><span class="line"><span class="actionscript">                <span class="comment">// 向该窗口发送消息       </span></span></span><br><span class="line"><span class="javascript">                iframeWin.postMessage(<span class="built_in">document</span>.getElementById(<span class="string">"message"</span>).value, <span class="string">'http://moweide.gitcafe.io'</span>);   </span></span><br><span class="line">            &#125;   </span><br><span class="line"><span class="actionscript">            <span class="comment">// 监听跨域请求的返回   </span></span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.addEventListener(<span class="string">"message"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;       </span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(event, event.data);   </span></span><br><span class="line"><span class="actionscript">            &#125;, <span class="literal">false</span>);</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">id</span>=<span class="string">"message"</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"发送"</span> <span class="attr">onclick</span>=<span class="string">"sendPost()"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">iframe</span></span></span><br><span class="line"><span class="tag">            <span class="attr">src</span>=<span class="string">"http://moweide.gitcafe.io/other-domain.html"</span> <span class="attr">id</span>=<span class="string">"otherPage"</span> <span class="attr">style</span>=<span class="string">"display:none"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 子窗体接收信息并处理 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>POST Handler<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//code.jquery.com/jquery-1.11.0.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/JavaScript"</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.addEventListener(<span class="string">"message"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"> event </span>) </span>&#123;</span></span><br><span class="line"><span class="actionscript">                <span class="comment">// 监听父窗口发送过来的数据向服务器发送post请求</span></span></span><br><span class="line"><span class="actionscript">                <span class="keyword">var</span> data = event.data;</span></span><br><span class="line"><span class="javascript">                $.ajax(&#123;</span></span><br><span class="line"><span class="actionscript">                    <span class="comment">// 注意这里的url只是一个示例.实际练习的时候你需要自己想办法提供一个后台接口</span></span></span><br><span class="line"><span class="actionscript">                    type: <span class="string">'POST'</span>,</span></span><br><span class="line"><span class="actionscript">                    url: <span class="string">'http://moweide.gitcafe.io/getData'</span>,</span></span><br><span class="line"><span class="actionscript">                    data: <span class="string">"info="</span> + data,</span></span><br><span class="line"><span class="actionscript">                    dataType: <span class="string">"json"</span></span></span><br><span class="line"><span class="actionscript">                &#125;).done(<span class="function"><span class="keyword">function</span><span class="params">(res)</span></span>&#123;       </span></span><br><span class="line"><span class="actionscript">                    <span class="comment">//将请求成功返回的数据通过postMessage发送给父窗口       </span></span></span><br><span class="line"><span class="javascript">                    <span class="built_in">window</span>.parent.postMessage(res, <span class="string">"*"</span>);   </span></span><br><span class="line"><span class="actionscript">                &#125;).fail(<span class="function"><span class="keyword">function</span><span class="params">(res)</span></span>&#123;       </span></span><br><span class="line"><span class="actionscript">                    <span class="comment">//将请求失败返回的数据通过postMessage发送给父窗口       </span></span></span><br><span class="line"><span class="javascript">                    <span class="built_in">window</span>.parent.postMessage(res, <span class="string">"*"</span>);   </span></span><br><span class="line">                &#125;);</span><br><span class="line"><span class="actionscript">            &#125;, <span class="literal">false</span>);</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/26/iframe/" data-id="ck9ghxool000j7kr9czusb6x3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-https" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/https/" class="article-date">
+  <time datetime="2020-04-26T02:04:36.701Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/26/https/">HTTPS</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>HTTPS协议是基于HTTP协议，通过SSL或TLS提供加密处理数据、验证对方身份以及数据完整性保护。HTTPS协议不是明文。</p>
+<p>HTTPS有以下特定：<br>1.内容加密：采用混合加密技术，中间者无法直接查看明文内容；<br>2.验证身份：通过证书认证客户端访问的是自己的服务器；<br>3.保护数据完整性：防止传输的内容被中间人冒充或者篡改</p>
+<p><strong>混合加密：</strong>结合非对称加密和对称加密技术。客户端使用对称加密生成密钥对传输数据进行加密，然后使用非对称加密的公钥再对秘钥进行加密，所以网络上传输的数据是被秘钥加密的密文和用公钥加密后的秘密秘钥，因此即使被黑客截取，由于没有私钥，无法获取到加密明文的秘钥，便无法获取到明文数据。</p>
+<p><strong>数字摘要：</strong>通过单向hash函数对原文进行哈希，将需加密的明文“摘要”成一串固定长度(如128bit)的密文，不同的明文摘要成的密文其结果总是不相同，同样的明文其摘要必定一致，并且即使知道了摘要也不能反推出明文。</p>
+<p><strong>数字签名技术：</strong>数字签名建立在公钥加密体制基础上，是公钥加密技术的另一类应用。它把公钥加密技术和数字摘要结合起来，形成了实用的数字签名技术。</p>
+<p>收方能够证实发送方的真实身份；<br>发送方事后不能否认所发送过的报文；<br>收方或非法者不能伪造、篡改报文。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/26/https/" data-id="ck9ghxooj000h7kr9gtztf706" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-DOM" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/04/26/DOM/" class="article-date">
@@ -78,7 +177,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/26/DOM/">DOM</a>
+      <a class="article-title" href="/2020/04/26/DOM/">DOM相关</a>
     </h1>
   
 
@@ -86,7 +185,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>DOM<br>DOM文档对象模型，是针对HTML和XML文档的一个API。DOM描绘了一个层次化的节点树，允许开发人员添加、移除和修改页面的某一部分。</p>
+        <p>DOM文档对象模型，是针对HTML和XML文档的一个API。DOM描绘了一个层次化的节点树，允许开发人员添加、移除和修改页面的某一部分。</p>
 <h2 id="节点层次"><a href="#节点层次" class="headerlink" title="节点层次"></a>节点层次</h2><p>DOM可以将任何HTML或XML文档描绘成一个由多个节点构成的结构。节点分为几种不同类型，每种类型分别表示文档中不同的信息及（或）标记。每个节点都拥有各自的特点数据和方法。另外也与其他节点存在某种关系。节点之间的关系构成了层次，而所有页面编辑则表现为一个一特定节点为根节点的树形结构.</p>
 <h3 id="Node类型"><a href="#Node类型" class="headerlink" title="Node类型"></a>Node类型</h3><p>DOM1级定义了一个Node接口，该接口将由DOM中的所有节点类型实现。这个Node接口在JavaScript中是作为Node类型实现的。JavaScript中的所有节点类型都继承自Node类型，因此所有节点类型都共享着相同的基本属性和方法。<br>每个节点都有一个nodeType属性，用于表明节点的类型。节点类型由在Node类型中定义的12个数值常量表示。</p>
 <p>1.nodeName和nodeValue属性<br>要了解节点的具体信息，可以使用nodeName和nodeValue这两个属性。这两个属性的值完全取决于节点的类型：</p>
@@ -131,7 +230,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/26/DOM/" data-id="ck9gev01b00034cr9gdn82aui" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/04/26/DOM/" data-id="ck9ghxono00057kr9dwngctob" class="article-share-link">Share</a>
       
       
     </footer>
@@ -155,7 +254,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/26/css%E7%9B%B8%E5%85%B3/">css相关</a>
+      <a class="article-title" href="/2020/04/26/css%E7%9B%B8%E5%85%B3/">CSS相关基础</a>
     </h1>
   
 
@@ -240,9 +339,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/26/css%E7%9B%B8%E5%85%B3/" data-id="ck9gev01g00064cr97fjcf0ds" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/04/26/css%E7%9B%B8%E5%85%B3/" data-id="ck9ghxooc000d7kr97apseyxt" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
+
     </footer>
   </div>
   
@@ -287,9 +388,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/26/CSS%E5%B8%83%E5%B1%80/" data-id="ck9gev01900024cr9deih70c1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/04/26/CSS%E5%B8%83%E5%B1%80/" data-id="ck9ghxonj00037kr9d69o3lqi" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
+
     </footer>
   </div>
   
@@ -311,7 +414,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/26/cookie%E7%9B%B8%E5%85%B3/">cookie相关</a>
+      <a class="article-title" href="/2020/04/26/cookie%E7%9B%B8%E5%85%B3/">cookie</a>
     </h1>
   
 
@@ -319,7 +422,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><p>为解决HTTP无状态导致的问题，出现了cookie。但Cookie的存在也不是为了解决通讯协议无状态的问题，只是为了解决客户端与服务端会话状态的问题，这个状态是指后端服务的状态而非通讯协议的状态。</p>
+        <p>为解决HTTP无状态导致的问题，出现了cookie。但Cookie的存在也不是为了解决通讯协议无状态的问题，只是为了解决客户端与服务端会话状态的问题，这个状态是指后端服务的状态而非通讯协议的状态。</p>
 <h2 id="Cookie介绍"><a href="#Cookie介绍" class="headerlink" title="Cookie介绍"></a>Cookie介绍</h2><p>Cookie（复数形式为Cookies），类型为[小型文本文件]，指某些网站为了辨别用户身份而储存在用户本地终端上的数据。<br>作为一段一般不超过4kb的小型文本数据，它有一个名称（Name），一个值（Value）和其他几个用于控制Cookie有效期、安全性、使用范围的可选属性组成。</p>
 <p>Cookie文件不仅可以保存在浏览器中还可以保存在存放在本地文件中，这样的好处是即使关闭了浏览器，Cookie依然可以生效。</p>
 <h2 id="Cookie的保质期"><a href="#Cookie的保质期" class="headerlink" title="Cookie的保质期"></a>Cookie的保质期</h2><p>有永久的也有临时的，每个浏览器都含有自己的Cookie，每次请求的时候都会根据domain来发送相应的Cookie，可通过设置expries、max-age来设定保存日期，不设置的话默认是临时存储，即关闭浏览器就消失。</p>
@@ -363,7 +466,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/26/cookie%E7%9B%B8%E5%85%B3/" data-id="ck9gev01f00054cr9hrirb313" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/04/26/cookie%E7%9B%B8%E5%85%B3/" data-id="ck9ghxoo6000a7kr975n31141" class="article-share-link">Share</a>
       
       
     </footer>
@@ -395,8 +498,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>BOM相关</p>
-<h2 id="window对象"><a href="#window对象" class="headerlink" title="window对象"></a>window对象</h2><p>BOM的核心对象时windwo，它表示浏览器的一个实例。<strong>在浏览器中，window对象有双重角色，它既是通过JavaScript访问浏览器窗口的一个接口，又是ECMAScript规定的Global对象。</strong>这意味着在网页中定义的任何一个对象、变量和函数，都是以window作为其Global对象，因此有权访问parseInt()等方法。</p>
+        <h2 id="window对象"><a href="#window对象" class="headerlink" title="window对象"></a>window对象</h2><p>BOM的核心对象时windwo，它表示浏览器的一个实例。<strong>在浏览器中，window对象有双重角色，它既是通过JavaScript访问浏览器窗口的一个接口，又是ECMAScript规定的Global对象。</strong>这意味着在网页中定义的任何一个对象、变量和函数，都是以window作为其Global对象，因此有权访问parseInt()等方法。</p>
 <h3 id="全局作用域"><a href="#全局作用域" class="headerlink" title="全局作用域"></a>全局作用域</h3><p>由于window对象同时扮演者ECMAScript中Global对象的角色，因此所有在全局作用域中声明的变量、函数都会变成window的属性和方法</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age = <span class="number">29</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayAge</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.age)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(<span class="built_in">window</span>.age)  <span class="comment">//29</span></span><br><span class="line">sayAge()  <span class="comment">//29</span></span><br><span class="line"><span class="built_in">window</span>.sayAge()  <span class="comment">//29</span></span><br></pre></td></tr></table></figure>
 
@@ -443,9 +545,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/26/BOM%E7%9B%B8%E5%85%B3/" data-id="ck9gev01400014cr909zd8vsz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/04/26/BOM%E7%9B%B8%E5%85%B3/" data-id="ck9ghxonm00047kr99hvd7oem" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
     </footer>
   </div>
   
@@ -467,7 +571,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/26/AMD%E3%80%81CMD%E3%80%81Commonjs%E5%92%8CES6%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86/">AMD、CMD、Commonjs和ES6的包管理</a>
+      <a class="article-title" href="/2020/04/26/AMD%E3%80%81CMD%E3%80%81Commonjs%E5%92%8CES6%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86/">AMD、CMD、CommonJs和ES6对比</a>
     </h1>
   
 
@@ -475,7 +579,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>AMD、CMD、CommonJs和ES6对比<br>以上都是用于在模块化定义中使用的，AMD、CMD、CommonJs是ES中提供的模块化编程的方案，import/export是ES6中新增的。</p>
+        <p>以上都是用于在模块化定义中使用的，AMD、CMD、CommonJs是ES中提供的模块化编程的方案，import/export是ES6中新增的。</p>
 <h2 id="CommonJS-同步"><a href="#CommonJS-同步" class="headerlink" title="CommonJS(同步)"></a>CommonJS(同步)</h2><p>Nodejs模块系统就采用CommonJS模式。CommonJS标准规定，一个单独的文件就是一个模块，模块内将需要对外暴露的变量放到export对象里，可以是任意对象，函数，数组等，潍坊到exports对象里的都是私有的。用require方法加载模块，即读取模块文件获得exports对象。<br>CommonJS编程示例：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义hi.js：</span></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'Hi'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params">name</span>) </span>&#123;  </span><br><span class="line">    <span class="built_in">console</span>.log(str + <span class="string">', '</span> + name + <span class="string">'!'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = sayHi;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加载</span></span><br><span class="line"><span class="keyword">var</span> Hi = <span class="built_in">require</span>(<span class="string">'./hi'</span>);</span><br><span class="line">Hi(<span class="string">'Jack'</span>);     <span class="comment">// Hi, Jack!</span></span><br></pre></td></tr></table></figure>
 <h3 id="Nodejs中module-exports和exports区别"><a href="#Nodejs中module-exports和exports区别" class="headerlink" title="Nodejs中module.exports和exports区别"></a>Nodejs中module.exports和exports区别</h3><p>module和exports是Node.js给每个js文件内置的两个对象。实际上，这两个对象指向同一块内存。require引入的对象本质上是module.exports。当 module.exports和exports指向的不是同一块内存时，exports的内容就会失效。<br>例如</p>
@@ -496,9 +600,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/26/AMD%E3%80%81CMD%E3%80%81Commonjs%E5%92%8CES6%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86/" data-id="ck9gev00300004cr95egv78a0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/04/26/AMD%E3%80%81CMD%E3%80%81Commonjs%E5%92%8CES6%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86/" data-id="ck9ghxomt00007kr94ldqacdu" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
     </footer>
   </div>
   
@@ -528,8 +634,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Ajax与Comet</p>
-<p>Ajax是一种能够向服务器请求额外的数据而无需卸载页面。为Asynchornous.JavaScript + XML的简写。<br>Ajax的技术核心是XMLHttpRequest对象（简称XHR）。在XHR出现之前，Ajax式的通信必须借助一些hack手段来实现，大多数是使用隐藏的框架或内嵌框架。XHR为向服务器发送请求和解析服务器响应提供了流畅的接口。能够以异步方式从服务器取得更多信息，意味着用户单击后，可以不必刷新页面也能取得新数据。也就是说，可以使用XHR对象取得新数据，然后在通过DOM将新数据插入到页面中。另外，虽然名字中包含XML的成分，但Ajax通信与数据格式无关；这种技术就是无需刷新页面即可从服务崎岖的数据，但不一定是XML数据。</p>
+        <p>Ajax是一种能够向服务器请求额外的数据而无需卸载页面。为Asynchornous.JavaScript + XML的简写。<br>Ajax的技术核心是XMLHttpRequest对象（简称XHR）。在XHR出现之前，Ajax式的通信必须借助一些hack手段来实现，大多数是使用隐藏的框架或内嵌框架。XHR为向服务器发送请求和解析服务器响应提供了流畅的接口。能够以异步方式从服务器取得更多信息，意味着用户单击后，可以不必刷新页面也能取得新数据。也就是说，可以使用XHR对象取得新数据，然后在通过DOM将新数据插入到页面中。另外，虽然名字中包含XML的成分，但Ajax通信与数据格式无关；这种技术就是无需刷新页面即可从服务崎岖的数据，但不一定是XML数据。</p>
 <h2 id="XMLHttpRequest对象"><a href="#XMLHttpRequest对象" class="headerlink" title="XMLHttpRequest对象"></a>XMLHttpRequest对象</h2><h3 id="XHR的用法"><a href="#XHR的用法" class="headerlink" title="XHR的用法"></a>XHR的用法</h3><p>在使用XHR对象时，要调用的第一个方法是open(),它接受三个参数：要发送的请求的类型（’get‘，‘post’等），请求的URL和是否异步发送请求的布尔值。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHTTPRequest()</span><br><span class="line">xhr.open(<span class="string">'get'</span>, <span class="string">'example.php'</span>, <span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
 <p>这行代码会启动一个针对example.php的get请求。有关这行代码，需要说明两点： 一是URL相对于执行大妈的当前页面（当然也可以使用绝对路径）；二是调用open()方法并不会真正发送请求，而只是起送一个请求以备发送。<br>要发送特定的请求，必须像如下代码：</p>
@@ -579,9 +684,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/26/Ajax%E4%B8%8EComet/" data-id="ck9gev021000b4cr9dd6pfi9w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/04/26/Ajax%E4%B8%8EComet/" data-id="ck9ghxonb00017kr9d2e08d98" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
     </footer>
   </div>
   
@@ -603,7 +710,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98/">计算机网络/前端缓存</a>
+      <a class="article-title" href="/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98/">前端缓存</a>
     </h1>
   
 
@@ -654,115 +761,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98/" data-id="ck9gev02j000i4cr9c6215oph" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98/" data-id="ck9ghxoq600187kr9hfn83cdb" class="article-share-link">Share</a>
       
       
-    </footer>
-  </div>
-  
-</article>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/" rel="tag">前端相关</a></li></ul>
 
-
-  
-    <article id="post-计算机网络/TCP协议" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP%E5%8D%8F%E8%AE%AE/" class="article-date">
-  <time datetime="2020-04-26T02:04:36.420Z" itemprop="datePublished">2020-04-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP%E5%8D%8F%E8%AE%AE/">计算机网络/TCP协议</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>TCP连接被称为是面向连接的，这是因为在一个应用进程可以开始面向另一个应用进程发送数据之前，这两个进程必须先相互握手，即它们必须相互发送某些预备报文段，已建立确保数据传输的参数。</p>
-<p>TCP的三次握手和四次挥手<br>其中涉及几个比较重要的字段<br>1.序号（sequlize number）：seq字段，占32位，用来标示从TCP源端向目的端口发送的字节流，发起方发送数据时对此进行标记</p>
-<p>2.确认号（acknowledgement number）：ack序号，占32位，只有ACK标志位为1时，确认序号字段才有效，ack=seq+1；</p>
-<p>3.标志位（flags）：共6个即URG、ACK、PSH、RST、SYN、FiN等。具体含义如下：<br>URG：紧急指针有效<br>ACK：确认序号有效<br>PSH：接收方应该尽快将这个报文交给应用层。<br>RST：重置连接<br>SYN：发起一个新连接。<br>FIN：释放一个新连接。</p>
-<p>TCP是一个面向连接的协议，无论哪一方向另一方发送数据之前，都必须先在双方之间建立一条连接，建立一条连接有以下过程。</p>
-<p>1.首先客户端向服务器端发送一段TCP报文，其中：<br>标记位为SYN=1表示“请求建立新连接”<br>序号为seq=cliend_isn（随机生成）</p>
-<p>2.服务器端接收到来自客户端的TCP报文之后，返回一段TCP报文：<br>标志位为SYN=1和ACK=1，表示确认客户端的报文seq序号有效，服务器能正常接收客户端发送的数据，并且同意创建新连接。<br>序号seq=sever_isn；<br>确认序号为ack=client_isn+1，表示收到客户端的序号seq并且将其值加1作为自己确认号的ack值</p>
-<p>3.客户端接收到来自服务器端的确认收到数据的TCP报文之后，明确了从客户端到服务器的数据传输是正常的，返回最后一段TCP报文。其中：<br>标志位为ACK=1，SYN=0，表示确认收到服务器端同一连接的信号<br>序号seq = client_isn+1,表示收到服务器端的确认号ack，并将其值作为自己的序号值</p>
-<p>四次挥手<br>1.首先客户端想要释放连接，向服务器端发送一段TCP报文，其中：<br>标记位为FIN=1，表示请求释放连接<br>序号为seq=client_isn1<br>随后客户端进入半关闭阶段。并且停止在客户端到服务器端方向发送数据，但是客户端仍然能接收到从服务器端传输过来的数据。</p>
-<p>2.服务器端接收到从客户端发出的TCP报文之后，确认了客户端想要释放连接，随后服务器端进入半关闭状态，返回一段TCP报文<br>标记位ACK=1，表示接收到客户端发送的释放连接请求<br>序号为seq=sever_isn1<br>确认号为ack=client_isn1+1,表示是在收到客户端报文的基础上，将其序号seq加1作为本段报文确认号ack的值<br>随后服务器端开始准备释放服务器端到客户端方向上的连接。</p>
-<p>3.服务器端锁好了释放服务器端到客户端方向上的连接准备，再次向客户端发出一段TCP报文，其中<br>标记位FIN=1，ACK=1，表示已经准备好释放连接了。<br>序号为seq=sever_isn2<br>确认号为ack=client1+1，表示是在接收到客户端报文的基础上，将其序号seq值加1作为本段报文确认号ack的值。</p>
-<p>4.客户端收到从服务器端发出的TCP报文，确认了服务器端已做好释放连接的准备，并向服务器端发送一段报文：<br>标记位为ACK=1，表示接收到服务器准备好释放连接的信号<br>序号为client_isn1+1,表示是在收到了服务器端报文的基础上，将其却热号ack值作为本段报文序号的值<br>确认号为ack=sever_isn2+1表示是在收到了服务气短报文的基础上，将其序号值seq作为本段报文确认号的值。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP%E5%8D%8F%E8%AE%AE/" data-id="ck9gev02l000j4cr9ftjj5zcn" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-计算机网络/http协议" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/http%E5%8D%8F%E8%AE%AE/" class="article-date">
-  <time datetime="2020-04-26T02:04:36.401Z" itemprop="datePublished">2020-04-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/http%E5%8D%8F%E8%AE%AE/">计算机网络/http协议</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>http是无状态的协议。<br>持续连接和非持续连接指的是TCP连接持续还是非持续，长轮询和短轮询指的是http的请求方式。<br>非持续连接：每个TCP连接在服务器发送一个对象后关闭，即该连接并不为其他对象而持续下来，每个TCP连接只传输一个请求报文和一个响应报文。<br>持续连接，服务器在发送响应后保持该TCP连接打开。在相同的客户与服务器之间的后续请求和响应报文能够通过相同的连接进行传递。当一条连接经过一定时间间隔未被使用就关闭。</p>
-<h2 id="http报文格式"><a href="#http报文格式" class="headerlink" title="http报文格式"></a>http报文格式</h2><p>http请求报文的第一行叫做请求行，其后继的行叫做首部行。<br>如下为一个典型的HTTP请求报文<br>GET /somedir/page.html HTTP/1.1<br>Host: <a href="http://www.someschool.edu" target="_blank" rel="noopener">www.someschool.edu</a><br>connecttion: close<br>User-agent: Mozilla/5.0<br>Accept-language: fr<br>请求行有三个字段：方法字段、URL字段和HTTP版本字段。方法字段可以的取值有GET，POST，HEAD，PUT和DELETE。绝大部分的HTTP请求报文使用GET方法。</p>
-<p>首部行<br>Host: ww.someschool.edu指明了对象所在的主机。<br>Connecttion：是否使用持续连接<br>User-agent：指明用户代理，即浏览器类型</p>
-<p>HTTP响应报文<br>如下为典型响应报文<br>HTTP1.1 200 ok<br>Connection： close<br>Date: Tue, 09 Aug 2011 15:44:04 GMT<br>Sever: Apache/2.2.3(Centos)<br>Last-Modified: Tue, 09 Aug 2011 15:11:03 GMT<br>Content-Length: 6821<br>Content-Type: text/html<br>由三部分组成一个初始状态行，6个首部行，然后是实体体。实体体部分值报文的主要部分，它包含了请求的对象本身。状态行有三个字段：协议版本字段、状态码和相应状态信息。<br>首部行<br>Connection：发送完报文后将关闭TCP连接<br>Date：服务器从他的文件系统中检索到该对象，插入到响应报文的事件<br>Sever：报文由什么服务器产生。<br>Last-Modified：对象创建或者最后修改的日期和时间。<br>Content-Length：被发送对象中的字节数。<br>Content-Type：指示实体体中的对象的类型</p>
-<p>首部行扩展<br>http为无状态协议，引入cookie将用户和内容联系起来<br>由此请求首部行将加入cookie，响应首部行将加入Set-cookie</p>
-<p><strong>与缓存相关引入的请求首部行if-Modified-Since</strong></p>
-<p>请求状态码<br><strong>2开头 （请求成功）表示成功处理了请求的状态代码。</strong></p>
-<p>200   （成功）  服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页。<br>201   （已创建）  请求成功并且服务器创建了新的资源。<br>202   （已接受）  服务器已接受请求，但尚未处理。<br>203   （非授权信息）  服务器已成功处理了请求，但返回的信息可能来自另一来源。<br>204   （无内容）  服务器成功处理了请求，但没有返回任何内容。<br>205   （重置内容） 服务器成功处理了请求，但没有返回任何内容。<br>206   （部分内容）  服务器成功处理了部分 GET 请求。</p>
-<p><strong>3开头 （请求被重定向）表示要完成请求，需要进一步操作。 通常，这些状态代码用来重定向。</strong></p>
-<p>300   （多种选择）  针对请求，服务器可执行多种操作。 服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择。<br>301   （永久移动）  请求的网页已永久移动到新位置。 服务器返回此响应（对 GET 或 HEAD 请求的响应）时，会自动将请求者转到新位置。<br>302   （临时移动）  服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。<br>303   （查看其他位置） 请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。<br>304   （未修改） 自从上次请求后，请求的网页未修改过。 服务器返回此响应时，不会返回网页内容。<br>305   （使用代理） 请求者只能使用代理访问请求的网页。 如果服务器返回此响应，还表示请求者应使用代理。<br>307   （临时重定向）  服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</p>
-<p><strong>4开头 （请求错误）这些状态代码表示请求可能出错，妨碍了服务器的处理。</strong></p>
-<p>400   （错误请求） 服务器不理解请求的语法。<br>401   （未授权） 请求要求身份验证。 对于需要登录的网页，服务器可能返回此响应。<br>403   （禁止） 服务器拒绝请求。<br>404   （未找到） 服务器找不到请求的网页。<br>405   （方法禁用） 禁用请求中指定的方法。<br>406   （不接受） 无法使用请求的内容特性响应请求的网页。<br>407   （需要代理授权） 此状态代码与 401（未授权）类似，但指定请求者应当授权使用代理。<br>408   （请求超时）  服务器等候请求时发生超时。<br>409   （冲突）  服务器在完成请求时发生冲突。 服务器必须在响应中包含有关冲突的信息。<br>410   （已删除）  如果请求的资源已永久删除，服务器就会返回此响应。<br>411   （需要有效长度） 服务器不接受不含有效内容长度标头字段的请求。<br>412   （未满足前提条件） 服务器未满足请求者在请求中设置的其中一个前提条件。<br>413   （请求实体过大） 服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。<br>414   （请求的 URI 过长） 请求的 URI（通常为网址）过长，服务器无法处理。<br>415   （不支持的媒体类型） 请求的格式不受请求页面的支持。<br>416   （请求范围不符合要求） 如果页面无法提供请求的范围，则服务器会返回此状态代码。<br>417   （未满足期望值） 服务器未满足”期望”请求标头字段的要求。</p>
-<p><strong>5开头（服务器错误）这些状态代码表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身的错误，而不是请求出错。</strong></p>
-<p>500   （服务器内部错误）  服务器遇到错误，无法完成请求。<br>501   （尚未实施） 服务器不具备完成请求的功能。 例如，服务器无法识别请求方法时可能会返回此代码。<br>502   （错误网关） 服务器作为网关或代理，从上游服务器收到无效响应。<br>503   （服务不可用） 服务器目前无法使用（由于超载或停机维护）。 通常，这只是暂时状态。<br>504   （网关超时）  服务器作为网关或代理，但是没有及时从上游服务器收到请求。<br>505   （HTTP 版本不受支持） 服务器不支持请求中所用的 HTTP 协议版本。</p>
-<h2 id="http1-0、http1-1、http2-0对比"><a href="#http1-0、http1-1、http2-0对比" class="headerlink" title="http1.0、http1.1、http2.0对比"></a>http1.0、http1.1、http2.0对比</h2><h3 id="HTTP1-0和HTTP1-1的区别"><a href="#HTTP1-0和HTTP1-1的区别" class="headerlink" title="HTTP1.0和HTTP1.1的区别"></a>HTTP1.0和HTTP1.1的区别</h3><p>1.1 长连接(Persistent Connection)<br>       HTTP1.1支持长连接和请求的流水线处理，在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟，在HTTP1.1中默认开启长连接keep-alive，一定程度上弥补了HTTP1.0每次请求都要创建连接的缺点。HTTP1.0需要使用keep-alive参数来告知服务器端要建立一个长连接。</p>
-<p>1.2 节约带宽<br>       HTTP1.0中存在一些浪费带宽的现象，例如客户端只是需要某个对象的一部分，而服务器却将整个对象送过来了，并且不支持断点续传功能。HTTP1.1支持只发送header信息（不带任何body信息），如果服务器认为客户端有权限请求服务器，则返回100，客户端接收到100才开始把请求body发送到服务器；如果返回401，客户端就可以不用发送请求body了节约了带宽。</p>
-<p>1.3 HOST域<br>       在HTTP1.0中认为每台服务器都绑定一个唯一的IP地址，因此，请求消息中的URL并没有传递主机名（hostname），HTTP1.0没有host域。随着虚拟主机技术的发展，在一台物理服务器上可以存在多个虚拟主机（Multi-homed Web Servers），并且它们共享一个IP地址。HTTP1.1的请求消息和响应消息都支持host域，且请求消息中如果没有host域会报告一个错误（400 Bad Request）。</p>
-<p>1.4缓存处理<br>       在HTTP1.0中主要使用header里的If-Modified-Since,Expires来做为缓存判断的标准，HTTP1.1则引入了更多的缓存控制策略例如Entity tag，If-Unmodified-Since, If-Match, If-None-Match等更多可供选择的缓存头来控制缓存策略。</p>
-<p>1.5错误通知的管理<br>       在HTTP1.1中新增了24个错误状态响应码，如409（Conflict）表示请求的资源与资源的当前状态发生冲突；410（Gone）表示服务器上的某个资源被永久性的删除。</p>
-<h3 id="HTTP1-1和HTTP2-0的区别"><a href="#HTTP1-1和HTTP2-0的区别" class="headerlink" title="HTTP1.1和HTTP2.0的区别"></a>HTTP1.1和HTTP2.0的区别</h3><p>2.1 多路复用<br>       HTTP2.0使用了多路复用的技术，做到同一个连接并发处理多个请求，而且并发请求的数量比HTTP1.1大了好几个数量级。HTTP1.1也可以多建立几个TCP连接，来支持处理更多并发的请求，但是创建TCP连接本身也是有开销的。</p>
-<p>2.2 头部数据压缩<br>       在HTTP1.1中，HTTP请求和响应都是由状态行、请求/响应头部、消息主体三部分组成。一般而言，消息主体都会经过gzip压缩，或者本身传输的就是压缩过后的二进制文件，但状态行和头部却没有经过任何压缩，直接以纯文本传输。随着Web功能越来越复杂，每个页面产生的请求数也越来越多，导致消耗在头部的流量越来越多，尤其是每次都要传输UserAgent、Cookie这类不会频繁变动的内容，完全是一种浪费。</p>
-<pre><code>HTTP1.1不支持header数据的压缩，HTTP2.0使用HPACK算法对header的数据进行压缩，这样数据体积小了，在网络上传输就会更快。</code></pre><p>2.3 服务器推送<br>       服务端推送是一种在客户端请求之前发送数据的机制。网页使用了许多资源：HTML、样式表、脚本、图片等等。在HTTP1.1中这些资源每一个都必须明确地请求。这是一个很慢的过程。浏览器从获取HTML开始，然后在它解析和评估页面的时候，增量地获取更多的资源。因为服务器必须等待浏览器做每一个请求，网络经常是空闲的和未充分使用的。</p>
-<pre><code>为了改善延迟，HTTP2.0引入了server push，它允许服务端推送资源给浏览器，在浏览器明确地请求之前，免得客户端再次创建连接发送请求到服务器端获取。这样客户端可以直接从本地加载这些资源，不用再通过网络。</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/http%E5%8D%8F%E8%AE%AE/" data-id="ck9gev02i000h4cr9gi8abovk" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   
@@ -782,18 +785,39 @@
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">JavaScript高级程序设计</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/" rel="tag">前端相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/" style="font-size: 10px;">前端相关</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.67px;">计算机网络</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
     </div>
   </div>
 
@@ -806,6 +830,14 @@
       <ul>
         
           <li>
+            <a href="/2020/04/26/%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B/">引用类型之数组</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%80%BB%E7%BB%93/">面向对象的程序设计</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/26/%E4%BA%8B%E4%BB%B6/">事件</a>
           </li>
         
@@ -815,14 +847,6 @@
         
           <li>
             <a href="/2020/04/26/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">防抖与节流</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/26/%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0/">定位元素</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/26/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/">迭代器和生成器</a>
           </li>
         
       </ul>
