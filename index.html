@@ -1,92 +1,255 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
 
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="/Blog/css/main.css">
+
+
+<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gitee.com","root":"/Blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
   <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="蚂蚁的博客">
 <meta property="og:url" content="https://gitee.com/iversoncurry/Blog.git/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="蚂蚁的博客">
 <meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="蚂蚁">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/Blog/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/Blog/css/style.css">
 
-<meta name="generator" content="Hexo 4.2.0"></head>
+<link rel="canonical" href="https://gitee.com/iversoncurry/Blog.git/">
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/Blog/" id="logo">Hexo</a>
-      </h1>
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'en'
+  };
+</script>
+
+  <title>蚂蚁的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蚂蚁的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
       
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/Blog/">Home</a>
-        
-          <a class="main-nav-link" href="/Blog/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/Blog/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://gitee.com/iversoncurry/Blog.git"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
   
-    <article id="post-数组类型" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Blog/2020/04/26/%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B/" class="article-date">
-  <time datetime="2020-04-26T03:26:13.286Z" itemprop="datePublished">2020-04-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog/2020/04/26/%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B/">引用类型之数组</a>
-    </h1>
-  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/iversoncurry/Blog.git/2020/04/26/%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="蚂蚁">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/04/26/%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">前端路由实现</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-26 15:55:55 / Modified: 18:00:39" itemprop="dateCreated datePublished" datetime="2020-04-26T15:55:55+08:00">2020-04-26</time>
+            </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>除Object之外，Array类型是ECMAScript中最常用的类型，与其他语言不同，数组中可以保存任何类型的数据；同时数组大小可以随意调整，不同于java，当数组长度确定时不能再进行改变；Array 存储的对象能动态增多和减少，并且可以存储任何JavaScript值。</p>
+          <p>路由的概念来源于服务端，在服务端中路由描述的是URL与处理函数之间的映射关系。<br>在Web前端单页应用中，路由描述的是URL与UI之间的映射关系，这种映射是单向的，即URL变化引起UI更新（<strong>无需刷新页面</strong>）</p>
+<h2 id="实现前端路由的基本原理"><a href="#实现前端路由的基本原理" class="headerlink" title="实现前端路由的基本原理"></a>实现前端路由的基本原理</h2><p>要实现前端路由，需要解决两个核心问题<br>1.改变URL不引起页面刷新<br>2.检测URL变化</p>
+<p>利用hash或history可以解决这两个问题</p>
+<h3 id="hash实现"><a href="#hash实现" class="headerlink" title="hash实现"></a>hash实现</h3><p>1.hash是URL中hash (#)及后面的那部分，常用作锚点在页面内进行导航，改变URL中的hash部分不会引起页面刷新<br>2.通过hashchange事件监听URL的变化。<br>浏览器前进或后退改变URL、通过标签改变URL、通过window.location改变URL，这几种情况都会触发hashchange事件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 定义路由 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#/home"</span>&gt;</span>home<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#/about"</span>&gt;</span>about<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 渲染路由对应的 UI --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"routeView"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="comment">// 页面加载完不会触发 hashchange，这里主动触发一次 hashchange 事件</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">window</span>.addEventListener(<span class="string">'DOMContentLoaded'</span>, onLoad)</span></span><br><span class="line"><span class="actionscript">    <span class="comment">// 监听路由变化</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">window</span>.addEventListener(<span class="string">'hashchange'</span>, onHashChange)</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="comment">// 路由视图</span></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> routerView = <span class="literal">null</span></span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">onLoad</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">    routerView = <span class="built_in">document</span>.querySelector(<span class="string">'#routeView'</span>)</span></span><br><span class="line">    onHashChange()</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="history实现"><a href="#history实现" class="headerlink" title="history实现"></a>history实现</h3><p>1.history提供了pushState和replaceState两个方法，这两个方法改变URL的path部分不会引起页面刷新<br>2.history提供popstate事件。但通过通过pushState/replaceState或标签改变 URL 不会触发 popstate 事件。但可以拦截pushState/replaceState的调用和标签的点击事件来检测 URL 变化，所以监听 URL 变化可以实现。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'/home'</span>&gt;</span>home<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'/about'</span>&gt;</span>about<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"routeView"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="comment">// 页面加载完不会触发 hashchange，这里主动触发一次 hashchange 事件</span></span></span><br><span class="line"><span class="javascript"><span class="built_in">window</span>.addEventListener(<span class="string">'DOMContentLoaded'</span>, onLoad)</span></span><br><span class="line"><span class="actionscript"><span class="comment">// 监听路由变化</span></span></span><br><span class="line"><span class="javascript"><span class="built_in">window</span>.addEventListener(<span class="string">'popstate'</span>, onPopState)</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="comment">// 路由视图</span></span></span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> routerView = <span class="literal">null</span></span></span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">onLoad</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">  routerView = <span class="built_in">document</span>.querySelector(<span class="string">'#routeView'</span>)</span></span><br><span class="line">  onPopState()</span><br><span class="line"></span><br><span class="line"><span class="actionscript"> href=<span class="string">""</span>&gt;  <span class="comment">// 拦截 &lt;a&gt; 标签点击事件默认行为， 点击时使用 pushState 修改 URL并更新手动 UI，从而实现点击链接更新 URL 和 UI 的效果。</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> linkList = <span class="built_in">document</span>.querySelectorAll(<span class="string">'a[href]'</span>)</span></span><br><span class="line"><span class="javascript">  linkList.forEach(<span class="function"><span class="params">el</span> =&gt;</span> el.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span></span><br><span class="line">    e.preventDefault()</span><br><span class="line"><span class="actionscript">    history.pushState(<span class="literal">null</span>, <span class="string">''</span>, el.getAttribute(<span class="string">'href'</span>))</span></span><br><span class="line">    onPopState()</span><br><span class="line">  &#125;))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="comment">// 路由变化时，根据路由渲染对应 UI</span></span></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">onPopState</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">switch</span> (location.pathname) &#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">case</span> <span class="string">'/home'</span>:</span></span><br><span class="line"><span class="actionscript">      routerView.innerHTML = <span class="string">'Home'</span></span></span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">case</span> <span class="string">'/about'</span>:</span></span><br><span class="line"><span class="actionscript">      routerView.innerHTML = <span class="string">'About'</span></span></span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">default</span>:</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span></span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/iversoncurry/Blog.git/2020/04/26/%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="蚂蚁">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/04/26/%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">引用类型之数组</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-26 11:26:13 / Modified: 11:29:19" itemprop="dateCreated datePublished" datetime="2020-04-26T11:26:13+08:00">2020-04-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>除Object之外，Array类型是ECMAScript中最常用的类型，与其他语言不同，数组中可以保存任何类型的数据；同时数组大小可以随意调整，不同于java，当数组长度确定时不能再进行改变；Array 存储的对象能动态增多和减少，并且可以存储任何JavaScript值。</p>
 <h2 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h2><p>1.利用Array构造函数</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = <span class="keyword">new</span> <span class="built_in">Array</span>(args)</span><br></pre></td></tr></table></figure>
 <p>其中args可以为空，也可以为一个数值或是字符串，当为数值时，生成一个长度为该数值的数组，当为字符串时，生成一个含有该字符串的数组；其中，new可以省略<br>2.利用数组字面量表示法进行创建</p>
@@ -221,46 +384,71 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="https://gitee.com/iversoncurry/Blog.git/2020/04/26/%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B/" data-id="ck9ghxoox000v7kr9a3eo9n0a" class="article-share-link">Share</a>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
-
-    </footer>
-  </div>
   
-</article>
-
-
   
-    <article id="post-面向对象的程序设计总结" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Blog/2020/04/26/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%80%BB%E7%BB%93/" class="article-date">
-  <time datetime="2020-04-26T03:26:13.274Z" itemprop="datePublished">2020-04-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/Blog/categories/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">JavaScript高级程序设计</a>
-  </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/iversoncurry/Blog.git/2020/04/26/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%80%BB%E7%BB%93/">
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog/2020/04/26/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%80%BB%E7%BB%93/">面向对象的程序设计</a>
-    </h1>
-  
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="蚂蚁">
+      <meta itemprop="description" content="">
+    </span>
 
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/04/26/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">面向对象的程序设计</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-26 11:26:13 / Modified: 11:28:26" itemprop="dateCreated datePublished" datetime="2020-04-26T11:26:13+08:00">2020-04-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">JavaScript高级程序设计</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p><strong>引用类型的值（对象）是引用类型的一个实例。</strong>在ECMAScript中，引用类型是一种书结构，用于将数据和功能组织在一起。尽管ECMAScript从技术上讲是一门面向对象的语言，但他不具备传统的面向对象语言所支持的类和接口等基本结构。引用类型有时候也被称为对象定义，因为它们描述的是一类对象所具有的属性和方法。<br>对象是某个特定引用类型的实例。新对象是使用new操作符后跟一个构造函数来创建的，构造函数本身就是一个函数，只不过该函数是出于创建新对象的目的而定义的。</p>
+          <p><strong>引用类型的值（对象）是引用类型的一个实例。</strong>在ECMAScript中，引用类型是一种书结构，用于将数据和功能组织在一起。尽管ECMAScript从技术上讲是一门面向对象的语言，但他不具备传统的面向对象语言所支持的类和接口等基本结构。引用类型有时候也被称为对象定义，因为它们描述的是一类对象所具有的属性和方法。<br>对象是某个特定引用类型的实例。新对象是使用new操作符后跟一个构造函数来创建的，构造函数本身就是一个函数，只不过该函数是出于创建新对象的目的而定义的。</p>
 <h2 id="Object类型"><a href="#Object类型" class="headerlink" title="Object类型"></a>Object类型</h2><p>虽然Object的实例不具备多少功能，但对于在应用程序中存储和传输数据而言，它们确实是非常理想的选择。<br>创建Object实例的方法有两种，第一种是使用new操作符后跟Object构造函数：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>()</span><br><span class="line">person.name = <span class="string">"Nicholas"</span></span><br><span class="line">person.age = <span class="number">19</span></span><br></pre></td></tr></table></figure>
 <p>另一种方式是使用<strong>对象字面量</strong>表示法，对象i字面量是对象定义的一种简写形式，目的在于简化创建包含大量属性的对象的过程。其中，属性名也可以使用字符串。</p>
@@ -448,42 +636,62 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="https://gitee.com/iversoncurry/Blog.git/2020/04/26/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%80%BB%E7%BB%93/" data-id="ck9ghxop500117kr9diqbfjyg" class="article-share-link">Share</a>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
-
-    </footer>
-  </div>
   
-</article>
-
-
   
-    <article id="post-事件" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Blog/2020/04/26/%E4%BA%8B%E4%BB%B6/" class="article-date">
-  <time datetime="2020-04-26T02:04:36.937Z" itemprop="datePublished">2020-04-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog/2020/04/26/%E4%BA%8B%E4%BB%B6/">事件</a>
-    </h1>
-  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/iversoncurry/Blog.git/2020/04/26/%E4%BA%8B%E4%BB%B6/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="蚂蚁">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/04/26/%E4%BA%8B%E4%BB%B6/" class="post-title-link" itemprop="url">事件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-26 10:04:36 / Modified: 11:23:05" itemprop="dateCreated datePublished" datetime="2020-04-26T10:04:36+08:00">2020-04-26</time>
+            </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>JavaScript与HTML之间的交互是通过事件实现的。<strong>事件，就是文档或浏览器窗口中发生的一些特定交互瞬间。</strong>可以使用侦听器（或处理程序）来订阅事件，以便事件发生时执行相应的代码。这种在传统软件工程中被称为观察员模式。支持页面的行为与页面的外观之间的松散耦合。</p>
+          <p>JavaScript与HTML之间的交互是通过事件实现的。<strong>事件，就是文档或浏览器窗口中发生的一些特定交互瞬间。</strong>可以使用侦听器（或处理程序）来订阅事件，以便事件发生时执行相应的代码。这种在传统软件工程中被称为观察员模式。支持页面的行为与页面的外观之间的松散耦合。</p>
 <h2 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h2><p>事件流描述的是从页面中接收事件的顺序。</p>
 <h3 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h3><p>IE的事件流叫做事件冒泡（event bubbling），即事件开始时有最具体的元素（文档中嵌套层次最深的那个节点）接收，然后逐级向上传播到较为不具体的节点（文档）。</p>
 <h3 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h3><p>事件捕获的思想是不太具体的节点更早接收到事件，具体的节点最后接收到事件。事件捕获的用意在于在事件到达预定目标之前捕获它。老版本的浏览器对事件捕获不支持。</p>
@@ -560,42 +768,62 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="https://gitee.com/iversoncurry/Blog.git/2020/04/26/%E4%BA%8B%E4%BB%B6/" data-id="ck9ghxooq000n7kr913yzfkhg" class="article-share-link">Share</a>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
-
-    </footer>
-  </div>
   
-</article>
-
-
   
-    <article id="post-跨域资源共享" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Blog/2020/04/26/%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/" class="article-date">
-  <time datetime="2020-04-26T02:04:36.923Z" itemprop="datePublished">2020-04-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog/2020/04/26/%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/">跨域资源共享</a>
-    </h1>
-  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/iversoncurry/Blog.git/2020/04/26/%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="蚂蚁">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/04/26/%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/" class="post-title-link" itemprop="url">跨域资源共享</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-26 10:04:36 / Modified: 15:57:58" itemprop="dateCreated datePublished" datetime="2020-04-26T10:04:36+08:00">2020-04-26</time>
+            </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>通过XHR实现Ajax通信的一个主要限制，来源于跨域安全策略（同源策略）。</p>
+          <p>通过XHR实现Ajax通信的一个主要限制，来源于跨域安全策略（同源策略）。</p>
 <h2 id="同源的定义"><a href="#同源的定义" class="headerlink" title="同源的定义"></a>同源的定义</h2><p>如果两个URL的协议（protocol）、端口（port）（如果有指定的话）和域名（host）都相同的话，则这两个URL是同源。这个方案也被称为‘协议/主机/端口元组’，或者直接是‘元组’。（‘元组’是指一组项目构成的整体，‘三重/四重/五重/等的通用形式）。<br>一下给出了与URL <a href="http://store.company.com/dir/page.html的源进行对比的示例。" target="_blank" rel="noopener">http://store.company.com/dir/page.html的源进行对比的示例。</a></p>
 <p>1.<a href="http://store.company.com/dir2/other.html" target="_blank" rel="noopener">http://store.company.com/dir2/other.html</a><br>同源，只有路径不同<br>2.<a href="http://store.company.com/dir/inner/another.html" target="_blank" rel="noopener">http://store.company.com/dir/inner/another.html</a><br>同源，只有路径不同<br>3.<a href="https://store.company.com/secure.html" target="_blank" rel="noopener">https://store.company.com/secure.html</a><br>不同源，协议不同<br>4.<a href="http://store.company.com:81/dir/etc.html" target="_blank" rel="noopener">http://store.company.com:81/dir/etc.html</a><br>不同源，端口不同（http默认是80端口）<br>5.<a href="http://news.company.com/dir/other.html" target="_blank" rel="noopener">http://news.company.com/dir/other.html</a><br>不同源，主机（域名）不同</p>
 <h2 id="源的继承"><a href="#源的继承" class="headerlink" title="源的继承"></a>源的继承</h2><p>在页面中通过 about:blank 或 javascript: URL 执行的脚本会继承打开该 URL 的文档的源，因为这些类型的 URLs 没有包含源服务器的相关信息。</p>
@@ -666,40 +894,62 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="https://gitee.com/iversoncurry/Blog.git/2020/04/26/%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/" data-id="ck9ghxooz000x7kr90s75b44g" class="article-share-link">Share</a>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
-      
-    </footer>
-  </div>
   
-</article>
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/iversoncurry/Blog.git/2020/04/26/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="蚂蚁">
+      <meta itemprop="description" content="">
+    </span>
 
-  
-    <article id="post-防抖与节流" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Blog/2020/04/26/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" class="article-date">
-  <time datetime="2020-04-26T02:04:36.865Z" itemprop="datePublished">2020-04-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog/2020/04/26/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">防抖与节流</a>
-    </h1>
-  
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/04/26/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" class="post-title-link" itemprop="url">防抖与节流</a>
+        </h2>
 
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-26 10:04:36 / Modified: 15:57:58" itemprop="dateCreated datePublished" datetime="2020-04-26T10:04:36+08:00">2020-04-26</time>
+            </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>有些情况下前端事件触发的函数执行过于频繁，将浪费浏览器性能由此引出防抖。<br><strong>防抖</strong><br>定义：<br>对于短时间内连续触发的事件，防抖的含义是让某个时间期限内，时间处理函数只执行一次。</p>
+          <p>有些情况下前端事件触发的函数执行过于频繁，将浪费浏览器性能由此引出防抖。<br><strong>防抖</strong><br>定义：<br>对于短时间内连续触发的事件，防抖的含义是让某个时间期限内，时间处理函数只执行一次。</p>
 <p>思路1：<br>在第一次触发事件时，不利己执行函数，而是给出一个期限例如200ms，<br>当200ms内没有在此触发该事件，那么就执行函数<br>当200ms内再次触发该事件，当前计时取消，重新开始计时</p>
 <p><strong>效果</strong> 短时间大量触发同一事件只会执行一次函数。</p>
 <p><strong>实现</strong></p>
@@ -716,40 +966,62 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="https://gitee.com/iversoncurry/Blog.git/2020/04/26/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" data-id="ck9ghxop1000z7kr9aaqsdxwr" class="article-share-link">Share</a>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
-      
-    </footer>
-  </div>
   
-</article>
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/iversoncurry/Blog.git/2020/04/26/%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="蚂蚁">
+      <meta itemprop="description" content="">
+    </span>
 
-  
-    <article id="post-定位元素" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Blog/2020/04/26/%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0/" class="article-date">
-  <time datetime="2020-04-26T02:04:36.845Z" itemprop="datePublished">2020-04-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog/2020/04/26/%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0/">定位元素</a>
-    </h1>
-  
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/04/26/%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0/" class="post-title-link" itemprop="url">定位元素</a>
+        </h2>
 
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-26 10:04:36 / Modified: 11:14:43" itemprop="dateCreated datePublished" datetime="2020-04-26T10:04:36+08:00">2020-04-26</time>
+            </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>这部分介绍盒模型，position和display属性以及如何浮动（float）和清除（clear）元素。以及flex属性。<br>所谓盒模型，就是浏览器为页面中的每个HTML元素生成的矩形盒子。这些盒子都要按照课件版式模型（visual formatting model）在页面上排布。可见的页面版式主要由三个属性控制：position属性、display属性和float属性。其中position属性控制页面上元素间的位置关系，display属性控制元素是堆叠并排还是根本不在页面上出现，float属性提供控制的方式，以便把元素组成成多栏布局。</p>
+          <p>这部分介绍盒模型，position和display属性以及如何浮动（float）和清除（clear）元素。以及flex属性。<br>所谓盒模型，就是浏览器为页面中的每个HTML元素生成的矩形盒子。这些盒子都要按照课件版式模型（visual formatting model）在页面上排布。可见的页面版式主要由三个属性控制：position属性、display属性和float属性。其中position属性控制页面上元素间的位置关系，display属性控制元素是堆叠并排还是根本不在页面上出现，float属性提供控制的方式，以便把元素组成成多栏布局。</p>
 <h2 id="理解盒模型"><a href="#理解盒模型" class="headerlink" title="理解盒模型"></a>理解盒模型</h2><p>每个元素都会在页面上生成一个盒子。因此HTML页面实际上就是由一堆盒子组成的。<br>默认情况下，每个盒子的边框不可见，背景也是透明的，所以我们不能直接看到页面中盒子的结构。<br>每个元素盒子的属性可以分成三组：<br>1.边框（border）：可以设置边框的宽窄，样式和颜色。<br>2.内边框（padding）：可以设置盒子内容区与边框的间距。<br>3.外边距（margin）：可以设置盒子与相邻元素的间距。<br>盒子的边框内边距和外边距相关的属性有4个，分别是上（top），右（right），下（bottom），左（left）。</p>
 <h3 id="盒子边框"><a href="#盒子边框" class="headerlink" title="盒子边框"></a>盒子边框</h3><p>边框（border）有三个相关属性<br>1.宽度（border-width）：可以使用thin、medium、和thick等文本值，也可以使用除百分比和负值之外的任何绝对值。<br>2.样式（border-style）：有none、hidder、dashed、solid、double、groove、ridge、inset和outset等文本值。<br>3.颜色（border-color）：可以使用任意颜色值，包括RGB、HSL、十六进制颜色值和颜色关键字。</p>
 <h3 id="盒子内边距"><a href="#盒子内边距" class="headerlink" title="盒子内边距"></a>盒子内边距</h3><p>内边距（padding）是盒子内容区和盒子边框之间的距离。</p>
@@ -893,40 +1165,62 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">    <span class="attribute">align-self</span>: auto | flex-start | flex-end | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="https://gitee.com/iversoncurry/Blog.git/2020/04/26/%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0/" data-id="ck9ghxoou000r7kr9ey4w5p6j" class="article-share-link">Share</a>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
-      
-    </footer>
-  </div>
   
-</article>
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/iversoncurry/Blog.git/2020/04/26/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="蚂蚁">
+      <meta itemprop="description" content="">
+    </span>
 
-  
-    <article id="post-迭代器和生成器" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Blog/2020/04/26/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/" class="article-date">
-  <time datetime="2020-04-26T02:04:36.823Z" itemprop="datePublished">2020-04-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog/2020/04/26/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/">迭代器和生成器</a>
-    </h1>
-  
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/04/26/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/" class="post-title-link" itemprop="url">迭代器和生成器</a>
+        </h2>
 
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-26 10:04:36 / Modified: 11:14:14" itemprop="dateCreated datePublished" datetime="2020-04-26T10:04:36+08:00">2020-04-26</time>
+            </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <h4 id="循环的问题"><a href="#循环的问题" class="headerlink" title="循环的问题"></a>循环的问题</h4><p>考虑如下代码区：</p>
+          <h4 id="循环的问题"><a href="#循环的问题" class="headerlink" title="循环的问题"></a>循环的问题</h4><p>考虑如下代码区：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">'red'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>]</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = colors.length; i &lt;len; i++) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(color[i])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>虽然这个循环非常直观，然而当它被嵌套使用并要追踪多个变量时，情况就会变得非常复杂。额外的复杂度会引发错误，而for循环的样板性也增加了自身出错的可能性，因为相似的代码会被卸载多个地方。迭代器正式用来解决此问题的。</p>
 <h4 id="何为迭代器"><a href="#何为迭代器" class="headerlink" title="何为迭代器"></a>何为迭代器</h4><p>迭代器是被设计专用于迭代的对象，带有特定接口。所有迭代器对象都拥有next()方法，会返回一个结果对象。该结果对象有两个属性，对应下一个值的value，一集一个布尔类型的done，其值为true时表示没有更多值可供使用。迭代器持有一个指向集合位置的内部指针，每当调用了next()方法，迭代器就会返回相应的下一个值。<br>若在最后一个值返回后再调用next()，所返回的done属性值回事true，并且value属性值会是迭代器自身的返回值(return value，及时使用return语句明确返回值)。该“返回值”不是原数据集的一部分，去会成为相关数据的最后一个片段，或在迭代器未提供返回值时使用undefined。迭代器自身的返回值类似于函数的返回值，事项调用者返回信息的最后手段。<br>在ES5中床加一个迭代器代码如下：</p>
@@ -1030,40 +1324,62 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="https://gitee.com/iversoncurry/Blog.git/2020/04/26/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/" data-id="ck9ghxop300107kr91272eksz" class="article-share-link">Share</a>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
-      
-    </footer>
-  </div>
   
-</article>
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/iversoncurry/Blog.git/2020/04/26/%E4%BB%A3%E7%90%86%E5%92%8C%E5%8F%8D%E5%B0%84%E6%8E%A5%E5%8F%A3/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="蚂蚁">
+      <meta itemprop="description" content="">
+    </span>
 
-  
-    <article id="post-代理和反射接口" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Blog/2020/04/26/%E4%BB%A3%E7%90%86%E5%92%8C%E5%8F%8D%E5%B0%84%E6%8E%A5%E5%8F%A3/" class="article-date">
-  <time datetime="2020-04-26T02:04:36.812Z" itemprop="datePublished">2020-04-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog/2020/04/26/%E4%BB%A3%E7%90%86%E5%92%8C%E5%8F%8D%E5%B0%84%E6%8E%A5%E5%8F%A3/">代理和反射接口</a>
-    </h1>
-  
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/04/26/%E4%BB%A3%E7%90%86%E5%92%8C%E5%8F%8D%E5%B0%84%E6%8E%A5%E5%8F%A3/" class="post-title-link" itemprop="url">代理和反射接口</a>
+        </h2>
 
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-26 10:04:36 / Modified: 11:26:55" itemprop="dateCreated datePublished" datetime="2020-04-26T10:04:36+08:00">2020-04-26</time>
+            </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>ES5和ES6都推进了JS功能的公开。例如，JS运行环境包含一些不可枚举、不可写入的对象属性。ES5引入了Object.defineProperty()方法以便开发者在这方面能够像JS引擎那样做。<br>SE6让开发者能进一步接近JS引擎的能力，这些能力原先只存在于内置对象上。语言通过代理（proxy）暴露在对象上的内部工作，代理是一种封装，能够拦截并改变JS引擎的底层操作。</p>
+          <p>ES5和ES6都推进了JS功能的公开。例如，JS运行环境包含一些不可枚举、不可写入的对象属性。ES5引入了Object.defineProperty()方法以便开发者在这方面能够像JS引擎那样做。<br>SE6让开发者能进一步接近JS引擎的能力，这些能力原先只存在于内置对象上。语言通过代理（proxy）暴露在对象上的内部工作，代理是一种封装，能够拦截并改变JS引擎的底层操作。</p>
 <h2 id="数组问题"><a href="#数组问题" class="headerlink" title="数组问题"></a>数组问题</h2><p>在ES6之前，JS的数组对象拥有特定的行为方式，无法被开发者在自定义对象中进行模拟。当你给数组元素赋值时，数组的length属性会受到影响，同时也可以通过修改length属性来变更数组的元素。例如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = [<span class="string">'red'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>]</span><br><span class="line"><span class="built_in">console</span>.log(colors.length)       <span class="comment">//3</span></span><br><span class="line">colors[<span class="number">3</span>] = <span class="string">'black'</span></span><br><span class="line"><span class="built_in">console</span>.log(colors.length)       <span class="comment">//4</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">3</span>])           <span class="comment">//black</span></span><br><span class="line">colors.length = <span class="number">2</span></span><br><span class="line"><span class="built_in">console</span>.log(colors.length)       <span class="comment">//2</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">3</span>])           <span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">2</span>])           <span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">1</span>])           <span class="comment">//green</span></span><br></pre></td></tr></table></figure>
 <h2 id="代理与反射是什么"><a href="#代理与反射是什么" class="headerlink" title="代理与反射是什么"></a>代理与反射是什么</h2><p>通过调用new Proxy()，可以创建一个代理用来替代另一个对象（被称为目标），这个代理对目标对象进行了虚拟，因此该代理与该目标对象表面上可以被当作同一个对象来对待。<br>代理允许拦截在目标对象上的底层操作。拦截行为使用了一个能够响应特定操作的函数（被称为陷阱）。<br>被Reflect对象所代表的反射接口，是给底层操作提供默认行为的方法的集合，这些操作是能够被代理重写的。每个代理陷阱都有一个对应的反射方法，每个方法都与对应的陷阱函数重名，并且接受的参数也与之一致。下表总结了这些行为：<br>每个陷阱函数都可以重写 JS 对象的一个特定内置行为，允许你拦截并修改它。如果你仍然需要使用原先的内置行为，则可使用对应的反射接口方法。一旦创建了代理，你就能清晰了解代理与反射接口之间的关系，因此我们最好通过一些例子来进行深入研究。</p>
@@ -1081,42 +1397,62 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="https://gitee.com/iversoncurry/Blog.git/2020/04/26/%E4%BB%A3%E7%90%86%E5%92%8C%E5%8F%8D%E5%B0%84%E6%8E%A5%E5%8F%A3/" data-id="ck9ghxoor000p7kr95qlu5cy6" class="article-share-link">Share</a>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
-
-    </footer>
-  </div>
   
-</article>
-
-
   
-    <article id="post-Promise与异步编程" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Blog/2020/04/26/Promise%E4%B8%8E%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" class="article-date">
-  <time datetime="2020-04-26T02:04:36.749Z" itemprop="datePublished">2020-04-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog/2020/04/26/Promise%E4%B8%8E%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">Promise与异步编程</a>
-    </h1>
-  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/iversoncurry/Blog.git/2020/04/26/Promise%E4%B8%8E%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="蚂蚁">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/04/26/Promise%E4%B8%8E%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">Promise与异步编程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-26 10:04:36 / Modified: 11:24:50" itemprop="dateCreated datePublished" datetime="2020-04-26T10:04:36+08:00">2020-04-26</time>
+            </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>JS最强大的一方面就是它能极其轻易地处理异步编程。作为因为互联网而生的语言，JS从一开始就必须能够响应点击或按键之类的用户交互行为。Node.js通过使用回调函数来代替事件，进一步推动了JS中的异步编程。随着越来越多的程序开始使用异步编程，事件与回调函数已不足以支持开发者的所有需求。Promise正是为了解决这方面的问题。<br>Promise是异步编程的另一种选择，它的工作方式类似于在其他语言中延迟并在将来执行作业。一个Promise指定一些要稍后执行的代码（就像事件与回调函数一样），并且也明确标示了作业的代码是否执行成功。能以成功处理或失败处理为基准，将Promise串联在一起，让代码更容易理解，更易调试。</p>
+          <p>JS最强大的一方面就是它能极其轻易地处理异步编程。作为因为互联网而生的语言，JS从一开始就必须能够响应点击或按键之类的用户交互行为。Node.js通过使用回调函数来代替事件，进一步推动了JS中的异步编程。随着越来越多的程序开始使用异步编程，事件与回调函数已不足以支持开发者的所有需求。Promise正是为了解决这方面的问题。<br>Promise是异步编程的另一种选择，它的工作方式类似于在其他语言中延迟并在将来执行作业。一个Promise指定一些要稍后执行的代码（就像事件与回调函数一样），并且也明确标示了作业的代码是否执行成功。能以成功处理或失败处理为基准，将Promise串联在一起，让代码更容易理解，更易调试。</p>
 <h2 id="异步编程的背景"><a href="#异步编程的背景" class="headerlink" title="异步编程的背景"></a>异步编程的背景</h2><p>JS引擎建立在单线程事件循环的概念上。单线程（Single-threaded）意味着同一时刻只能执行一段代码，与Java或C++这种允许同时执行多段不同代码的多线程语言形成了反差。多段代码可以同时访问或修改状态，委会并保护这些状态就变成了难题，这也是基于多线程的软件中出现bug的常见根源之一。<br>JS引擎在同一时刻只能执行一段代码，所以引擎无需留意那些“可能”运行的代码。代码会被放置在作业队列（job queue）中，每当一段代码准备执行，它就会被添加到作业队列。当JS引擎结束当前代码的执行后，事件循环就会执行队列中的写一个作业。事件循环（event loop）是JS引擎的一个内部处理线程，能监视代码的执行并管理作业队列。要记住，既然是一个队列，作业就会从队列中的第一个开始，一次运行到最后一个。</p>
 <h3 id="事件模型"><a href="#事件模型" class="headerlink" title="事件模型"></a>事件模型</h3><p>当用户点击一个按钮或按下键盘上的一个键时，一个事件（event）–例如 onclick –就被触发了。该事件可能会对此交互进行响应，从而将一个新的作业添加到作业队列的尾部。这就是JS关于异步编程的最基本形式。时间处理程序代码直到事件发生后才会被执行，此时它会拥有合适的上下文。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> button = documet.getElementById(<span class="string">'my-btn'</span>)</span><br><span class="line">button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Clicked'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1243,272 +1579,182 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="https://gitee.com/iversoncurry/Blog.git/2020/04/26/Promise%E4%B8%8E%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" data-id="ck9ghxoo300087kr91c99es9b" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JS的类" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Blog/2020/04/26/JS%E7%9A%84%E7%B1%BB/" class="article-date">
-  <time datetime="2020-04-26T02:04:36.723Z" itemprop="datePublished">2020-04-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog/2020/04/26/JS%E7%9A%84%E7%B1%BB/">JS的类</a>
-    </h1>
-  
-
-      </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>与大多数正规的面向对象编程语言不同，JS从创建之初就不支持类，也没有把类继承作为定义相似对象以及关联对象的主要方式。而从ES1诞生之前知道ES5时期，很多库都创建了一些工具，让JS显得貌似能支持类。</p>
-<h3 id="ES5中仿类结构"><a href="#ES5中仿类结构" class="headerlink" title="ES5中仿类结构"></a>ES5中仿类结构</h3><p>JS在ES5以及更早版本中都不存在类。与类最接近的是：创建一个构造器，然后将方法指派到该构造起的原型上。这种方式通常被称为创建一个自定义类型。例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PersonType</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">PersonType.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person = <span class="keyword">new</span> PersonType(<span class="string">'Nicholas'</span>)</span><br><span class="line">person.sayName()  <span class="comment">//Nicholas</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person <span class="keyword">instanceof</span> PersonType)  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(person <span class="keyword">instanceof</span> <span class="built_in">Object</span>)      <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>此代码中的 PersonType 是一个构造器函数，并创建了单个属性 name 。 sayName() 方法被指派到原型上，因此在 PersonType 对象的所有实例上都共享了此方法。接下来，使用 new运算符创建了 PersonType 的一个新实例 person ，此对象会被认为是一个通过原型继承了PersonType 与 Object 的实例。</p>
-<h3 id="类的声明"><a href="#类的声明" class="headerlink" title="类的声明"></a>类的声明</h3><p>类在ES6中最简单的形式就是类声明，看起来向其他语言中的类</p>
-<h4 id="基本的类声明"><a href="#基本的类声明" class="headerlink" title="基本的类声明"></a>基本的类声明</h4><p>类声明以class关键字开始，其后是类的名称；其余部分的语法看起来就像对象字面量中的方法简写，并且在方法之间不需要使用逗号。下为简单类声明：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PersonCladd</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 等价于PersonType构造器</span></span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 等价于PersonType.prototype.sayName</span></span><br><span class="line">    sayName() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person = <span class="keyword">new</span> PersonClass(<span class="string">'Nicholas'</span>)</span><br><span class="line">person.sayName()   <span class="comment">//输出Nicholas</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person <span class="keyword">instanceof</span> PersonClass)  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(person <span class="keyword">instanceof</span> <span class="built_in">Object</span>)    <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> PersonClass)     <span class="comment">//function</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> PersonClass.prototype.sayName)  <span class="comment">//function</span></span><br></pre></td></tr></table></figure>
-<p>这个PersonClass类声明的行为非常类似上个例子中的PersonType。类声明允许在其中使用特殊的constructor方法名称直接定义一个构造器，而不需要先定义一个函数再把它当做构造器使用。由于累的方法使用类间歇语法，于是就不再需要使用function关键字。constructor之外的方法名称则没有特别的含义。<br>自有属性（Own properties）：该属性出现在实力上而不是原型上，只能在类的构造器或方法内部进行创建。在本例中，name就是一个自有属性。建议应在构造器函数内创建所有可能出现的自有属性，这样在类中声明变量就会被限制在单一位置（有助于代码检查）<br>相对于已有的<strong>自定义类型声明方式</strong>来说，<strong>类声明</strong>仅仅是以它为基础的一个语法糖。PersonClass声明实际上创建了一个拥有constructor方法以及其行为的函数，这也是typeof PersonClass会得到“function”结果的原因。此例中的sayName()方法最终也成为PersonClass.prorotype上的一个方法，类似于上个例子中的sayName()与PersonType。prototype之间的关系。这些相似处允许把自定义类型与类混合使用，而不必考虑该使用哪一个。</p>
-<h4 id="为何要使用类的语法"><a href="#为何要使用类的语法" class="headerlink" title="为何要使用类的语法"></a>为何要使用类的语法</h4><p>尽管类与自定义类型之间有相似性，但仍然要记住一些重要的区别：<br>1.类声明不会被提升，这与函数定义不同。类声明的行为与let相似，因此在程序执行到达声明处之前，类会存在于暂时性死区内。<br>2.类声明中的所有代码会自动运行在严格模式下，并且也无法退出严格模式。<br>3.类的所有方法都是不可枚举的，这是对于自定义类型的显著变化，后者必须用Object.defineProperty()才能将方法改变为不可枚举。<br>4.类的所有方法内部都没有[[Construct]]，因此使用new来调用它们会抛出错误。<br>5.调用类构造器时不使用new，会抛出错误。<br>6.试图在类的方法内部重写类名，会抛出错误。<br>这样看来，上例中的PersonClass声明实际上就直接等价于一下未使用类语法的代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//直接等价于PersonClass</span></span><br><span class="line"><span class="keyword">let</span> PersonType2 = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">    "use strict"</span></span><br><span class="line">    <span class="keyword">const</span> PersonType = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 确认函数被调用时使用了new</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="keyword">new</span>.target === <span class="string">'undefined'</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'constructor must be called with new'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(PersonType2.prototype, <span class="string">'sayName'</span>, &#123;</span><br><span class="line">        value: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 确认函数被调用时没有使用new</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">new</span>.target !== <span class="string">'undefined'</span>) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'method cannot be called with new'</span>)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">        &#125;,</span><br><span class="line">        enumerable: <span class="literal">false</span>,</span><br><span class="line">        writable: <span class="literal">true</span>,</span><br><span class="line">        configurable: <span class="literal">true</span></span><br><span class="line">    &#125;) </span><br><span class="line">    <span class="keyword">return</span> PersonType2</span><br><span class="line">&#125;())</span><br></pre></td></tr></table></figure>
-<p>首先要注意这里有两个PersonType2声明：一个在外部作用的let声明，一个在IIFE内部的const声明。这就是为何类的方法不能对类名进行重写、而类外部的代码则被允许。构造器函数检查了new.target，以保证被调用时使用了new，否则就抛出错误。接下来，sayName()方法被定义为不可枚举，并且此方法也检查了new.target，它则要保证在被调用时没有使用new。最后一步是将构造器函数返回出去。<br>此例说明了尽管不使用新语法也能实现类的任何特性，但类语法显著简化了所有功能的代码。<br>不变的类名<br>只有在类的内部，类名才被视为是使用const声明的。这意味着你可以在外部重写类名但不能再累的方法内部这么做。例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        Foo = <span class="string">'bar'</span> <span class="comment">//执行时抛出错误</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 但在类声明之后没问题</span></span><br><span class="line">Foo = <span class="string">'baz'</span></span><br></pre></td></tr></table></figure>
-
-<p>在此代码中，类构造器内部的 Foo 与在类外部的 Foo 是不同的绑定。内部的 Foo 就像是用 const 定义的，不能被重写，当构造器尝试使用任何值重写 Foo 时，都会抛出错误。但由于外部的 Foo 就像是用 let 声明的，你可以随时重写类名。</p>
-<h3 id="类表达式"><a href="#类表达式" class="headerlink" title="类表达式"></a>类表达式</h3><p>类与函数有相似之处，即它们都有两种形式：声明与表达式。函数声明与类声明都以适当的关键词为起始分别是（function与class），随后是标识符（即函数名或类名）。函数具有一种表达式形式，无需在function后面使用表示；类似的，类也有不需要表示符的表达式形式。类表达式被设计用于变量声明，或可作为参数传递给函数。<br>基本的类表达式<br>此处是与上例中的PersonCladd等效的类表达式，随后的代码使用了它：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> PersonClass = <span class="class"><span class="keyword">class</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 等价于PersonType构造器</span></span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 等价于PersonType.prototype.sayName</span></span><br><span class="line">    sayName() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person = <span class="keyword">new</span> PersonClass(<span class="string">'nicholas'</span>)</span><br><span class="line">person.sayName()  <span class="comment">//输出nicholas</span></span><br><span class="line"><span class="built_in">console</span>.log(person <span class="keyword">instanceof</span> PersonClass)   <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(person <span class="keyword">instanceof</span> <span class="built_in">Object</span>)        <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> PersonClass)              <span class="comment">//function</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> PersonClass.prototype.sayName) <span class="comment">//function</span></span><br></pre></td></tr></table></figure>
-<p>正如磁力所示，类表达式不需要再class关键字后使用标识符。除了语法差异，类表达式的功能等价于类声明。<br>使用类声明还是类表达式，主要是代码风格的问题。相对于函数声明与函数表达式之间的区别，类声明与类表达式都不会被提升，因此对代码运行时的行为影响甚微。</p>
-<h4 id="具名类表达式"><a href="#具名类表达式" class="headerlink" title="具名类表达式"></a>具名类表达式</h4><p>上一节的示例使用了一个匿名的类表达式，不过就像函数表达式那样，也可以为类表达式明明。为此需要在class关键字后添加标识符，就像这样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> PersonClass = calss PersonClass2 &#123;</span><br><span class="line">    <span class="comment">// 等价于PersonType构造器</span></span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 等价于PersonType.prototype.sayName</span></span><br><span class="line">    sayName() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> PersonClass)   <span class="comment">//function</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> PersonClass2)  <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
-<p>此例中的类表达式被命名为PersonClass2。PersonClass2标识符只在类定义内部存在，因此只能用在类方法内部（例如本例中的sayName()内）。在类的外部，typeof PersonClass2的结果为undefined，这是因为外部不存在PersonClass2绑定。要理解为何如此，请查看未使用类语法的等价声明：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接等价于PersonClass具名的类表达式</span></span><br><span class="line"><span class="keyword">let</span> PersonClass = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">    'use strict'</span></span><br><span class="line">    <span class="keyword">const</span> = PersonClass2 = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 确认函数被调用时使用了new</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">new</span>.target === <span class="string">'undefined'</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'constructor must be called with new'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    object.defineProperty(PersonClass2.prototype, <span class="string">'sayName'</span>, &#123;</span><br><span class="line">        value: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 确认函数被调用时没有使用new</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">new</span>.target !== <span class="string">'undefined'</span>) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'method cannot be called with new'</span>)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">        &#125;,</span><br><span class="line">        enumerable: <span class="literal">false</span>,</span><br><span class="line">        writable: <span class="literal">true</span>,</span><br><span class="line">        configurable: <span class="literal">true</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> PersonClass2</span><br><span class="line">&#125;())</span><br></pre></td></tr></table></figure>
-<p>创建具名的类表达式稍微改变了在JS引擎内部发生的事。对于类声明来说，外部绑定（用let定义）与内部绑定（用const定义）有着相同的名称。而类表达式可在内部使用const来定义它的不同名称，因此此处的PersonClass2只能在类的内部使用。<br>尽管具名类表达式的行为已于具名函数表达式，但它们之间仍有许多相似点。二者都能被当做值来使用，这开启了许多可能性。</p>
-<h3 id="作为一级公民的类"><a href="#作为一级公民的类" class="headerlink" title="作为一级公民的类"></a>作为一级公民的类</h3><p>在编程中，能被当做值来使用的就称为一级公民（first-class citizen），意味着它能作为参数给函数、能作为函数返回值、能用来给变量赋值。JS的函数就是一级公民（它们有时又被称为一级函数），此特性让JS独一无二。<br>ES6延续了传统，让类同样成为一级公民。这就使得类可以被多种方式所使用。例如，它能作为参数传入函数：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">crateObject</span>(<span class="params">classDef</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> classDef()</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> obj = createObject(<span class="class"><span class="keyword">class</span> </span>&#123;</span><br><span class="line">    sayHi() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'hi'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">obj.sayHi()      <span class="comment">//hi</span></span><br></pre></td></tr></table></figure>
-<p>此例中的createObject()函数被调用时接收了一个匿名函数表达式作为参数，使用new创建了该类的一个实例，并将其返回出来。随后变量obj储存了所返回的实例。<br>类表达式的另一个又去用途是立即调用类构造器，以创建单例（Singleton）。为此，必须使用new来配合类表达式，并在表达式后面添加括号。例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = <span class="keyword">new</span> <span class="class"><span class="keyword">class</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    sayName() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;(<span class="string">'nicholas'</span>)</span><br><span class="line">person.sayName()   <span class="comment">//nicholas</span></span><br></pre></td></tr></table></figure>
-<p>此处创建了一个匿名类表达式，并立即执行了它。此模式允许你使用类语法来创建单例类，从而不留下任何可被探查的类引用（回忆一下PersonClass的例子，匿名类表达式只在类的内部创建了绑定，而外部无绑定）。<strong>类表达式后面的圆括号表示要调用前面的函数，并且还允许传入参数。</strong></p>
-<h3 id="访问器属性"><a href="#访问器属性" class="headerlink" title="访问器属性"></a>访问器属性</h3><p>自有属性需要在类构造器中创建，而类还允许在原型上定义访问器属性。为了创建一个getter，需要使用get关键字，并要与后方标识符之间留出空格；创建setter用相同方式，只是要换用set关键字。例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomHTMLElement</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(element) &#123;</span><br><span class="line">        <span class="keyword">this</span>.element = element</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">get</span> html() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.element.innerHTML</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span> html(value) &#123;</span><br><span class="line">        <span class="keyword">this</span>.element.innerHTML = value</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> descriptor = <span class="built_in">Object</span>.getOwnPropertyDescriptor(CustomHTMLElement.prototype, <span class="string">'html'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'get'</span> <span class="keyword">in</span> descriptor)  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'set'</span> <span class="keyword">in</span> descriptor)  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(descriptor,enumerable) <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
-<p>此代码中的CustomHTMLElement类用于包装一个已存在的DOM元素，它的属性html拥有getter与setter，委托了元素自身的innerHTML方法。该访问器属性被创建在CUnstmHTMLElement.prototype上，并且像其他类属性那样被创建为不可枚举属性。非类的等价表示如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接等价于上个范例</span></span><br><span class="line"><span class="keyword">let</span> CustomHTMLElement = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">    'use strict'</span></span><br><span class="line">    <span class="keyword">const</span> CustomHTMLElement = <span class="function"><span class="keyword">function</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 确认函数被调用时使用了new</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">new</span>.target === <span class="string">'undefined'</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'constructor must be called with new'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.element = element</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(CustomHTMLElement.prototype, <span class="string">'html'</span>, &#123;</span><br><span class="line">        enumerable: <span class="literal">false</span>,</span><br><span class="line">        configurable: <span class="literal">true</span>,</span><br><span class="line">        <span class="keyword">get</span>: function() &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.element.innerHTML</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="keyword">set</span>: function(value) &#123;</span><br><span class="line">            <span class="keyword">this</span>.element.innerHTML = value</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> CunstomHTMLElement</span><br><span class="line">&#125;())</span><br></pre></td></tr></table></figure>
-<h3 id="需计算的成员名"><a href="#需计算的成员名" class="headerlink" title="需计算的成员名"></a>需计算的成员名</h3><p>对象字面量与类之间的相似点还不仅前面那些。类方法与访问器属性也都能使用需计算的名称。㞏相同于对象字面量中的需计算名称：无需使用标识符，而是用方括号来包裹一个表达式。例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> methodName = <span class="string">'sayName'</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> </span>= PersonClass &#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    [methodName]() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> me = <span class="keyword">new</span> PersonClass(<span class="string">'nicholas'</span>)</span><br><span class="line">me.sayName()                  <span class="comment">//'nicholas'</span></span><br></pre></td></tr></table></figure>
-<p>此版本的PersonClass使用了一个变量来命名类定义内的方法。字符串”sayName“被赋值给了methodName变量，而methodName变量则被用于声明方法。sayName()方法在此后能被直接访问。<br>访问器属性能以相同方式使用需计算的名称，就像这样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> propertyName = <span class="string">'html'</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomHTMLElement</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(element) &#123;</span><br><span class="line">        <span class="keyword">this</span>.element = element</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">get</span> [propertyName]() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.element.innerHTML</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">set</span> [propertyName](value) &#123;</span><br><span class="line">        <span class="keyword">this</span>.element.innerHTML = value</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>此处html的getter与setter被设置为需使用propertyName变量，使用.html依然能访问此属性，这里影响的只有定义方式。</p>
-<h3 id="生成器方法"><a href="#生成器方法" class="headerlink" title="生成器方法"></a>生成器方法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    *createIterator() &#123;</span><br><span class="line">        <span class="keyword">yield</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">yield</span> <span class="number">2</span></span><br><span class="line">        <span class="keyword">yield</span> <span class="number">3</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> instance = <span class="keyword">new</span> Myclass()</span><br><span class="line"><span class="keyword">let</span> iterator = instance.createIterator()</span><br></pre></td></tr></table></figure>
-<p>此处代码创建了一个拥有createIterator()生成器的MyClass类。该方法返回了一个迭代器，它的值在生成器内部用硬编码提供。当使用一个对象来表示值的集合、并要求能简单迭代这些值，那么生成器方法就非常有用。数组、Set与Map都拥有多个生成器方法，负责让开发者用多种方式来操作它们的项。<br>既然生成器方法很有用，那么在表示集合的自定义类中定义一个默认迭代器，那就更好。可以使用 Symbol.iterator 来定义生成器方法，从而定义出类的默认迭代器，就像这样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Collection</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">this</span>.item = []</span><br><span class="line">    &#125;</span><br><span class="line">    *[<span class="built_in">Symbol</span>.iterator]() &#123;</span><br><span class="line">        <span class="keyword">yield</span> *<span class="keyword">this</span>.items.values()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> collection = <span class="keyword">new</span> Collection()</span><br><span class="line">collection.items.push(<span class="number">1</span>)</span><br><span class="line">collection.items.push(<span class="number">2</span>)</span><br><span class="line">collection.items.push(<span class="number">3</span>)</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> x <span class="keyword">of</span> collection) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>此例为生成器方法使用了一个需计算名称，并将此方法委托到this.items数组的values()迭代器上。任意管理集合的类都包含一个默认迭代器，这是因为一些集合专用的操作都要求目标集合具有迭代器。现在，Collection的任意实例都可以在for-of循环内被直接使用，也能配合扩展运算符使用。<br>当你想让方法与访问器属性在对象实例上出现时，把它们添加到类的原型上就会对此目的有帮助。而另一方面，若想让方法与访问器属性只存在于类自身，那么你就需要使用静态成员。</p>
-<h4 id="静态成员"><a href="#静态成员" class="headerlink" title="静态成员"></a>静态成员</h4><p>直接在构造器上添加额外方法来模拟静态成员，这在ES5及更早版本中是另一个通用的模式。例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PersonType</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 静态方法</span></span><br><span class="line">PersonType.create = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PersonType(name)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 实例方法</span></span><br><span class="line">PersonType.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person = PersonType.create(<span class="string">'nicholas'</span>)</span><br></pre></td></tr></table></figure>
-<p>在其他编程语言中，工厂方法PersonType.create()会被认定为一个静态方法，它的数据不依赖PersonType的任何势力。ES6的类简化了静态成员的创建，只要在方法与访问器属性的名称前添加正式的static标注。作为一个例子，此处有个与上例等价的类：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PersonClass</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 等价于PersonType构造器</span></span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 等价于PersonType.prototype.sayName</span></span><br><span class="line">    sayName() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 等价于PersonType.create</span></span><br><span class="line">    <span class="keyword">static</span> create(name) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> PersonClass(name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person = PersonClass.create(<span class="string">'nicholas'</span>)</span><br></pre></td></tr></table></figure>
-<p>PersonClass 的定义拥有名为 create() 的单个静态方法，此语法与 sayName() 基本相同，只多了一个 static 关键字。你能在类中的任何方法与访问器属性上使用 static 关键字，唯一限制是不能将它用于 constructor 方法的定义。<br><strong>静态成员不能用实例来访问，始终需要直接用类自身来访问它们</strong></p>
-<h3 id="使用派生类进行继承"><a href="#使用派生类进行继承" class="headerlink" title="使用派生类进行继承"></a>使用派生类进行继承</h3><p>ES6之前，实现自定义类型的继承是个繁琐的过程。严格的继承要求有多个步骤。例如，研究一下范例：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Rectangle</span>(<span class="params">length, width</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.length = length</span><br><span class="line">    <span class="keyword">this</span>.width = width</span><br><span class="line">&#125;</span><br><span class="line">Rectangle.prototype.getArea = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.length*<span class="keyword">this</span>.width</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Square</span>(<span class="params">length</span>) </span>&#123;</span><br><span class="line">    Rectangle.call(<span class="keyword">this</span>, length, length)</span><br><span class="line">&#125;</span><br><span class="line">Square.prototype = <span class="built_in">Object</span>.create(Rectangle.prototype, &#123;</span><br><span class="line">    <span class="keyword">constructor</span>: &#123;</span><br><span class="line">        value: Square,</span><br><span class="line">        enumerable: <span class="literal">true</span>,</span><br><span class="line">        writable: <span class="literal">true</span>,</span><br><span class="line">        configurable: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> square = <span class="keyword">new</span> Square(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">console</span>.log(square.getArea())    <span class="comment">//9</span></span><br><span class="line"><span class="built_in">console</span>.log(square <span class="keyword">instanceof</span> Square)  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(square <span class="keyword">instanceof</span> Rectangle)  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>Square继承了Rectangle，为此它必须使用Rectangle.prototype所创建的一个新对象来重写Square.prototype，并且还要调用Rectangle.call()方法。<br>类让继承工作变得更轻易，使用熟悉的extends关键字来指定当给钱类所需要的继承的函数即可。生成的类的原型会被自动调整，而你还能调用super()方法来访问基类的构造器。此处是与上个例子等价的ES6代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length, width) &#123;</span><br><span class="line">        <span class="keyword">this</span>.length = length</span><br><span class="line">        <span class="keyword">this</span>.width = width</span><br><span class="line">    &#125;</span><br><span class="line">    getArea() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.length * <span class="keyword">this</span>.width</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length) &#123;</span><br><span class="line">        <span class="comment">// 与Rectangle.call(this, length, length)相同</span></span><br><span class="line">        <span class="keyword">super</span>(length, length)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> square = Square(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">console</span>.log(square.getArea)       <span class="comment">//9</span></span><br><span class="line"><span class="built_in">console</span>.log(square <span class="keyword">instanceof</span> Square)   <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(square <span class="keyword">instanceof</span> Rectangle)  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>此次Square类使用了extends关键字继承了Rectangle。Square构造器使用了super()配合指定参数调用了Rectangle构造器。注意与ES5版本的代码不同，Rectangle标识符尽在类定义时被使用了（在extends之后）。<br>继承了其他类的类被称为派生类（derived classes）。如果派生类指定了构造器，就需要使用super(),否则就会造成错误。若不使用构造器，super()方法会被自动调用，并会使用创建新实例时提供的所有参数。例如，下列两个类是完全相同的：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 没有构造器</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 等价于：</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(...args) &#123;</span><br><span class="line">        <span class="keyword">super</span>(...args)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>此例中的第二个类展示了与所有派生类默认构造器等价的写法，所有的参数都按顺序传递给了基类的构造器。在当前需求下，郑重做法并不完全准确，因为Square构造器只需要单个参数，因此最好手动定义构造器。<br>使用 super() 时需牢记以下几点：</p>
-<ol>
-<li>你只能在派生类中使用 super() 。若尝试在非派生的类（即：没有使用 extends关键字的类）或函数中使用它，就会抛出错误。</li>
-<li>在构造器中，你必须在访问 this 之前调用 super() 。由于 super() 负责初始化this ，因此试图先访问 this 自然就会造成错误。</li>
-<li>唯一能避免调用 super() 的办法，是从类构造器中返回一个对象。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name</span><br><span class="line">		<span class="keyword">this</span>.age = age</span><br><span class="line">	&#125;</span><br><span class="line">	sayAge() &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.age)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(name, age, classNum) &#123;</span><br><span class="line">		<span class="keyword">super</span>(name, age)  <span class="comment">//注释之后报错，没有this</span></span><br><span class="line">		<span class="keyword">this</span>.classNum = classNum</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> xiaoHong = <span class="keyword">new</span> Student(<span class="string">'xiaohong'</span>, <span class="string">'12'</span>, <span class="string">'class3'</span>)</span><br><span class="line">xiaoHong.sayAge()</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h4 id="屏蔽类方法"><a href="#屏蔽类方法" class="headerlink" title="屏蔽类方法"></a>屏蔽类方法</h4><p>派生类中的方法总是会屏蔽基类的同名方法。例如，可以将getArea()方法添加到Super类，以便重定义它的功能：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length) &#123;</span><br><span class="line">        <span class="keyword">super</span>(length, length)</span><br><span class="line">    &#125;</span><br><span class="line">    getArea() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.length * <span class="keyword">this</span>.length</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由于getArea()已经被定义为Square的一部分，Rectangle.prototype.getArea()方法就不能再Square的任何实例上被调用。当然，总可以使用super.getArea()方法来调用基类中的同名方法：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length) &#123;</span><br><span class="line">        <span class="keyword">super</span>(length, length)</span><br><span class="line">    &#125;</span><br><span class="line">    getArea() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.getArea()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="继承静态成员"><a href="#继承静态成员" class="headerlink" title="继承静态成员"></a>继承静态成员</h4><p>如果基类包含静态成员，那么这些静态成员在派生类中也是可用的。继承的工作方式类似于其他语言。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length, width) &#123;</span><br><span class="line">        <span class="keyword">this</span>.length = length</span><br><span class="line">        <span class="keyword">this</span>.width = width</span><br><span class="line">    &#125;</span><br><span class="line">    getArea() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.length * <span class="keyword">this</span>.width</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> create(length, width) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Rectangle(length, width)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length) &#123;</span><br><span class="line">        <span class="comment">// 与Rectangle.call(this, length, length)相同</span></span><br><span class="line">        <span class="keyword">super</span>(length, length)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> rect = Square.create(<span class="number">3</span>, <span class="number">4</span>)   </span><br><span class="line"><span class="built_in">console</span>.log(rect <span class="keyword">instanceof</span> Rectangle)  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(rect.getArea())             <span class="comment">//12</span></span><br><span class="line"><span class="built_in">console</span>.log(rect <span class="keyword">instanceof</span> Square)     <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
-<p>在此代码中，一个新的静态方法 create() 被添加到 Rectangle 类中。通过继承，该方法会以 Square.create() 的形式存在，并且其行为方式与 Rectangle.create() 一样。</p>
-<h4 id="从表达式中派生类"><a href="#从表达式中派生类" class="headerlink" title="从表达式中派生类"></a>从表达式中派生类</h4><p>在ES6中派生类的最强大能力，或许就是能够从表达式中派生类。只要一个表达式能够返回一个具有[[Construct]]属性以及原型的函数，就可以对其使用extends。例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Rectangle</span>(<span class="params">length, width</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.length = length</span><br><span class="line">    <span class="keyword">this</span>.width = width</span><br><span class="line">&#125;</span><br><span class="line">Rectangle.prototype.getArea = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.length * <span class="keyword">this</span>.width</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length) &#123;</span><br><span class="line">        <span class="keyword">super</span>(length, length)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> x = <span class="keyword">new</span> Square(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">console</span>.log(x.getArea())             <span class="comment">//9</span></span><br><span class="line"><span class="built_in">console</span>.log(x <span class="keyword">instanceof</span> Rectangle)  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>Rectangle被定义为ES5风格的构造器，而Square则是一个类。由于Rectangle具有[[Construct]]以及原型，Square类就能直接继承它。<br>extends后面能接受任意类型的表达式，这带来了巨大可能性，例如动态地决定所要继承的类：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Rectangle</span>(<span class="params">length, width</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.length = length</span><br><span class="line">    <span class="keyword">this</span>.width = width</span><br><span class="line">&#125;</span><br><span class="line">Rectangle.prototype.getArea = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.length * <span class="keyword">this</span>.width</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getBase</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Rectangle</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">getBase</span>() </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length) &#123;</span><br><span class="line">        <span class="keyword">super</span>(length, length)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> x = <span class="keyword">new</span> Square(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">console</span>.log(x.getArea())   <span class="comment">//9</span></span><br><span class="line"><span class="built_in">console</span>.log(x <span class="keyword">instanceof</span> Rectangle)  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>getBase()函数作为类声明的一部分被直接调用，它返回了Rectangle，是的此例的功能等价于前一个例子。并且由于可以动态地决定基类，就能创建不同的继承方式。例如可以有效地创建混入：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> SerializableMixin = &#123;</span><br><span class="line">    serialize() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">JSON</span>.stringify(<span class="keyword">this</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> AreaMixin = &#123;</span><br><span class="line">    getArea() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.length * <span class="keyword">this</span>.width</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mixin</span>(<span class="params">...mixins</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> base = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">    <span class="built_in">Object</span>.assign(base.prototype, ...mixins)</span><br><span class="line">    <span class="keyword">return</span> base</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">mixin</span>(<span class="title">AreaMixin</span>, <span class="title">SerializableMixin</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length) &#123;</span><br><span class="line">        <span class="keyword">super</span>()</span><br><span class="line">        <span class="keyword">this</span>.length = length</span><br><span class="line">        <span class="keyword">this</span>.width = width</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> x = <span class="keyword">new</span> Square(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">console</span>.log(x.getArea())</span><br><span class="line"><span class="built_in">console</span>.log(x.serialize())  <span class="comment">//&#123;length: 3, width: 3&#125;</span></span><br></pre></td></tr></table></figure>
-<p>此例使用了混入（mixin）而不是传统继承。mixin()函数接受代表混入对象的任意数量的参数，它创建了一个名为base的函数，并将每个混入对象的属性都赋值到新函数的原型上。阐述随后返回，于是Square就能够对其使用extends关键字了。注意由于仍然使用了extends，就必须在构造器内调用super().<br>Square的实例既有来自AreaMixin的getArea()方法，又有来自SerilaizableMixin的serialize()方法，这是通过原型继承实现的。mixin()函数使用了混入对象的所有自有属性，动态地填充了新函数的原型（注意：若多个混入对象拥有相同的属性，则只有最后添加的属性会被保留）。<br>任意表达式都能在extends关键字后使用，但并非所有表达式的结果都是一个有效的类。特别的，下列表达式类型会导致错误：<br>null;<br>生成器函数<br>试图使用结果为上述值得表达式来创建一个新的类实例，都会抛出错误，因为不存在[[Construct]]可供调用。</p>
-<h4 id="继承内置对象"><a href="#继承内置对象" class="headerlink" title="继承内置对象"></a>继承内置对象</h4><p>几乎从JS数组出现那天开始，开发者就像通过继承机制来创建它们自己的特殊数组类型。在ES5及早期版本中，这是不可能做到的。试图使用传统继承并不能产生功能正确的代码，例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 内置数组的行为</span></span><br><span class="line"><span class="keyword">var</span> colors = []</span><br><span class="line">colors[<span class="number">0</span>] = <span class="string">'red'</span></span><br><span class="line"><span class="built_in">console</span>.log(colors.length)</span><br><span class="line">colors.length = <span class="number">0</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">0</span>])  <span class="comment">//undefined</span></span><br><span class="line"><span class="comment">// 在ES5中尝试继承数组</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyArray</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">Array</span>.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>)</span><br><span class="line">&#125;</span><br><span class="line">myArray.prototype = <span class="built_in">Object</span>.create(<span class="built_in">Array</span>.prototype, &#123;</span><br><span class="line">    <span class="keyword">constructor</span>: &#123;</span><br><span class="line">        value: MyArray,</span><br><span class="line">        writable: <span class="literal">true</span>,</span><br><span class="line">        configurable: <span class="literal">true</span>,</span><br><span class="line">        enumerable: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">var</span> colors = <span class="keyword">new</span> MyArray()</span><br><span class="line">colors[<span class="number">0</span>] = <span class="string">'red'</span></span><br><span class="line"><span class="built_in">console</span>.log(colors.length)  <span class="comment">//0</span></span><br><span class="line">colors.length = <span class="number">0</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">0</span>])      <span class="comment">//red</span></span><br></pre></td></tr></table></figure>
-<p>console.log()在此代码尾部的输出说明：对数组使用传统形式的JS继承，产生了预期外的行为。MyArray实例上的length属性以数值属性，其行为与内置数组并不一致，因为这些功能并未被涵盖在Array.apply()或数组原型中。<br>在ES6中的类，其设计目的之一就是允许从内置对象上进行继承。为了达成这个目的，类的继承模型与ES5或更早版本的传统继承模型有轻微差异：<br>在ES5的传统继承中，this的值会先被派生类（例如MyArray）创建，随后基类构造器（例如Array.apply()方法）才被调用。这意味着this一开始就是MyArray的实例，之后才使用了Array的附加属性对其进行了装饰。<br>在ES6基于类的继承中，this的值会先被基类（Array）创建，随后才被派生类的构造器（MyArray）所修改。结果是this初始就拥有作为基类的内置对象的所有功能，并能正确接收与之关联的所有功能。<br>一下范例实际展示了基于类的特殊数组：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyArray</span> <span class="keyword">extends</span> <span class="title">Array</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 空代码块</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> colors = <span class="keyword">new</span> MyArray()</span><br><span class="line">colors[<span class="number">0</span>] = <span class="string">'red'</span></span><br><span class="line"><span class="built_in">console</span>.log(colors.length)    <span class="comment">//1</span></span><br><span class="line">colors.length = <span class="number">0</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">0</span>])    <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
-<p>MyArray直接继承了Array，因此工作方式与正规数组一致。与数值索引属性额互动更新了length属性，而操纵length属性也能更新索引属性。这意味着既能适当地继承Array来创建自己的派生数组类，也同样能继承其他的内置对象。</p>
-<h4 id="Symbol-species属性"><a href="#Symbol-species属性" class="headerlink" title="Symbol.species属性"></a>Symbol.species属性</h4><p>继承内置对象一个有趣的方面是：任意能返回内置对象实例的方法，在派生类的实例。因此，若拥有类一个继承了Array的派生类MyArray，注入slice()之类的方法都会返回MyArray的实例。例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyArray</span> <span class="keyword">extends</span> <span class="title">Array</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 空代码</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> items = <span class="keyword">new</span> MyArray(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>),</span><br><span class="line">    subitems = items.slice(<span class="number">1</span>, <span class="number">3</span>)</span><br><span class="line"><span class="built_in">console</span>.log(items <span class="keyword">instanceof</span> MyArray)  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(subitems <span class="keyword">instanceof</span> MyArray)  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>在此代码中，slice()方法返回了MyArray的一个实例。slice()方法是从Array上继承的，原本应当返回Array的一个实例。而Symbol.species属性在后台造成了这种变化。<br>Symbol.species是名符号被用于定义一个能返回函数的静态访问器属性。每当类实例的方法（构造器除外）必须常建一个实例时，前面返回的函数就被用为新实例的构造器。下列内置类型都定义了Symbol.species:<br>Array<br>ArrayBuffer<br>Map<br>Promise<br>RegExp<br>Set<br>类型化数组<br>以上每个类型都拥有默认的Symol.species属性，其返回值为this，意味着该属性总会返回自身的构造器函数。若准备在一个自定义类上实现此功能，代码就像这样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 几个内置类型使用species的方式类似于此</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">get</span> [Symbol.species]() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">constructor</span>(value) &#123;</span><br><span class="line">        <span class="keyword">this</span>.value = value</span><br><span class="line">    &#125;</span><br><span class="line">    clone() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">this</span>.constructor[<span class="built_in">Symbol</span>.species](<span class="keyword">this</span>.value)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>再此例中，Symbol.species知名符号被用于定义MyClass的一个静态访问器属性。注意此处只有getter而没有setter，这是因为修改累的species是不允许的。任何对this.constructor[Symbol.species]的调用都会返回MyClass，clone()方法使用了该定义来返回一个新的实例，而没有直接使用MyClass，这就允许派生类重写这个值。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">get</span> [Symbol.species]() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">constructor</span>(value) &#123;</span><br><span class="line">        <span class="keyword">this</span>.value = value;</span><br><span class="line">    &#125;</span><br><span class="line">    clone() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">this</span>.constructor[<span class="built_in">Symbol</span>.species](<span class="keyword">this</span>.value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyDerivedClass1</span> <span class="keyword">extends</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line"><span class="comment">// 空代码块</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyDerivedClass2</span> <span class="keyword">extends</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">get</span> [Symbol.species]() &#123;</span><br><span class="line">        <span class="keyword">return</span> MyClass;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> instance1 = <span class="keyword">new</span> MyDerivedClass1(<span class="string">"foo"</span>),</span><br><span class="line">clone1 = instance1.clone(),</span><br><span class="line">instance2 = <span class="keyword">new</span> MyDerivedClass2(<span class="string">"bar"</span>),</span><br><span class="line">clone2 = instance2.clone();</span><br><span class="line"><span class="built_in">console</span>.log(clone1 <span class="keyword">instanceof</span> MyClass); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(clone1 <span class="keyword">instanceof</span> MyDerivedClass1); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(clone2 <span class="keyword">instanceof</span> MyClass); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(clone2 <span class="keyword">instanceof</span> MyDerivedClass2); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-<p>此处, MyDerivedClass1 继承了 MyClass ，并且未修改 Symbol.species 属性。由于this.constructor[Symbol.species] 会返回 MyDerivedClass1 ，当 clone() 被调用时，它就返回了 MyDerivedClass1 的一个实例。 MyDerivedClass2 类也继承了 MyClass ，但重写了Symbol.species ，让其返回 MyClass 。当 clone() 在 MyDerivedClass2 的一个实例上被调用时，返回值就变成 MyClass 的一个实例。使用 Symbol.species ，任意派生类在调用应当返回实例的方法时，都可以判断出需要返回什么类型的值。<br>例如， Array 使用了 Symbol.species 来指定方法所使用的类，让其返回值为一个数组。在Array 派生出的类中，你可以决定这些继承的方法应返回何种类型的对象，正如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyArray</span> <span class="keyword">extends</span> <span class="title">Array</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">get</span> [Symbol.species]() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Array</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> items = <span class="keyword">new</span> MyArray(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>),</span><br><span class="line">subitems = items.slice(<span class="number">1</span>, <span class="number">3</span>);</span><br><span class="line"><span class="built_in">console</span>.log(items <span class="keyword">instanceof</span> MyArray); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(subitems <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(subitems <span class="keyword">instanceof</span> MyArray); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-<p>此代码重写了从 Array 派生的 MyArray 类上的 Symbol.species 。所有返回数组的继承方法现在都会使用 Array 的实例，而不是 MyArray 的实例。<br>一般而言，每当想在类方法中使用 this.constructor 时，你就应当设置类的Symbol.species 属性。这么做允许派生类轻易地重写方法的返回类型。此外，若你从一个拥有 Symbol.species 定义的类创建了派生类，要保证使用此属性，而不是直接使用构造器。</p>
-<h4 id="在类构造器中使用new-target"><a href="#在类构造器中使用new-target" class="headerlink" title="在类构造器中使用new.target"></a>在类构造器中使用new.target</h4><p>在第三章你已学到了 new.target ，以及在调用函数的方式不同时它的值是如何变动的。你也可以在类构造器中使用 new.target ，来判断类是被如何被调用的。在简单情况下，new.target 就等于本类的构造器函数，正如下例；</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length, width) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">new</span>.target === Rectangle);</span><br><span class="line">        <span class="keyword">this</span>.length = length;</span><br><span class="line">        <span class="keyword">this</span>.width = width;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// new.target 就是 Rectangle</span></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> Rectangle(<span class="number">3</span>, <span class="number">4</span>); <span class="comment">// 输出 true</span></span><br></pre></td></tr></table></figure>
-<p>此代码说明在 new Rectangle(3, 4) 被调用时， new.target 就等于 Rectangle 。类构造器被调用时不能缺少 new ，因此 new.target 属性就始终会在类构造器内被定义。不过这个值并不总是相同的。研究以下代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length, width) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">new</span>.target === Rectangle);</span><br><span class="line">        <span class="keyword">this</span>.length = length;</span><br><span class="line">        <span class="keyword">this</span>.width = width;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length) &#123;</span><br><span class="line">        <span class="keyword">super</span>(length, length)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// new.target 就是 Square</span></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> Square(<span class="number">3</span>); <span class="comment">// 输出 false</span></span><br></pre></td></tr></table></figure>
-<p>Square 调用了 Rectangle 构造器，因此当 Rectangle 构造器被调用时， new.target 等于Square 。这很重要，因为构造器能根据如何被调用而有不同行为，并且这给了更改这种行为的能力。例如，你可以使用 new.target 来创建一个抽象基类（一种不能被实例化的类），如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 静态的基类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">new</span>.target === Shape) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"This class cannot be instantiated directly."</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length, width) &#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.length = length;</span><br><span class="line">        <span class="keyword">this</span>.width = width;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> x = <span class="keyword">new</span> Shape(); <span class="comment">// 抛出错误</span></span><br><span class="line"><span class="keyword">var</span> y = <span class="keyword">new</span> Rectangle(<span class="number">3</span>, <span class="number">4</span>); <span class="comment">// 没有错误</span></span><br><span class="line"><span class="built_in">console</span>.log(y <span class="keyword">instanceof</span> Shape); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p>此例中的 Shape 类构造器会在 new.target 为 Shape 的时候抛出错误，意味着 newShape() 永远都会抛出错误。然而，你依然可以将 Shape 用作一个基类，正如 Rectangle所做的那样。 super() 的调用执行了 Shape 构造器，而且 new.target 的值等于Rectangle ，因此该构造器能够无错误地继续执行。<br>由于调用类时不能缺少 new ，于是 new.target 属性在类构造器内部就绝不会是undefined 。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://gitee.com/iversoncurry/Blog.git/2020/04/26/JS%E7%9A%84%E7%B1%BB/" data-id="ck9ghxoon000l7kr942t457l1" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
-
-    </footer>
-  </div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
   
-</article>
-
-
+  
   
 
 
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/Blog/page/2/">2</a><a class="page-number" href="/Blog/page/3/">3</a><a class="extend next" rel="next" href="/Blog/page/2/">Next &amp;raquo;</a>
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/Blog/page/2/">2</a><a class="page-number" href="/Blog/page/3/">3</a><a class="extend next" rel="next" href="/Blog/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
-</section>
-        
-          <aside id="sidebar">
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">JavaScript高级程序设计</a></li></ul>
-    </div>
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
   </div>
 
+  <aside class="sidebar">
+    <div class="sidebar-inner">
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/" rel="tag">前端相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/Blog/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/Blog/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/Blog/tags/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/" style="font-size: 10px;">前端相关</a> <a href="/Blog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.67px;">计算机网络</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/11/">November 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/Blog/2020/04/26/%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B/">引用类型之数组</a>
-          </li>
-        
-          <li>
-            <a href="/Blog/2020/04/26/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%80%BB%E7%BB%93/">面向对象的程序设计</a>
-          </li>
-        
-          <li>
-            <a href="/Blog/2020/04/26/%E4%BA%8B%E4%BB%B6/">事件</a>
-          </li>
-        
-          <li>
-            <a href="/Blog/2020/04/26/%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/">跨域资源共享</a>
-          </li>
-        
-          <li>
-            <a href="/Blog/2020/04/26/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">防抖与节流</a>
-          </li>
-        
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
       </ul>
-    </div>
-  </div>
 
-  
-</aside>
-        
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">蚂蚁</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Blog/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/Blog/" class="mobile-nav-link">Home</a>
-  
-    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.css">
-
-  
-<script src="/Blog/fancybox/jquery.fancybox.pack.js"></script>
+        
 
 
 
 
-<script src="/Blog/js/script.js"></script>
 
 
 
 
+      </div>
+    </footer>
   </div>
+
+  
+  <script src="/Blog/lib/anime.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Blog/js/utils.js"></script>
+
+<script src="/Blog/js/motion.js"></script>
+
+
+<script src="/Blog/js/schemes/pisces.js"></script>
+
+
+<script src="/Blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
 </body>
 </html>
