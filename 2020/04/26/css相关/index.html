@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>css相关 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="CSS工作原理每个HTML元素都有一组样式属性，可以通过CSS来设定。这些属性涉及元素在屏幕上显示时的不同方面，比如在屏幕上位置，边框宽度，文本内容的字体，字号和颜色等等。CSS就是一种先选择HTML元素，然后设定选中元素CSS属性的机制。CSS选择符要应用的样式构成了一条CSS规则。为文档添加样式的三种方法1.行内样式行内样式是写在特定HTML标签的style属性里的。行内样式的作用范围非常有限">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css相关">
+<meta property="og:url" content="http://yoursite.com/2020/04/26/css%E7%9B%B8%E5%85%B3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="CSS工作原理每个HTML元素都有一组样式属性，可以通过CSS来设定。这些属性涉及元素在屏幕上显示时的不同方面，比如在屏幕上位置，边框宽度，文本内容的字体，字号和颜色等等。CSS就是一种先选择HTML元素，然后设定选中元素CSS属性的机制。CSS选择符要应用的样式构成了一条CSS规则。为文档添加样式的三种方法1.行内样式行内样式是写在特定HTML标签的style属性里的。行内样式的作用范围非常有限">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-26T02:04:36.616Z">
+<meta property="article:modified_time" content="2020-03-11T00:21:55.905Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-css相关" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/css%E7%9B%B8%E5%85%B3/" class="article-date">
+  <time datetime="2020-04-26T02:04:36.616Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      css相关
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="CSS工作原理"><a href="#CSS工作原理" class="headerlink" title="CSS工作原理"></a>CSS工作原理</h2><p>每个HTML元素都有一组样式属性，可以通过CSS来设定。这些属性涉及元素在屏幕上显示时的不同方面，比如在屏幕上位置，边框宽度，文本内容的字体，字号和颜色等等。CSS就是一种先选择HTML元素，然后设定选中元素CSS属性的机制。<strong>CSS选择符要应用的样式构成了一条CSS规则。</strong><br><em>为文档添加样式的三种方法</em><br>1.行内样式<br>行内样式是写在特定HTML标签的style属性里的。行内样式的作用范围非常有限。行内样式只能影响它所在的标签，而且会覆盖嵌入样式和链接样式。<br>2.嵌入样式<br>嵌入的CSS样式是放在HTML文档的head元素中的。<em>嵌入样式的应用范围仅限于当前页面。</em>页面样式会覆盖外部样式表中的样式，但会被行内样式覆盖。<br>3.链接样式<br>在创建包含多个页面的网站时，需要把样式集中在一个单独的文件里，这个文件就叫样式表。样式表其实就是一个扩展名为.css的文本文件。可以在任意多个HTML页面中连接同一个样式表文件每个页面中只需要加入类似下面的这一行代码即可：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"style.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>链接样式的作用范围可以是整个网站。只要使用<link>标签把样式表链接到每个页面，相应的页面就可以使用其中的样式。随后，只要修改了样式表中的样式，改动就会在所有被选中的元素上体现出来，无论这个元素在哪个页面里。这样，既可以做到全栈页面外观统一，又便于征战样式更新。<br>除了以上三种为页面添加样式的方法，还有一种在样式表中链接其他样式表的方法就是应用@import指令（是一种at规则）：<br>@import url(css/style2.css)<br>要注意的是，@import指令必须出现在样式表中其他样式之前，否则@import引用的样式表不会被加载。<strong>在加载页面方面，使用link的引用的文件，被同时加；@import引用的文件，要在页面加载完毕后才会被加载。</strong><br>有一点很重要，那就是 CSS 样式是通过<style>标签嵌入到页面里的。当浏览器遇到开标签<style>时，就会由解释 HTML 代码切换为解释 CSS 代码。等遇到闭标签</style>时，它会再切换回解释 HTML 代码。<br>对于写在样式表里的样式，就不需要<style>标签了。如果你在样式表里加上这个标签，样式表中的样式就不会被浏览器加了。</p>
+<h3 id="上下文选择符"><a href="#上下文选择符" class="headerlink" title="上下文选择符"></a>上下文选择符</h3><p>上下文选择符的格式如下：<br>标签1 标签2 {声明}<br>其中，标签2就是我们想要选择的目标，而且只有在标签1是器祖先元素（不一定是父元素）的情况下才会被选中。<br>上下文选择符，严格来讲（也就是CSS规范里），叫后代组合式选择符（descendant combinator selector），就是一组以空格分隔的标签。用于选择作为指定祖先元素后代的标签。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">article</span> <span class="selector-tag">p</span> &#123;<span class="attribute">font-weight</span>: bold;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="特殊的上下文选择符"><a href="#特殊的上下文选择符" class="headerlink" title="特殊的上下文选择符"></a>特殊的上下文选择符</h3><p>上一节的上下文选择符是以某个祖先标签作为上下文。只要有标签在它的层次结构“上游”存在这么一个祖先，那么就会选中改标签。无论从该标签到作为祖先的上下文之间间隔着多少层次都没有关系。不过，有时候我们可能还会需要比“某些祖先”更具体的上下文。</p>
+<h4 id="子选择符-gt"><a href="#子选择符-gt" class="headerlink" title="子选择符&gt;"></a>子选择符&gt;</h4><p>标签1&gt;标签2<br>标签2必须是标签1的子元素</p>
+<h4 id="紧邻通报选择符"><a href="#紧邻通报选择符" class="headerlink" title="紧邻通报选择符+"></a>紧邻通报选择符+</h4><p>标签1+标签2<br>标签2必须紧跟在其同胞标签的后面</p>
+<h4 id="一般同胞选"><a href="#一般同胞选" class="headerlink" title="一般同胞选"></a>一般同胞选</h4><p>标签1~标签2<br>标签2必须跟（不一定紧跟）在其同胞标签1后面</p>
+<h4 id="通用选择符"><a href="#通用选择符" class="headerlink" title="通用选择符*"></a>通用选择符*</h4><p>通用选择符*（常被称为星号选择符）是一个通配符，它匹配任何元素，因此下面这条规则</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*&#123;<span class="attribute">color</span>: green;&#125;</span><br></pre></td></tr></table></figure>
+<p>会导致所有元素（的文本和边框）都变成绿色。不过，一般在使用*选择符时，都会同时使用另一个选择符，比如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> * &#123;<span class="attribute">color</span>:red;&#125;</span><br></pre></td></tr></table></figure>
+<p>这样只会把 p 包含的所有元素的文本变成红色。这个选择符有一个非常有意思的用法，即用它构成非子选择符，比如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">section</span> * <span class="selector-tag">a</span> &#123;<span class="attribute">font-size</span>:<span class="number">1.3em</span>;&#125;</span><br></pre></td></tr></table></figure>
+<p>如图 2-13 所示，任何是 section 孙子元素，而非子元素的a 标签都会被选中。至于a的父元素是什么，没有关系。</p>
+<h4 id="ID和类选择符"><a href="#ID和类选择符" class="headerlink" title="ID和类选择符"></a>ID和类选择符</h4><p>ID和类为选择元素提供了另一套手段，利用他们可以不用考虑文档的层次结构。只要在HTML标记中为元素添加了id和class属性就可以在CSS选择符中使用ID和类名，直接玄宗文档中特定的区域。<br>*可以给id和class属性设定任何值，但不能以数字或特殊符号开头。<br>雷属性就是HTML元素的class属性，body标签中包含的任何HTML元素都可添加这个属性。<br>1.类选择符<br>.类名  .my-class<br>注意类选择符前面是（.），紧跟着类名，两者之间没有空格。<br>2.标签带类选择符<br>p.specialtext {color:red;}<br>p.specialtext span {font-weight:bold;}<br>其中specialtext是p的一个子元素的类名，而span位于带有specialtext类的段落里。<br>2.多类选择符</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"specialtext featured"</span>&gt;</span>Here the span tag <span class="tag">&lt;<span class="name">span</span>&gt;</span>may or may not<span class="tag">&lt;/<span class="name">span</span>&gt;</span> </span><br><span class="line"> be styled.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p> 多个类名，如这里的 specialtext 和 featured，放在同一对引号里，用空格分隔。实际上，更准确的说法，就应该是 HTML 的 class 属性可以有多个空格分隔的值。要选择同时存在这两个类名的元素，可以这样写：<br> .specialtext.featured {font-size:120%;}<br> <strong>注意，CSS 选择符的两个类名之间没有空格，因为我们只想选择同时具有这两个类名的那个元素。如果你加了空格，那就变成了“祖先/后代”关系的上下文选择符了。</strong></p>
+<h4 id="ID属性"><a href="#ID属性" class="headerlink" title="ID属性"></a>ID属性</h4><p> ID与类的写法相似，而且表示ID选择符的#的用法<br>如果有一个段落像下面这样设定了 ID 属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"specialtext"</span>&gt;</span>This is the special text.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>那么，相应的 ID 选择符就是这样的：<br>#specialtext {CSS 样式声明}<br>或者这样的：<br>p#specialtext {CSS 样式声明}<br>用于页内导航的 ID<br>ID 也可以用在页内导航链接中。下面就是一个链接，其目标是同一页的另一个位置。 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#bio"</span>&gt;</span>Biography<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>看到 href 属性值开头的#了吗？它表示这个链接的目标在当前页面中，因而不会触发浏览器加载页面（如果没有#，浏览器就会尝试加载 bio 目录下的默认页面了）。<br>使用与 CSS 选择符里相同的 #ID 名语法，可以把链接导航到同一页面中的目标 ID。在这个页<br>面的下方，应该有对应的目标元素。 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">id</span>=<span class="string">"bio"</span>&gt;</span>Biography<span class="tag">&lt;/<span class="name">h3</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>I was born when I was very young…<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>同样要注意，作为目标的 ID 值前面是没有#的，就是一个普通的 ID 值。<br>用户单击前面的链接时，页面会向下滚动到 ID 值为 bio 的 h3 元素的位置。如果链接的 href<br>属性里只有一个#，那么点击该链接会返回页面顶部。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Back to Top<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>换句话说，要写一个“返回顶部”链接，根本不需要 ID 为#的目标元素。<br>另外，如果你暂时不知道某个 href 应该放什么 URL，也可以用#作为占位符，但不能把该属性<br>留空。因为 href 属性值为空的链接的行为跟正常链接不一样。这样，团队中的其他人将来可<br>以用中间层（比如 PHP）变量替换#，以便动态接收来自数据库的 URL。</p>
+<h4 id="什么时候用ID，什么时候用类"><a href="#什么时候用ID，什么时候用类" class="headerlink" title="什么时候用ID，什么时候用类"></a>什么时候用ID，什么时候用类</h4><p>ID 的用途是在页面中唯一地标识一个元素。正因为如此，同一个页面中的每一个 ID属性，都必须有独一无二的值（名字）。<br>类的目的是为了标识一组具有相同特征的元素。</p>
+<h3 id="属性选择符"><a href="#属性选择符" class="headerlink" title="属性选择符"></a>属性选择符</h3><h4 id="属性名选择符"><a href="#属性名选择符" class="headerlink" title="属性名选择符"></a>属性名选择符</h4><p>标签名[属性名] 例如：img[title] {border:2px solid blue;}</p>
+<h4 id="属性值选择符"><a href="#属性值选择符" class="headerlink" title="属性值选择符"></a>属性值选择符</h4><p>标签名[属性名=”属性值”]  例如：img[title=”red flower”] {border:4px solid green;}</p>
+<h3 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h3><p>伪类这个叫法源自它们与类相似，但实际上没有类会附加到标记中的标签上。伪类分两种。<br>1.UI(User Interface, 用户界面)伪类会在HTML元素处于某个状态时（比如鼠标指针位于链接上），为该元素应用CSS样式。<br>2.结构化伪类会在标记中存在某种结构上的关系时（如某个元素是一组元素中的第一个或最后一个），为相应元素应用CSS样式。</p>
+<h4 id="UI伪类"><a href="#UI伪类" class="headerlink" title="UI伪类"></a>UI伪类</h4><p>UI伪类会基于特定HTML元素的状态应用样式。最常使用UI伪类的元素是链接（a元素），利用UI伪类，链接可以在用户鼠标悬停时改变文本颜色，或者去掉文本的下划线。此外，还可以有其他响应方式，比如悬停时显示一个信息面板。<br>1.链接伪类<br>针对链接的伪类一共有 4 个，因为链接始终会处于如下 4 种状态之一。<br> Link。此时，链接就在那儿等着用户点击。<br> Visited。用户此前点击过这个链接。<br> Hover。鼠标指针正悬停在链接上。<br> Active。链接正在被点击（鼠标在元素上按下，还没有释放）。<br>以下就是这些状态对应的 4 个伪类选择符（使用了 a 选择符和一些示例声明）：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;<span class="attribute">color</span>:black;&#125; </span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123;<span class="attribute">color</span>:gray;&#125; </span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;<span class="attribute">text-decoration</span>:none;&#125; </span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123;<span class="attribute">color</span>:red;&#125;</span><br></pre></td></tr></table></figure>
+<p>其中(:)表示伪类,一个冒号（:）表示伪类，两个冒号（::）表示 CSS3 新增的伪元素。<br>注意，有些伪类可以用于任何元素，而不仅仅是 a 元素。比如，下面这条规则能让段落背景在鼠标悬停时变成灰色：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:hover</span> &#123;<span class="attribute">background-color</span>:gray;&#125;</span><br></pre></td></tr></table></figure>
+<p>2.:focus 伪类<br>表单中的文本字段在用户单击它时会获得焦点，然后用户才能在其中输入字符。下面的规则：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:focus</span> &#123;<span class="attribute">border</span>:<span class="number">1px</span> solid blue;&#125;</span><br></pre></td></tr></table></figure>
+<p>会在光标位于 input 字段中时，为该字段添加一个蓝色边框。这样可以让用户明确地知道输入的字符会出现在哪里。<br>3.:target 伪类</p>
+<p>如果用户点击一个指向页面中其他元素的链接，则那个元素就是目标（target），可以用:target 伪类选中它。对于下面这个链接:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#more_info"</span>&gt;</span>More Information<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>位于页面其他地方、ID 为 more_info 的那个元素就是目标。该元素可能是这样的：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"more_info"</span>&gt;</span>This is the information you are looking for.<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>那么，如下 CSS 规则</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#more_info</span><span class="selector-pseudo">:target</span> &#123;<span class="attribute">background</span>:<span class="number">#eee</span>;&#125;</span><br></pre></td></tr></table></figure>
+<p>会在用户单击链接转向 ID 为 more_info 的元素时，为该元素添加浅灰色背景。</p>
+<h4 id="结构化伪类"><a href="#结构化伪类" class="headerlink" title="结构化伪类"></a>结构化伪类</h4><p>结构化伪类可以根据标记的结构应用样式，比如根据某元素的父元素或前面的同胞元素是什么。<br>1.:first-child 和:last-child<br>:first-child 代表一组同胞元素中的第一个元素，而:last-child 则代表最后一个。<br>2.:nth-child<br>e:nth-child(n)<br>e 表示元素名，n 表示一个数值（也可以使用 odd 或 even）。<br>例如，<br>li:nth-child(3)  会选择一组列表项中的每个第三项。<br>:nth-child 伪类最常用于提高表格的可读性，比如像第 6 章中那样，对表格的所有行交替应用不同颜色。</p>
+<h3 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h3><p>顾名思义，伪元素就是你的文档中若有实无的元素。</p>
+<ol>
+<li>::first-letter 伪元素<br>p::first-letter {font-size:300%;}<br>可以得到段落首字符放大的效果。</li>
+<li>::first-line 伪元素<br>e::first-line<br>可以选中文本段落（一般情况下是段落）的第一行。</li>
+<li>::before 和::after 伪元素<br>以下两个伪元素<br>e::before<br>e::after<br>可用于在特定元素前面或后面添加特殊内容。<br>搜索引擎不会取得伪元素的信息（因为它在标记中并不存在）。因此，不要通过伪元素添加你想让搜索引擎索引的重要内容。</li>
+</ol>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>文档中的所有元素，无论它在层次结构中多么靠下，都将继承这些样式，以Helvetica 字体（或者在 Helvetica 字体无效时以其他字体代替）显示各自包含的文本。继承给我们带来的效率是显而易见的，全站的主字体只要在某个上层元素上指定即可，无须在每一个标签上分别指定。而对于个别想使用不同字体的元素，只要个别设定 font-family 属性就好了。<br>CSS 中有很多属性是可以继承的，其中相当一部分都跟文本有关，比如颜色、字体、字号。然而，也有很多 CSS 属性不能继承，因为继承这些属性没有意义。这些不能继承的属性主要涉及元素盒子的定位和显示方式，比如边框、外边距、内边距。</p>
+<h3 id="层叠"><a href="#层叠" class="headerlink" title="层叠"></a>层叠</h3><p>层叠，就是层叠样式表中的层叠，是一种样式在文档层次中逐层叠加的过程，目的是让浏览器面对某个标签特定属性值的多个来源，确定最终使用哪个值。<br>层叠是 CSS 的核心机制，理解了它才能以最经济的方式写出最容易改动的 CSS，让文档外观在达到设计要求的同时，也给用户留下一些空间，让他们能根据需要更改文档的显示效果（比如整体调整字号）。</p>
+<h4 id="样式来源"><a href="#样式来源" class="headerlink" title="样式来源"></a>样式来源</h4><p>样式有多处来源。首先，如果告诉你浏览器有一个默认的样式表，你应该不会感到奇怪，因为你还没有写一行 CSS 呢，每个标签已经带了一定的样式。h1 是不是粗体，字号还挺大？em 是不是斜体？列表呢，是不是缩进而且还带项目符号或编号？<br>然后，有一个用户样式表。没错，用户也可以提供样式表，尽管这样的用户不多见。这个选择对于视障用户很有用，他们可以通过用户样式表，强制浏览器加载的所有网站都以更大的字号，更容易分辨的颜色显示内容。比如，某个视障用户可以增加如下样式：<br>再有，就是作者样式表，也就是网页设计师（你）写的样式表。前面我们已经讲了作者给网页添加样式的三种方法：链接样式、嵌入样式和行内样式。</p>
+<h4 id="层叠规则"><a href="#层叠规则" class="headerlink" title="层叠规则"></a>层叠规则</h4><p><strong>层叠规则一：找到应用给每个元素和属性的所有声明。</strong>浏览器在加载每个页面时，都会据此查到每一条 CSS 规则，标识出所有受到影响的 HTML 元素。<br><strong>层叠规则二：按照顺序和权重排序。</strong>浏览器依次检查 5 个来源，并设定匹配的属性。如果匹配的属性在下一个来源也有定义，则更新该属性的值，如此循环，直到检查完页面中所有标签受影响属性的全部 5 个来源为止。最终某个属性被设定成什么值，就用什么值来显示。声明也可以有权重。可以像下面这样为单独的声明增加权重：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;<span class="attribute">color</span>:green <span class="meta">!important</span>; <span class="attribute">font-size</span>:<span class="number">12pt</span>;&#125;</span><br></pre></td></tr></table></figure>
+<p>空格!important 分号（;）用于加重声明的权重。<br><strong>层叠规则三：按特指度排序。</strong>除了有点拗口之外，特指度（specificity）其实表示一条规则有多明确。<br><strong>层叠规则四：顺序决定权重。</strong>如果两条规则都影响某元素的同一个属性，而且它们<br>的特指度也相同，则位置最靠下（或后声明）的规则胜出。</p>
+<h4 id="计算特指度"><a href="#计算特指度" class="headerlink" title="计算特指度"></a>计算特指度</h4><p>下面我们具体讲一讲怎么计算选择符的特指度。首先，有一个简单的记分规则，即对每个选择符都要按下面的“ICE”公式计算三个值：<br>三个字母间的短横线是分隔符，并非减号。针对这个公式的计分办法如下：</p>
+<ol>
+<li>选择符中有一个 ID，就在 I 的位置上加 1；</li>
+<li>选择符中有一个类，就在 C 的位置上加 1；</li>
+<li>选择符中有一个元素（标签）名，就在 E 的位置上加 1；</li>
+<li>得到一个三位数。<br>通过几个例子来理解特指度。<br>P 0-0-1 特指度=1<br>p.largetext 0-1-1 特指度=11<br>p#largetext 1-0-1 特指度=101<br>body p#largetext 1-0-2 特指度=102<br>body p#largetext ul.mylist 1-1-3 特指度=113<br>body p#largetext ul.mylist li 1-1-4 特指度=114<br>在此，每个选择符都比前一个选择符的特指度更高。</li>
+</ol>
+<p>简单层叠要点<br>在这个版本里，只要记住三条规则就够了。这三条规则适合所有情况。<br>规则一：包含 ID 的选择符胜过包含类的选择符，包含类的选择符胜过包含标签名的选择符。<br>规则二：如果几个不同来源都为同一个标签的同一个属性定义了样式，行内样式胜过嵌入样式，嵌入样式胜过链接样式。在链接的样式表中，具有相同特指度的样式，后声明的胜过先声明的。规则一胜过规则二。换句话说，如果选择符更明确（特指度更高），无论它在哪里，都会胜出。<br>规则三：设定的样式胜过继承的样式，此时不用考虑特指度（即显式设定优先）。下面简单<br>解释一下规则三。比如下面的标记</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"cascade_demo"</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"inheritance_fact"</span>&gt;</span>Inheritance is <span class="tag">&lt;<span class="name">em</span>&gt;</span>weak<span class="tag">&lt;/<span class="name">em</span>&gt;</span> in the Cascade<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>和下面的规则<br>div#cascade_demo p#inheritance_fact {color:blue;}<br>2 - 0 - 2 （高特指度）<br>会导致单词“weak”变成蓝色，因为它从父元素 p 那里继承了这个颜色值。<br>但是，只要我们再给 em 添加一条规则<br>em {color:red;}<br>0 - 0 - 1 （低特指度）<br>em 就会变成红色。因为，虽然它的特指度低（0-0-1），但 em 继承的颜色值，会被为它明确（显式）指定的颜色值覆盖，就算（隐式）遗传该颜色值的规则的特指度高（2-0-2）也没有用。</p>
+<h3 id="规则声明"><a href="#规则声明" class="headerlink" title="规则声明"></a>规则声明</h3><p>CSS 属性值主要分以下三类。<br><strong>文本值。</strong>例如，font-weight:bold 声明中的 bold 就一个文本值。文本值也叫做关键字。<br><strong>数字值。</strong>数字值后面都有一个单位，例如英寸或点。在声明 font-size:12px 中，12是数字值，而 px 是单位（像素）。如果数字值为 0，那么就不用带单位了。<br><strong>颜色值。</strong>颜色值可以用几种不同的格式来写，包括 RGB（Red, Green, Blue，红绿蓝）、<br>HSL（Hue, Saturation, Luminance，色相，饱和度，亮度）和十六进制值（例如color:#336699）。</p>
+<h4 id="文本值"><a href="#文本值" class="headerlink" title="文本值"></a>文本值</h4><p>所有 CSS 属性都有文本值。例如，visibility 属性有 visible 和 hidden 值，border-style 属性有 solid、 dashed 以及 inset 值。</p>
+<h4 id="数字值"><a href="#数字值" class="headerlink" title="数字值"></a>数字值</h4><p>数字值主要分两类：绝对值和相对值。<br>em 和 ex 都是字体大小的单位，但在 CSS 中，它们作为长度单位适用于任何元素。先说说 em ，它表示一种字体中字母 M 的宽度，因此它的具体大小取决于你使用的字体。而 ex 呢，等于给定字体中字母 x 的高度（小写字母 x 代表一种字体的字母中间部分的高度，不包括字母上、下突出的部分——如 d 和 p 上下都出头儿）。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/26/css%E7%9B%B8%E5%85%B3/" data-id="ck9gev01g00064cr97fjcf0ds" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/26/DOM/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          DOM
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/26/CSS%E5%B8%83%E5%B1%80/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CSS布局</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/26/%E4%BA%8B%E4%BB%B6/">事件</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/">跨域资源共享</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">防抖与节流</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0/">定位元素</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/">迭代器和生成器</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

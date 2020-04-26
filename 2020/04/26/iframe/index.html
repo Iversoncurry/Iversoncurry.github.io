@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>iframe | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="iframe每个嵌入的浏览器上下文（embedded browsing context）都有自己的会话历史记录和dom树。包含嵌入内容的浏览器上下文成为符浏览上下文。顶级浏览上下文（即没有父级）通常是由window对象表示的浏览器窗口。 属性该元素包含全局属性。这里只介绍比较常用的几个name： 用于定位嵌入的浏览器上下文的名称。该名称可以用作标签与标签的target属性值，也可以用作标签和标签的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iframe">
+<meta property="og:url" content="http://yoursite.com/2020/04/26/iframe/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="iframe每个嵌入的浏览器上下文（embedded browsing context）都有自己的会话历史记录和dom树。包含嵌入内容的浏览器上下文成为符浏览上下文。顶级浏览上下文（即没有父级）通常是由window对象表示的浏览器窗口。 属性该元素包含全局属性。这里只介绍比较常用的几个name： 用于定位嵌入的浏览器上下文的名称。该名称可以用作标签与标签的target属性值，也可以用作标签和标签的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-26T02:04:36.709Z">
+<meta property="article:modified_time" content="2020-04-13T12:42:07.575Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-iframe" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/iframe/" class="article-date">
+  <time datetime="2020-04-26T02:04:36.709Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iframe
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="iframe"><a href="#iframe" class="headerlink" title="iframe"></a>iframe</h1><p>每个嵌入的浏览器上下文（embedded browsing context）都有自己的会话历史记录和dom树。包含嵌入内容的浏览器上下文成为符浏览上下文。顶级浏览上下文（即没有父级）通常是由window对象表示的浏览器窗口。</p>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>该元素包含全局属性。<br>这里只介绍比较常用的几个<br>name： 用于定位嵌入的浏览器上下文的名称。该名称可以用作<a>标签与<form>标签的target属性值，也可以用作<input>标签和<button>标签的formtarget属性值，还可以用作window.open()方法的windowName参数值。</p>
+<p>src：被嵌套的页面的URL地址。使用about:blank值可以嵌入一个遵从同源策略的空白页。</p>
+<h2 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h2><p>内联的框架，就像<frame>元素一样，会被包含在window.frames伪数组中。<br>有了DOMHTMLIFrameElement对象，脚本可以通过contentWindow访问内联框架的window对象。contentDocument属性则引用了<iframe>内部的document元素。<br>在框架内部，脚本可以通过window.parent引用父窗口对象。<br>脚本访问框架内容必须遵守同源策略，并且无法访问同源的window对象的几乎所有属性。同源策略同样适用于子窗体访问父窗体的window对象。跨域通信可以通过window.postMessage实现。</p>
+<p>window.postMessage()方法可以安全地事项跨源通信。通常，对于两个不同页面的脚本，只有当执行它们的页面位于相同的协议通常为https，端口号（443位https的默认值），以及主机（两个页面的模数Document.domain设置相同的值）时，两个脚本才能相互通信。<br>window.postMessage()方法提供了一种受控机制来规避此限制，只要正确的使用，这种方法就很安全。<br>从广义上讲，一个窗口可以获得对另一个窗口的引用（比如targetWindow= window.opener),然后在窗口上调用targetWindow.postMessage()方法分发一个MessageEvent消息。接收消息的窗口可以根据需要自由处理此事件。传递给window.postMessage()的参数（比如message）将通过消息事件对象暴露给接收消息的窗口。</p>
+<h3 id="postMessage语法"><a href="#postMessage语法" class="headerlink" title="postMessage语法"></a>postMessage语法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">otherWindow.postMessage(message, targetOrigin, [transfer])</span><br></pre></td></tr></table></figure>
+<p>otherWindow:其他窗口的一个引用，比如iframe的contentWindow属性、执行window.open返回的窗口对象、或者是明明过或数值索引的window.frames.</p>
+<p>message: 将要发送到其他window的数据。它将会被结构化克隆算法序列化。这意味着可以不受什么限制的将数据对象安全地传送给目标窗口而无需自己序列化。</p>
+<p>targetOrigin：通过窗口的origin属性来指定哪些窗口能接收到消息事件，其值可以是字符串”<em>“</em>（表示无限制）或者一个URI。在发送消息的时候，如果目标窗口的协议、主机地址或端口这三者的任意一项不匹配targetOrigin提供的值，那么消息就不会被发送；只有三者完全匹配，消息才会被发送。这个机制用来控制消息可以发送到哪些窗口；例如，当用postMessage传送密码时，这个参数就显得尤为重要，必须保证它的值与这条包含密码的信息的预期接受者的origin属性完全一致，来防止密码被恶意的第三方截获。如果你明确的知道消息应该发送到哪个窗口，那么请始终提供一个有确切值的targetOrigin，而不是”*”。不提供确切的目标将导致数据泄露到任何对数据感兴趣的恶意站点。</p>
+<p><strong>对otherWindw和targetOrigin的理解</strong>：otherWindow设定了要传递信息的窗口，并不会限制信息只向这个窗口传递信息。targetOrigin设定了要传递窗口所在的URI包括协议，主机和端口。</p>
+<p>transfer 可选<br>是一串和message 同时传递的 Transferable 对象. 这些对象的所有权将被转移给消息的接收方，而发送一方将不再保有所有权。</p>
+<p>利用postMessage可以实现子域和父域相互传递消息以及不同域之间的通信。<br>message事件监听</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"message"</span>, receiveMessage, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">receiveMessage</span>(<span class="params">event</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// For Chrome, the origin property is in the event.originalEvent</span></span><br><span class="line">  <span class="comment">// object. </span></span><br><span class="line">  <span class="comment">// 这里不准确，chrome没有这个属性</span></span><br><span class="line">  <span class="comment">// var origin = event.origin || event.originalEvent.origin; </span></span><br><span class="line">  <span class="keyword">var</span> origin = event.origin</span><br><span class="line">  <span class="keyword">if</span> (origin !== <span class="string">"http://example.org:8080"</span>)</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> message 的属性有:</p>
+<p>data<br>从其他 window 中传递过来的对象。<br>origin<br>调用 postMessage  时消息发送方窗口的 origin . 这个字符串由 协议、“://“、域名、“ : 端口号”拼接而成。例如 “<a href="https://example.org" target="_blank" rel="noopener">https://example.org</a> (隐含端口 443)”、“<a href="http://example.net" target="_blank" rel="noopener">http://example.net</a> (隐含端口 80)”、“<a href="http://example.com:8080”。请注意，这个origin不能保证是该窗口的当前或未来origin，因为postMessage被调用后可能被导航到不同的位置。">http://example.com:8080”。请注意，这个origin不能保证是该窗口的当前或未来origin，因为postMessage被调用后可能被导航到不同的位置。</a><br>source<br>对发送消息的窗口对象的引用; 您可以使用此来在具有不同origin的两个窗口之间建立双向通信</p>
+<p>不同域之间传递</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * A窗口的域名是&lt;http://example.com:8080&gt;，以下是A窗口的script标签下的代码：</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> popup = <span class="built_in">window</span>.open(...popup details...);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果弹出框没有被阻止且加载完成</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 这行语句没有发送信息出去，即使假设当前页面没有改变location（因为targetOrigin设置不对）</span></span><br><span class="line">popup.postMessage(<span class="string">"The user is 'bob' and the password is 'secret'"</span>,</span><br><span class="line">                  <span class="string">"https://secure.example.net"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 假设当前页面没有改变location，这条语句会成功添加message到发送队列中去（targetOrigin设置对了）</span></span><br><span class="line">popup.postMessage(<span class="string">"hello there!"</span>, <span class="string">"http://example.org"</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">receiveMessage</span>(<span class="params">event</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// 我们能相信信息的发送者吗?  (也许这个发送者和我们最初打开的不是同一个页面).</span></span><br><span class="line">  <span class="keyword">if</span> (event.origin !== <span class="string">"http://example.org"</span>)</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// event.source 是我们通过window.open打开的弹出页面 popup</span></span><br><span class="line">  <span class="comment">// event.data 是 popup发送给当前页面的消息 "hi there yourself!  the secret response is: rheeeeet!"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"message"</span>, receiveMessage, <span class="literal">false</span>);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 弹出页 popup 域名是&lt;http://example.org&gt;，以下是script标签中的代码:</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//当A页面postMessage被调用后，这个function被addEventListenner调用</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">receiveMessage</span>(<span class="params">event</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// 我们能信任信息来源吗？</span></span><br><span class="line">  <span class="keyword">if</span> (event.origin !== <span class="string">"http://example.com:8080"</span>)</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// event.source 就当前弹出页的来源页面</span></span><br><span class="line">  <span class="comment">// event.data 是 "hello there!"</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 假设你已经验证了所受到信息的origin (任何时候你都应该这样做), 一个很方便的方式就是把event.source</span></span><br><span class="line">  <span class="comment">// 作为回信的对象，并且把event.origin作为targetOrigin</span></span><br><span class="line">  event.source.postMessage(<span class="string">"hi there yourself!  the secret response "</span> +</span><br><span class="line">                           <span class="string">"is: rheeeeet!"</span>,</span><br><span class="line">                           event.origin);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"message"</span>, receiveMessage, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>跨域POST消息发送<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/JavaScript"</span>&gt;</span>   </span><br><span class="line"><span class="actionscript">            <span class="comment">// sendPost 通过postMessage实现跨域通信将表单信息发送到 moweide.gitcafe.io上,</span></span></span><br><span class="line"><span class="actionscript">            <span class="comment">// 并取得返回的数据   </span></span></span><br><span class="line"><span class="actionscript">            <span class="function"><span class="keyword">function</span> <span class="title">sendPost</span><span class="params">()</span> </span>&#123;       </span></span><br><span class="line"><span class="actionscript">                <span class="comment">// 获取id为otherPage的iframe窗口对象       </span></span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> iframeWin = <span class="built_in">document</span>.getElementById(<span class="string">"otherPage"</span>).contentWindow;       </span></span><br><span class="line"><span class="actionscript">                <span class="comment">// 向该窗口发送消息       </span></span></span><br><span class="line"><span class="javascript">                iframeWin.postMessage(<span class="built_in">document</span>.getElementById(<span class="string">"message"</span>).value, <span class="string">'http://moweide.gitcafe.io'</span>);   </span></span><br><span class="line">            &#125;   </span><br><span class="line"><span class="actionscript">            <span class="comment">// 监听跨域请求的返回   </span></span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.addEventListener(<span class="string">"message"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;       </span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(event, event.data);   </span></span><br><span class="line"><span class="actionscript">            &#125;, <span class="literal">false</span>);</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">id</span>=<span class="string">"message"</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"发送"</span> <span class="attr">onclick</span>=<span class="string">"sendPost()"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">iframe</span></span></span><br><span class="line"><span class="tag">            <span class="attr">src</span>=<span class="string">"http://moweide.gitcafe.io/other-domain.html"</span> <span class="attr">id</span>=<span class="string">"otherPage"</span> <span class="attr">style</span>=<span class="string">"display:none"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 子窗体接收信息并处理 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>POST Handler<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//code.jquery.com/jquery-1.11.0.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/JavaScript"</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.addEventListener(<span class="string">"message"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"> event </span>) </span>&#123;</span></span><br><span class="line"><span class="actionscript">                <span class="comment">// 监听父窗口发送过来的数据向服务器发送post请求</span></span></span><br><span class="line"><span class="actionscript">                <span class="keyword">var</span> data = event.data;</span></span><br><span class="line"><span class="javascript">                $.ajax(&#123;</span></span><br><span class="line"><span class="actionscript">                    <span class="comment">// 注意这里的url只是一个示例.实际练习的时候你需要自己想办法提供一个后台接口</span></span></span><br><span class="line"><span class="actionscript">                    type: <span class="string">'POST'</span>,</span></span><br><span class="line"><span class="actionscript">                    url: <span class="string">'http://moweide.gitcafe.io/getData'</span>,</span></span><br><span class="line"><span class="actionscript">                    data: <span class="string">"info="</span> + data,</span></span><br><span class="line"><span class="actionscript">                    dataType: <span class="string">"json"</span></span></span><br><span class="line"><span class="actionscript">                &#125;).done(<span class="function"><span class="keyword">function</span><span class="params">(res)</span></span>&#123;       </span></span><br><span class="line"><span class="actionscript">                    <span class="comment">//将请求成功返回的数据通过postMessage发送给父窗口       </span></span></span><br><span class="line"><span class="javascript">                    <span class="built_in">window</span>.parent.postMessage(res, <span class="string">"*"</span>);   </span></span><br><span class="line"><span class="actionscript">                &#125;).fail(<span class="function"><span class="keyword">function</span><span class="params">(res)</span></span>&#123;       </span></span><br><span class="line"><span class="actionscript">                    <span class="comment">//将请求失败返回的数据通过postMessage发送给父窗口       </span></span></span><br><span class="line"><span class="javascript">                    <span class="built_in">window</span>.parent.postMessage(res, <span class="string">"*"</span>);   </span></span><br><span class="line">                &#125;);</span><br><span class="line"><span class="actionscript">            &#125;, <span class="literal">false</span>);</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/26/iframe/" data-id="ck9gev01x00094cr91egc75sh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/26/JS%E7%9A%84%E7%B1%BB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JS的类
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/26/https/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">https</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/26/%E4%BA%8B%E4%BB%B6/">事件</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/">跨域资源共享</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">防抖与节流</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0/">定位元素</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/">迭代器和生成器</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

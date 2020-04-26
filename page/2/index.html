@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-DOM" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/DOM/" class="article-date">
+  <time datetime="2020-04-26T02:04:36.660Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/26/DOM/">DOM</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>DOM<br>DOM文档对象模型，是针对HTML和XML文档的一个API。DOM描绘了一个层次化的节点树，允许开发人员添加、移除和修改页面的某一部分。</p>
+<h2 id="节点层次"><a href="#节点层次" class="headerlink" title="节点层次"></a>节点层次</h2><p>DOM可以将任何HTML或XML文档描绘成一个由多个节点构成的结构。节点分为几种不同类型，每种类型分别表示文档中不同的信息及（或）标记。每个节点都拥有各自的特点数据和方法。另外也与其他节点存在某种关系。节点之间的关系构成了层次，而所有页面编辑则表现为一个一特定节点为根节点的树形结构.</p>
+<h3 id="Node类型"><a href="#Node类型" class="headerlink" title="Node类型"></a>Node类型</h3><p>DOM1级定义了一个Node接口，该接口将由DOM中的所有节点类型实现。这个Node接口在JavaScript中是作为Node类型实现的。JavaScript中的所有节点类型都继承自Node类型，因此所有节点类型都共享着相同的基本属性和方法。<br>每个节点都有一个nodeType属性，用于表明节点的类型。节点类型由在Node类型中定义的12个数值常量表示。</p>
+<p>1.nodeName和nodeValue属性<br>要了解节点的具体信息，可以使用nodeName和nodeValue这两个属性。这两个属性的值完全取决于节点的类型：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (someNode.nodeType == <span class="number">1</span>) &#123;  <span class="comment">//nodeType = 1表示为一个元素</span></span><br><span class="line">    value = someNode.nodeName  <span class="comment">//nodeName的值是元素的标签名</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.节点关系<br>文档中所有的节点之间都存在着联系。在HTML中，可以将<body>元素看成是<html>元素的子元素；相应的，就可以把<html>元素看成是<body>元素的父元素。而<head>元素，则可以看成是<body>元素的同胞元素，因为它们都是同一个父元素<html>的直接子元素。</p>
+<p>每个节点都有一个childNodes属性，其中保存着一个NodeList对象。NodeList是一种类数组对象，用于保存一组有序的节点，可以通过为止来访问这些节点。<strong>NodeList对象实际上是基于DOM结构动态执行查询的结果，因此DOM结构的变化能够自动反应在NodeList对象中。我们常说，NodeList是有生命的、有呼吸的对象，而不是在我们第一次访问他们的某个瞬间拍摄下来的一张快照。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> firstChild = someNode.childNodes[<span class="number">0</span>]</span><br><span class="line"><span class="keyword">var</span> secondChild = someNode.childNodes.item(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">var</span> count = someNode.childNodes.length</span><br></pre></td></tr></table></figure>
+<p>其中length属性表示的是访问NodeList的那一刻，其中包含的节点数量。</p>
+<p>3.操作节点<br>DOM提供了一些操作节点的方法。其中最常用的方法是appendChild()，用于向childNodes列表的末尾添加一个节点。添加节点后，childNodes的新增节点、父节点及以前的最后一个子节点的关系指针都会相应地得到更新。更新完成后，appendChild()返回新增的节点。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> returnedNode = someNode.appendChild(newNode)</span><br><span class="line">alert(returnedNode == newNode) <span class="comment">//true</span></span><br><span class="line">alert(someNode.lastChild == newNode)  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p><strong>如果传入到appendChild中的节点已经是文档的一部分了，那结果就是将该节点从原来的位置转移到新的位置</strong>。即可以将DOM树看成是由一些列指针连接起来的，任何DOM节点不能同时出现在文档中的多个位置。因此如果调用appendChild()时传入了父节点的第一个子节点，那么该节点就会成为父节点的最后一个子节点。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> returnedNode = someNode.appendChild(someNode.firstChild)</span><br><span class="line">alert(returnedNode == someNode.firstNode)  <span class="comment">//false</span></span><br><span class="line">alert(returnedNode == someNode.lastChild)  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>如果需要把节点放在childNodes列表中某个特定的位置上，而不是放在末尾，那么可以使用insertBefore()方法。这个方法接收连个参数：要插入的节点和作为参照的节点。插入节点后，被插入的节点会变成参照节的前一个同胞节点，同时被方法返回。如果参照节点是null，则insertBefore()与appendChild()执行相同的操作</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 插入后成为最后一个子节点</span></span><br><span class="line">returnedNode = someNode.insertBefore(newNode, <span class="literal">null</span>)</span><br><span class="line">alert(newNode == someNode.lastChild)  <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 插入后成为第一个子节点</span></span><br><span class="line"><span class="keyword">var</span> returnedNode = someNode.insertBefore(newNode, someNode.firstChild)</span><br><span class="line">alert(returnedNode == newNode)  <span class="comment">//true</span></span><br><span class="line">alert(newNode == someNode.firstChild)  <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 插入到最后一个子节点前面</span></span><br><span class="line">returnedNode = someNode.insertBefore(newNode, someNode.lastChild)</span><br><span class="line">alert(newNode == someNode.childNodes[someNode.childNodes.length - <span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+<p>replaceChild()方法接受的两个参数是：要插入的节点和要替换的节点。要替换的节点是将由这个方法返回并从文档树中被移除，同时由要插入的节点占据其位置。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 替换第一个子节点</span></span><br><span class="line"><span class="keyword">var</span> returnedNode = someNode.replaceChild(newNode, someNode.firstChild)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 替换最后一个子节点</span></span><br><span class="line">returnedNode = someNode.replaceChild(newNode, someNode.lastChild)</span><br></pre></td></tr></table></figure>
+<p>在使用replaceChild()插入一个节点时，该节点的所有关系指针都会从被它替换的节点复制过来。被替换的节点还在文档中，但没有了自己的位置。<br>以上三个方法只针对有子节点的节点，没有子节点的节点调用后会报错。</p>
+<p>4.其他方法<br>有两个方法是所有类型的节点都有的。第一个是cloneNode()，用于创建调用这个方法的节点的一个完全相同的副本。cloneNode()方法接受一个布尔参数，表示是否执行深复制。在参数为true的情况下，执行深复制，也就是复制节点及其整个子节点树；在参数为false的情况下，执行浅复制，即只复制节点本身。复制后返回的节点副本属于文档所有，但并没有为它指定父节点。</p>
+<p>另一种方法是normalize(),这个方法唯一的作用就是处理文档树中的文本节点。由于解析器的实现或DOM操作等原因，可能会出现文本节点不包含文本，或者接连出现两个文本节点的情况。当在某个节点上调用这个方法时，就会在该节点的后代节点中查找上述两种情况。如果找到了空文本节点，则删除它；如果找到相邻的文本节点，则将它们合并为一个文本节点。</p>
+<h3 id="Document类型"><a href="#Document类型" class="headerlink" title="Document类型"></a>Document类型</h3><p>JavaScript通过Document类型表示文档。<strong>在浏览器中，document对象是HTMLDocument(继承自Document类型)的一个实例，表示整个HTML页面</strong>。而且document对象时window对象的一个属性，因此可以将其作为全局对象来访问。</p>
+<p>1.文档信息<br>document对象的一些属性能够表现网页的一些信息。<br>1）document.title<br>通过这个属性可以取得当前页面的标题，也可以修改当前页面的标题并反映在浏览器的标题栏中。</p>
+<p>2）document.URL<br>该属性包含着页面完整的URL</p>
+<p>3）document.domain<br>该属性中包含着页面的域名，可以设置，但并不是可以任意设置。如果URL中包含一个子域名，例如p2p.wrox.com，那么就只能将domain设置为wrox.com。不能讲这个属性设置为URL中不包含的域。两个页面同时设置为相同的document.domain则可进行通信。<br>但是初始是松散的如wrox.com，则不能再将其设置为紧绷的p2p.wrox.com。</p>
+<p>4）document.referrer<br>该属性中保存着链接到当前页面的那个页面的URL。在没有来源页面的情况先，referrer属性中可能会包含空字符串。</p>
+<p>3.查找元素<br>有几种查找元素的方法：<br>1.getElementByID()，接收一个参数，要取得的元素的ID。如果找到则返回，否则返回null</p>
+<p>2.getElementByTagName()。这个方法接受一个参数，即要取得元素的标签名，而返回的是包含零过多个元素的NodeList。在HTML文档中，这个方法会返回一个HTMLCollection对象，作为一个动态几何，该对象与NodeList非常类似。</p>
+<p>3.getElementByName()<br>只有HTMLDocument类型才有的方法。这个方法会返回带有给定的name特性的所有元素。</p>
+<p>4.文档写入<br>有一个document对象的功能已经存在很多年了，那就是将输出流写入到网页的能力。这个能力体现在下列4个方法中：<br>1.write()和writeln()<br>write()和writeln()方法都接受一个字符串参数，即要写入到输出流中的文本。write()会远洋写入，而writeln()则会在字符串的末尾添加一个换行符（\n)。页面被加载的过程中，可以使用这两个方法向页面中动态地加入内容</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>document.write() Example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>the current date and time is:</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript&gt;</span></span></span><br><span class="line">document.write("&lt;strong&gt;" + (new Data()).toString() + "&lt;/strong&gt;")</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.open(),close()<br>open()和close()分别用于打开和关闭网页的输出流。如果是在页面加载期间使用write()或writeln()方法，则不需要用到这两个方法。</p>
+<h3 id="使用NodeList"><a href="#使用NodeList" class="headerlink" title="使用NodeList"></a>使用NodeList</h3><p>理解NodeList、NameNodeMap和HTMLCollection，是从整体上透彻理解DOM的关键所在。这三个集合都是动态地；换句话说，当文档结构发生变化时，它们都会得到更新。因此，它们始终都会保存着最新、最准确的信息。从本质上讲，所有NodeList对象都是在访问DOM文档时实时运行的查询。<br>如下代码将导致无限循环</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> divs = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>)</span><br><span class="line"><span class="keyword">var</span> i</span><br><span class="line"><span class="keyword">var</span> div</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; divs.length; i++) &#123;</span><br><span class="line">    div = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>)</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(div)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第一行代码会取得文档中所有<div>元素的HTMLCollection。由于这个集合是动态地，因此只要有新的<div>元素被添加到页面中，这个元素也会被添加到该集合中。浏览器不会将创建的所有集合都保存在一个列表中，而是在下一次访问集合时再更新集合。由此将导致无限循环。</p>
+<h2 id="DOM扩展"><a href="#DOM扩展" class="headerlink" title="DOM扩展"></a>DOM扩展</h2><h3 id="选择符API"><a href="#选择符API" class="headerlink" title="选择符API"></a>选择符API</h3><p>众多JavaScript库中最常用的一项功能，就是根据CSS选择符与某个模式匹配的DOM元素。Selectors API Level 1的核心是两个方法：querySelector()和querySelectorAll()。</p>
+<p>1.querySelector()方法<br>querySelector()方法接受一个CSS选择符，返回与该模式匹配的第一个元素，如果没有找到匹配的元素，返回null。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> body = <span class="built_in">document</span>.querySelector(<span class="string">"body"</span>)</span><br><span class="line"><span class="keyword">var</span> myDiv = <span class="built_in">document</span>.querySelector(<span class="string">'#myDiV'</span>)</span><br><span class="line"><span class="keyword">var</span> selected = <span class="built_in">document</span>.querySelector(<span class="string">'.selected'</span>)</span><br><span class="line"><span class="keyword">var</span> img = <span class="built_in">document</span>.body.querySelector(<span class="string">'img.button'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>2.querySelectorAll()方法<br>querySelectorAll()方法接收的参数与querySelector()方法一样，都是一个CSS选择符，但返回的是所有匹配的元素而不仅仅是一个元素。这个方法返回的的是一个NodeList的实例。<br>具体来说，返回的值实际上是带有所有属性和方法的NodeList，而其底层实现类似于一组元素的快照，而非不断对文档进行搜索的动态查询。这样实现可以避免使用NodeList对象通常会引起的大多数性能问题。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/26/DOM/" data-id="ck9gev01b00034cr9gdn82aui" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-css相关" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/css%E7%9B%B8%E5%85%B3/" class="article-date">
+  <time datetime="2020-04-26T02:04:36.616Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/26/css%E7%9B%B8%E5%85%B3/">css相关</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="CSS工作原理"><a href="#CSS工作原理" class="headerlink" title="CSS工作原理"></a>CSS工作原理</h2><p>每个HTML元素都有一组样式属性，可以通过CSS来设定。这些属性涉及元素在屏幕上显示时的不同方面，比如在屏幕上位置，边框宽度，文本内容的字体，字号和颜色等等。CSS就是一种先选择HTML元素，然后设定选中元素CSS属性的机制。<strong>CSS选择符要应用的样式构成了一条CSS规则。</strong><br><em>为文档添加样式的三种方法</em><br>1.行内样式<br>行内样式是写在特定HTML标签的style属性里的。行内样式的作用范围非常有限。行内样式只能影响它所在的标签，而且会覆盖嵌入样式和链接样式。<br>2.嵌入样式<br>嵌入的CSS样式是放在HTML文档的head元素中的。<em>嵌入样式的应用范围仅限于当前页面。</em>页面样式会覆盖外部样式表中的样式，但会被行内样式覆盖。<br>3.链接样式<br>在创建包含多个页面的网站时，需要把样式集中在一个单独的文件里，这个文件就叫样式表。样式表其实就是一个扩展名为.css的文本文件。可以在任意多个HTML页面中连接同一个样式表文件每个页面中只需要加入类似下面的这一行代码即可：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"style.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>链接样式的作用范围可以是整个网站。只要使用<link>标签把样式表链接到每个页面，相应的页面就可以使用其中的样式。随后，只要修改了样式表中的样式，改动就会在所有被选中的元素上体现出来，无论这个元素在哪个页面里。这样，既可以做到全栈页面外观统一，又便于征战样式更新。<br>除了以上三种为页面添加样式的方法，还有一种在样式表中链接其他样式表的方法就是应用@import指令（是一种at规则）：<br>@import url(css/style2.css)<br>要注意的是，@import指令必须出现在样式表中其他样式之前，否则@import引用的样式表不会被加载。<strong>在加载页面方面，使用link的引用的文件，被同时加；@import引用的文件，要在页面加载完毕后才会被加载。</strong><br>有一点很重要，那就是 CSS 样式是通过<style>标签嵌入到页面里的。当浏览器遇到开标签<style>时，就会由解释 HTML 代码切换为解释 CSS 代码。等遇到闭标签</style>时，它会再切换回解释 HTML 代码。<br>对于写在样式表里的样式，就不需要<style>标签了。如果你在样式表里加上这个标签，样式表中的样式就不会被浏览器加了。</p>
+<h3 id="上下文选择符"><a href="#上下文选择符" class="headerlink" title="上下文选择符"></a>上下文选择符</h3><p>上下文选择符的格式如下：<br>标签1 标签2 {声明}<br>其中，标签2就是我们想要选择的目标，而且只有在标签1是器祖先元素（不一定是父元素）的情况下才会被选中。<br>上下文选择符，严格来讲（也就是CSS规范里），叫后代组合式选择符（descendant combinator selector），就是一组以空格分隔的标签。用于选择作为指定祖先元素后代的标签。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">article</span> <span class="selector-tag">p</span> &#123;<span class="attribute">font-weight</span>: bold;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="特殊的上下文选择符"><a href="#特殊的上下文选择符" class="headerlink" title="特殊的上下文选择符"></a>特殊的上下文选择符</h3><p>上一节的上下文选择符是以某个祖先标签作为上下文。只要有标签在它的层次结构“上游”存在这么一个祖先，那么就会选中改标签。无论从该标签到作为祖先的上下文之间间隔着多少层次都没有关系。不过，有时候我们可能还会需要比“某些祖先”更具体的上下文。</p>
+<h4 id="子选择符-gt"><a href="#子选择符-gt" class="headerlink" title="子选择符&gt;"></a>子选择符&gt;</h4><p>标签1&gt;标签2<br>标签2必须是标签1的子元素</p>
+<h4 id="紧邻通报选择符"><a href="#紧邻通报选择符" class="headerlink" title="紧邻通报选择符+"></a>紧邻通报选择符+</h4><p>标签1+标签2<br>标签2必须紧跟在其同胞标签的后面</p>
+<h4 id="一般同胞选"><a href="#一般同胞选" class="headerlink" title="一般同胞选"></a>一般同胞选</h4><p>标签1~标签2<br>标签2必须跟（不一定紧跟）在其同胞标签1后面</p>
+<h4 id="通用选择符"><a href="#通用选择符" class="headerlink" title="通用选择符*"></a>通用选择符*</h4><p>通用选择符*（常被称为星号选择符）是一个通配符，它匹配任何元素，因此下面这条规则</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*&#123;<span class="attribute">color</span>: green;&#125;</span><br></pre></td></tr></table></figure>
+<p>会导致所有元素（的文本和边框）都变成绿色。不过，一般在使用*选择符时，都会同时使用另一个选择符，比如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> * &#123;<span class="attribute">color</span>:red;&#125;</span><br></pre></td></tr></table></figure>
+<p>这样只会把 p 包含的所有元素的文本变成红色。这个选择符有一个非常有意思的用法，即用它构成非子选择符，比如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">section</span> * <span class="selector-tag">a</span> &#123;<span class="attribute">font-size</span>:<span class="number">1.3em</span>;&#125;</span><br></pre></td></tr></table></figure>
+<p>如图 2-13 所示，任何是 section 孙子元素，而非子元素的a 标签都会被选中。至于a的父元素是什么，没有关系。</p>
+<h4 id="ID和类选择符"><a href="#ID和类选择符" class="headerlink" title="ID和类选择符"></a>ID和类选择符</h4><p>ID和类为选择元素提供了另一套手段，利用他们可以不用考虑文档的层次结构。只要在HTML标记中为元素添加了id和class属性就可以在CSS选择符中使用ID和类名，直接玄宗文档中特定的区域。<br>*可以给id和class属性设定任何值，但不能以数字或特殊符号开头。<br>雷属性就是HTML元素的class属性，body标签中包含的任何HTML元素都可添加这个属性。<br>1.类选择符<br>.类名  .my-class<br>注意类选择符前面是（.），紧跟着类名，两者之间没有空格。<br>2.标签带类选择符<br>p.specialtext {color:red;}<br>p.specialtext span {font-weight:bold;}<br>其中specialtext是p的一个子元素的类名，而span位于带有specialtext类的段落里。<br>2.多类选择符</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"specialtext featured"</span>&gt;</span>Here the span tag <span class="tag">&lt;<span class="name">span</span>&gt;</span>may or may not<span class="tag">&lt;/<span class="name">span</span>&gt;</span> </span><br><span class="line"> be styled.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p> 多个类名，如这里的 specialtext 和 featured，放在同一对引号里，用空格分隔。实际上，更准确的说法，就应该是 HTML 的 class 属性可以有多个空格分隔的值。要选择同时存在这两个类名的元素，可以这样写：<br> .specialtext.featured {font-size:120%;}<br> <strong>注意，CSS 选择符的两个类名之间没有空格，因为我们只想选择同时具有这两个类名的那个元素。如果你加了空格，那就变成了“祖先/后代”关系的上下文选择符了。</strong></p>
+<h4 id="ID属性"><a href="#ID属性" class="headerlink" title="ID属性"></a>ID属性</h4><p> ID与类的写法相似，而且表示ID选择符的#的用法<br>如果有一个段落像下面这样设定了 ID 属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"specialtext"</span>&gt;</span>This is the special text.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>那么，相应的 ID 选择符就是这样的：<br>#specialtext {CSS 样式声明}<br>或者这样的：<br>p#specialtext {CSS 样式声明}<br>用于页内导航的 ID<br>ID 也可以用在页内导航链接中。下面就是一个链接，其目标是同一页的另一个位置。 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#bio"</span>&gt;</span>Biography<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>看到 href 属性值开头的#了吗？它表示这个链接的目标在当前页面中，因而不会触发浏览器加载页面（如果没有#，浏览器就会尝试加载 bio 目录下的默认页面了）。<br>使用与 CSS 选择符里相同的 #ID 名语法，可以把链接导航到同一页面中的目标 ID。在这个页<br>面的下方，应该有对应的目标元素。 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">id</span>=<span class="string">"bio"</span>&gt;</span>Biography<span class="tag">&lt;/<span class="name">h3</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>I was born when I was very young…<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>同样要注意，作为目标的 ID 值前面是没有#的，就是一个普通的 ID 值。<br>用户单击前面的链接时，页面会向下滚动到 ID 值为 bio 的 h3 元素的位置。如果链接的 href<br>属性里只有一个#，那么点击该链接会返回页面顶部。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Back to Top<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>换句话说，要写一个“返回顶部”链接，根本不需要 ID 为#的目标元素。<br>另外，如果你暂时不知道某个 href 应该放什么 URL，也可以用#作为占位符，但不能把该属性<br>留空。因为 href 属性值为空的链接的行为跟正常链接不一样。这样，团队中的其他人将来可<br>以用中间层（比如 PHP）变量替换#，以便动态接收来自数据库的 URL。</p>
+<h4 id="什么时候用ID，什么时候用类"><a href="#什么时候用ID，什么时候用类" class="headerlink" title="什么时候用ID，什么时候用类"></a>什么时候用ID，什么时候用类</h4><p>ID 的用途是在页面中唯一地标识一个元素。正因为如此，同一个页面中的每一个 ID属性，都必须有独一无二的值（名字）。<br>类的目的是为了标识一组具有相同特征的元素。</p>
+<h3 id="属性选择符"><a href="#属性选择符" class="headerlink" title="属性选择符"></a>属性选择符</h3><h4 id="属性名选择符"><a href="#属性名选择符" class="headerlink" title="属性名选择符"></a>属性名选择符</h4><p>标签名[属性名] 例如：img[title] {border:2px solid blue;}</p>
+<h4 id="属性值选择符"><a href="#属性值选择符" class="headerlink" title="属性值选择符"></a>属性值选择符</h4><p>标签名[属性名=”属性值”]  例如：img[title=”red flower”] {border:4px solid green;}</p>
+<h3 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h3><p>伪类这个叫法源自它们与类相似，但实际上没有类会附加到标记中的标签上。伪类分两种。<br>1.UI(User Interface, 用户界面)伪类会在HTML元素处于某个状态时（比如鼠标指针位于链接上），为该元素应用CSS样式。<br>2.结构化伪类会在标记中存在某种结构上的关系时（如某个元素是一组元素中的第一个或最后一个），为相应元素应用CSS样式。</p>
+<h4 id="UI伪类"><a href="#UI伪类" class="headerlink" title="UI伪类"></a>UI伪类</h4><p>UI伪类会基于特定HTML元素的状态应用样式。最常使用UI伪类的元素是链接（a元素），利用UI伪类，链接可以在用户鼠标悬停时改变文本颜色，或者去掉文本的下划线。此外，还可以有其他响应方式，比如悬停时显示一个信息面板。<br>1.链接伪类<br>针对链接的伪类一共有 4 个，因为链接始终会处于如下 4 种状态之一。<br> Link。此时，链接就在那儿等着用户点击。<br> Visited。用户此前点击过这个链接。<br> Hover。鼠标指针正悬停在链接上。<br> Active。链接正在被点击（鼠标在元素上按下，还没有释放）。<br>以下就是这些状态对应的 4 个伪类选择符（使用了 a 选择符和一些示例声明）：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;<span class="attribute">color</span>:black;&#125; </span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123;<span class="attribute">color</span>:gray;&#125; </span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;<span class="attribute">text-decoration</span>:none;&#125; </span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123;<span class="attribute">color</span>:red;&#125;</span><br></pre></td></tr></table></figure>
+<p>其中(:)表示伪类,一个冒号（:）表示伪类，两个冒号（::）表示 CSS3 新增的伪元素。<br>注意，有些伪类可以用于任何元素，而不仅仅是 a 元素。比如，下面这条规则能让段落背景在鼠标悬停时变成灰色：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:hover</span> &#123;<span class="attribute">background-color</span>:gray;&#125;</span><br></pre></td></tr></table></figure>
+<p>2.:focus 伪类<br>表单中的文本字段在用户单击它时会获得焦点，然后用户才能在其中输入字符。下面的规则：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:focus</span> &#123;<span class="attribute">border</span>:<span class="number">1px</span> solid blue;&#125;</span><br></pre></td></tr></table></figure>
+<p>会在光标位于 input 字段中时，为该字段添加一个蓝色边框。这样可以让用户明确地知道输入的字符会出现在哪里。<br>3.:target 伪类</p>
+<p>如果用户点击一个指向页面中其他元素的链接，则那个元素就是目标（target），可以用:target 伪类选中它。对于下面这个链接:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#more_info"</span>&gt;</span>More Information<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>位于页面其他地方、ID 为 more_info 的那个元素就是目标。该元素可能是这样的：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"more_info"</span>&gt;</span>This is the information you are looking for.<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>那么，如下 CSS 规则</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#more_info</span><span class="selector-pseudo">:target</span> &#123;<span class="attribute">background</span>:<span class="number">#eee</span>;&#125;</span><br></pre></td></tr></table></figure>
+<p>会在用户单击链接转向 ID 为 more_info 的元素时，为该元素添加浅灰色背景。</p>
+<h4 id="结构化伪类"><a href="#结构化伪类" class="headerlink" title="结构化伪类"></a>结构化伪类</h4><p>结构化伪类可以根据标记的结构应用样式，比如根据某元素的父元素或前面的同胞元素是什么。<br>1.:first-child 和:last-child<br>:first-child 代表一组同胞元素中的第一个元素，而:last-child 则代表最后一个。<br>2.:nth-child<br>e:nth-child(n)<br>e 表示元素名，n 表示一个数值（也可以使用 odd 或 even）。<br>例如，<br>li:nth-child(3)  会选择一组列表项中的每个第三项。<br>:nth-child 伪类最常用于提高表格的可读性，比如像第 6 章中那样，对表格的所有行交替应用不同颜色。</p>
+<h3 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h3><p>顾名思义，伪元素就是你的文档中若有实无的元素。</p>
+<ol>
+<li>::first-letter 伪元素<br>p::first-letter {font-size:300%;}<br>可以得到段落首字符放大的效果。</li>
+<li>::first-line 伪元素<br>e::first-line<br>可以选中文本段落（一般情况下是段落）的第一行。</li>
+<li>::before 和::after 伪元素<br>以下两个伪元素<br>e::before<br>e::after<br>可用于在特定元素前面或后面添加特殊内容。<br>搜索引擎不会取得伪元素的信息（因为它在标记中并不存在）。因此，不要通过伪元素添加你想让搜索引擎索引的重要内容。</li>
+</ol>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>文档中的所有元素，无论它在层次结构中多么靠下，都将继承这些样式，以Helvetica 字体（或者在 Helvetica 字体无效时以其他字体代替）显示各自包含的文本。继承给我们带来的效率是显而易见的，全站的主字体只要在某个上层元素上指定即可，无须在每一个标签上分别指定。而对于个别想使用不同字体的元素，只要个别设定 font-family 属性就好了。<br>CSS 中有很多属性是可以继承的，其中相当一部分都跟文本有关，比如颜色、字体、字号。然而，也有很多 CSS 属性不能继承，因为继承这些属性没有意义。这些不能继承的属性主要涉及元素盒子的定位和显示方式，比如边框、外边距、内边距。</p>
+<h3 id="层叠"><a href="#层叠" class="headerlink" title="层叠"></a>层叠</h3><p>层叠，就是层叠样式表中的层叠，是一种样式在文档层次中逐层叠加的过程，目的是让浏览器面对某个标签特定属性值的多个来源，确定最终使用哪个值。<br>层叠是 CSS 的核心机制，理解了它才能以最经济的方式写出最容易改动的 CSS，让文档外观在达到设计要求的同时，也给用户留下一些空间，让他们能根据需要更改文档的显示效果（比如整体调整字号）。</p>
+<h4 id="样式来源"><a href="#样式来源" class="headerlink" title="样式来源"></a>样式来源</h4><p>样式有多处来源。首先，如果告诉你浏览器有一个默认的样式表，你应该不会感到奇怪，因为你还没有写一行 CSS 呢，每个标签已经带了一定的样式。h1 是不是粗体，字号还挺大？em 是不是斜体？列表呢，是不是缩进而且还带项目符号或编号？<br>然后，有一个用户样式表。没错，用户也可以提供样式表，尽管这样的用户不多见。这个选择对于视障用户很有用，他们可以通过用户样式表，强制浏览器加载的所有网站都以更大的字号，更容易分辨的颜色显示内容。比如，某个视障用户可以增加如下样式：<br>再有，就是作者样式表，也就是网页设计师（你）写的样式表。前面我们已经讲了作者给网页添加样式的三种方法：链接样式、嵌入样式和行内样式。</p>
+<h4 id="层叠规则"><a href="#层叠规则" class="headerlink" title="层叠规则"></a>层叠规则</h4><p><strong>层叠规则一：找到应用给每个元素和属性的所有声明。</strong>浏览器在加载每个页面时，都会据此查到每一条 CSS 规则，标识出所有受到影响的 HTML 元素。<br><strong>层叠规则二：按照顺序和权重排序。</strong>浏览器依次检查 5 个来源，并设定匹配的属性。如果匹配的属性在下一个来源也有定义，则更新该属性的值，如此循环，直到检查完页面中所有标签受影响属性的全部 5 个来源为止。最终某个属性被设定成什么值，就用什么值来显示。声明也可以有权重。可以像下面这样为单独的声明增加权重：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;<span class="attribute">color</span>:green <span class="meta">!important</span>; <span class="attribute">font-size</span>:<span class="number">12pt</span>;&#125;</span><br></pre></td></tr></table></figure>
+<p>空格!important 分号（;）用于加重声明的权重。<br><strong>层叠规则三：按特指度排序。</strong>除了有点拗口之外，特指度（specificity）其实表示一条规则有多明确。<br><strong>层叠规则四：顺序决定权重。</strong>如果两条规则都影响某元素的同一个属性，而且它们<br>的特指度也相同，则位置最靠下（或后声明）的规则胜出。</p>
+<h4 id="计算特指度"><a href="#计算特指度" class="headerlink" title="计算特指度"></a>计算特指度</h4><p>下面我们具体讲一讲怎么计算选择符的特指度。首先，有一个简单的记分规则，即对每个选择符都要按下面的“ICE”公式计算三个值：<br>三个字母间的短横线是分隔符，并非减号。针对这个公式的计分办法如下：</p>
+<ol>
+<li>选择符中有一个 ID，就在 I 的位置上加 1；</li>
+<li>选择符中有一个类，就在 C 的位置上加 1；</li>
+<li>选择符中有一个元素（标签）名，就在 E 的位置上加 1；</li>
+<li>得到一个三位数。<br>通过几个例子来理解特指度。<br>P 0-0-1 特指度=1<br>p.largetext 0-1-1 特指度=11<br>p#largetext 1-0-1 特指度=101<br>body p#largetext 1-0-2 特指度=102<br>body p#largetext ul.mylist 1-1-3 特指度=113<br>body p#largetext ul.mylist li 1-1-4 特指度=114<br>在此，每个选择符都比前一个选择符的特指度更高。</li>
+</ol>
+<p>简单层叠要点<br>在这个版本里，只要记住三条规则就够了。这三条规则适合所有情况。<br>规则一：包含 ID 的选择符胜过包含类的选择符，包含类的选择符胜过包含标签名的选择符。<br>规则二：如果几个不同来源都为同一个标签的同一个属性定义了样式，行内样式胜过嵌入样式，嵌入样式胜过链接样式。在链接的样式表中，具有相同特指度的样式，后声明的胜过先声明的。规则一胜过规则二。换句话说，如果选择符更明确（特指度更高），无论它在哪里，都会胜出。<br>规则三：设定的样式胜过继承的样式，此时不用考虑特指度（即显式设定优先）。下面简单<br>解释一下规则三。比如下面的标记</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"cascade_demo"</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"inheritance_fact"</span>&gt;</span>Inheritance is <span class="tag">&lt;<span class="name">em</span>&gt;</span>weak<span class="tag">&lt;/<span class="name">em</span>&gt;</span> in the Cascade<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>和下面的规则<br>div#cascade_demo p#inheritance_fact {color:blue;}<br>2 - 0 - 2 （高特指度）<br>会导致单词“weak”变成蓝色，因为它从父元素 p 那里继承了这个颜色值。<br>但是，只要我们再给 em 添加一条规则<br>em {color:red;}<br>0 - 0 - 1 （低特指度）<br>em 就会变成红色。因为，虽然它的特指度低（0-0-1），但 em 继承的颜色值，会被为它明确（显式）指定的颜色值覆盖，就算（隐式）遗传该颜色值的规则的特指度高（2-0-2）也没有用。</p>
+<h3 id="规则声明"><a href="#规则声明" class="headerlink" title="规则声明"></a>规则声明</h3><p>CSS 属性值主要分以下三类。<br><strong>文本值。</strong>例如，font-weight:bold 声明中的 bold 就一个文本值。文本值也叫做关键字。<br><strong>数字值。</strong>数字值后面都有一个单位，例如英寸或点。在声明 font-size:12px 中，12是数字值，而 px 是单位（像素）。如果数字值为 0，那么就不用带单位了。<br><strong>颜色值。</strong>颜色值可以用几种不同的格式来写，包括 RGB（Red, Green, Blue，红绿蓝）、<br>HSL（Hue, Saturation, Luminance，色相，饱和度，亮度）和十六进制值（例如color:#336699）。</p>
+<h4 id="文本值"><a href="#文本值" class="headerlink" title="文本值"></a>文本值</h4><p>所有 CSS 属性都有文本值。例如，visibility 属性有 visible 和 hidden 值，border-style 属性有 solid、 dashed 以及 inset 值。</p>
+<h4 id="数字值"><a href="#数字值" class="headerlink" title="数字值"></a>数字值</h4><p>数字值主要分两类：绝对值和相对值。<br>em 和 ex 都是字体大小的单位，但在 CSS 中，它们作为长度单位适用于任何元素。先说说 em ，它表示一种字体中字母 M 的宽度，因此它的具体大小取决于你使用的字体。而 ex 呢，等于给定字体中字母 x 的高度（小写字母 x 代表一种字体的字母中间部分的高度，不包括字母上、下突出的部分——如 d 和 p 上下都出头儿）。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/26/css%E7%9B%B8%E5%85%B3/" data-id="ck9gev01g00064cr97fjcf0ds" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CSS布局" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/CSS%E5%B8%83%E5%B1%80/" class="article-date">
+  <time datetime="2020-04-26T02:04:36.608Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/26/CSS%E5%B8%83%E5%B1%80/">CSS布局</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="布局的基本概念"><a href="#布局的基本概念" class="headerlink" title="布局的基本概念"></a>布局的基本概念</h2><p>多栏布局有三种基本的实现方案：固定宽度、流动、弹性。<br>固定宽度布局的大小不会随用户调整浏览器窗口大小而变化（不适用）。<br>流动布局的大小会随用户调整浏览器窗口大小而变化。这种布局能更好的适应屏幕变化。但同时也意味着放弃对页面某些方面的控制，比如随着页面宽度变化，文本行的长度和页面元素之间的位置关系可能变化。<br>弹性布局与流动布局类似，在浏览器窗口变宽时，不仅布局变宽，而且所有内容元素的大小也会变化，让人产生一种所有东西都变大了的感觉。（很难控制）</p>
+<h3 id="布局高度和布局宽度"><a href="#布局高度和布局宽度" class="headerlink" title="布局高度和布局宽度"></a>布局高度和布局宽度</h3><p>布局高度和布局宽度两者的控制方法很不一样<br>1.布局高度<br>多数情况下，布局中结构化元素（乃至任何元素）的高度是不必设定的。只有这样元素才能随着自己包含内容的增加而在垂直方向上扩展。这样扩展的元素会把下面的元素向下推，而布局也能随着内容数量的增减而垂直伸缩。假如明确设定了元素的高度，那么超出的内容要么被剪掉，要么会跑到容器之外————取决于元素overflow属性的的设定。</p>
+<p>2.布局宽度<br>与高度不同，我们需要更精细的控制布局宽度，以便随着浏览器窗口宽度的合理变化，布局能够做出适当的调整，确保文本行不会过长或过短。如果随意给元素添加内边距、边框，或者元素本身过大，导致浮动元素的宽度超过包含元素的布局宽度，那浮动元素就可能“躲到”其他元素下方。<br>即使必须设定栏宽，也不要给包含在其中的内容元素设定宽度，应该让这些内容元素自动扩展到填满栏的宽度。简言之，就是让栏宽限制其中内容元素的宽度。</p>
+<h2 id="三栏-固定宽度布局"><a href="#三栏-固定宽度布局" class="headerlink" title="三栏-固定宽度布局"></a>三栏-固定宽度布局</h2><p>为保证每一栏的高度看起来是相同的，可以<br>圣杯布局和双飞翼布局<br>圣杯布局来源于文章In Search of the Holy Grail，而双飞翼布局来源于淘宝UED。虽然两者的实现方法略有差异，不过都遵循了以下要点：</p>
+<p>两侧宽度固定，中间宽度自适应<br>中间部分在DOM结构上优先，以便先行渲染<br>允许三列中的任意一列成为最高列<br>只需要使用一个额外的<div>标签<br>圣杯布局</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>csslayout<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">            body &#123;</span><br><span class="line">                min-width: 550px;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">            <span class="selector-id">#container</span> &#123;</span></span><br><span class="line">                padding-left: 200px; </span><br><span class="line">                padding-right: 150px;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">            <span class="selector-id">#container</span> <span class="selector-class">.column</span> &#123;</span></span><br><span class="line">                float: left;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">            <span class="selector-id">#center</span> &#123;</span></span><br><span class="line">                width: 100%;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">            <span class="selector-id">#left</span> &#123;</span></span><br><span class="line">                width: 200px; </span><br><span class="line">                margin-left: -100%;</span><br><span class="line">                position: relative;</span><br><span class="line">                right: 200px;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">            <span class="selector-id">#right</span> &#123;</span></span><br><span class="line">                width: 150px; </span><br><span class="line">                margin-right: -150px; </span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">            <span class="selector-id">#footer</span> &#123;</span></span><br><span class="line">                clear: both;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"header"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"center"</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"left"</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"right"</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"footer"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>双飞翼布局</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>another test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">		<span class="selector-id">#container</span> &#123;</span></span><br><span class="line">		  width: 100%;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">		<span class="selector-class">.column</span> &#123;</span></span><br><span class="line">		  float: left;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">		<span class="selector-id">#center</span> &#123;</span></span><br><span class="line">		  margin-left: 200px;</span><br><span class="line">		  margin-right: 150px;</span><br><span class="line">		  background: yellow;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">		<span class="selector-id">#left</span> &#123;</span></span><br><span class="line">		  width: 200px; </span><br><span class="line">		  margin-left: -100%;</span><br><span class="line"><span class="css">		  <span class="selector-tag">margin-right</span><span class="selector-pseudo">:1px</span>;</span></span><br><span class="line">		  background: blue;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">		<span class="selector-id">#right</span> &#123;</span></span><br><span class="line">		  width: 150px; </span><br><span class="line">		  background: green;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">		<span class="selector-id">#footer</span> &#123;</span></span><br><span class="line">		  clear: both;</span><br><span class="line">		&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"header"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"container"</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"center"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"left"</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"right"</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"footer"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="对于float-负外边距的理解"><a href="#对于float-负外边距的理解" class="headerlink" title="对于float+负外边距的理解"></a>对于float+负外边距的理解</h3><p>浮动的作用：<br>1.将里面的元素包裹（紧紧包裹）<br>2.将元素尽可能向上向左移动</p>
+<p>当元素使用float: left时，当时用margin-left: -x时，若x&lt;元素宽度时，元素响应缩短x，当x&gt;元素宽度时，元素会向上一行移动，覆盖上一行的元素，移动距离为x；<br>当元素使用float: left时，当时用margin-right: -x时，若x&lt;元素宽度时，元素相应缩短x，当x&gt;元素宽度时，元素会向上一行移动，放到上一行的尾部。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/26/CSS%E5%B8%83%E5%B1%80/" data-id="ck9gev01900024cr9deih70c1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-cookie相关" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/cookie%E7%9B%B8%E5%85%B3/" class="article-date">
+  <time datetime="2020-04-26T02:04:36.580Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/26/cookie%E7%9B%B8%E5%85%B3/">cookie相关</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><p>为解决HTTP无状态导致的问题，出现了cookie。但Cookie的存在也不是为了解决通讯协议无状态的问题，只是为了解决客户端与服务端会话状态的问题，这个状态是指后端服务的状态而非通讯协议的状态。</p>
+<h2 id="Cookie介绍"><a href="#Cookie介绍" class="headerlink" title="Cookie介绍"></a>Cookie介绍</h2><p>Cookie（复数形式为Cookies），类型为[小型文本文件]，指某些网站为了辨别用户身份而储存在用户本地终端上的数据。<br>作为一段一般不超过4kb的小型文本数据，它有一个名称（Name），一个值（Value）和其他几个用于控制Cookie有效期、安全性、使用范围的可选属性组成。</p>
+<p>Cookie文件不仅可以保存在浏览器中还可以保存在存放在本地文件中，这样的好处是即使关闭了浏览器，Cookie依然可以生效。</p>
+<h2 id="Cookie的保质期"><a href="#Cookie的保质期" class="headerlink" title="Cookie的保质期"></a>Cookie的保质期</h2><p>有永久的也有临时的，每个浏览器都含有自己的Cookie，每次请求的时候都会根据domain来发送相应的Cookie，可通过设置expries、max-age来设定保存日期，不设置的话默认是临时存储，即关闭浏览器就消失。</p>
+<h2 id="满足同源策略"><a href="#满足同源策略" class="headerlink" title="满足同源策略"></a>满足同源策略</h2><p>虽然网站images.google.com和网站<a href="http://www.google.com同属Google，但是域名不一样，二者同样不能相互操作彼此的Cookie。而且path也必须一样才能相互访问彼此的Cookie。需要注意不同浏览器对path的访问规定不一样，对于chorme，path必须为当前目录，设置为其他目录无效，**只能当前页面访问当前目录及以上的cookie" target="_blank" rel="noopener">www.google.com同属Google，但是域名不一样，二者同样不能相互操作彼此的Cookie。而且path也必须一样才能相互访问彼此的Cookie。需要注意不同浏览器对path的访问规定不一样，对于chorme，path必须为当前目录，设置为其他目录无效，**只能当前页面访问当前目录及以上的cookie</a>**</p>
+<h2 id="Cookie的设置"><a href="#Cookie的设置" class="headerlink" title="Cookie的设置"></a>Cookie的设置</h2><p>1.客户端发送HTTP请求到服务器<br>2.当服务器收到HTTP请求时，在响应头里添加一个Set-Cookie字段<br>3.浏览器收到响应后保存在Cookie<br>4.之后对该服务器每一次请求中都通过Cookie字段将Cookie信息发送给服务器。</p>
+<h2 id="前端使用cookie操作cookie"><a href="#前端使用cookie操作cookie" class="headerlink" title="前端使用cookie操作cookie"></a>前端使用cookie操作cookie</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例</span></span><br><span class="line"><span class="built_in">document</span>.cookie=<span class="string">'name=xiaoming;expires='</span>+oDate</span><br></pre></td></tr></table></figure>
+
+<h2 id="Cookies的属性"><a href="#Cookies的属性" class="headerlink" title="Cookies的属性"></a>Cookies的属性</h2><p>1.name字段：一个cookie的名称<br>2.value字段：一个cookie的值</p>
+<h3 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h3><p>Expires用于设置Cookie时间。比如</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set</span>-Cookie: id=a3fWa; Expires=Wed, <span class="number">21</span> Oct <span class="number">2015</span> <span class="number">07</span>:<span class="number">28</span>:<span class="number">00</span> GMT;</span><br></pre></td></tr></table></figure>
+<p>当Expires属性缺省时，表示是绘画性Cookie，例如，当Expires属性的值为Session，表示的就是绘画性Cookie。党委绘画性Cookie的时候，值保存在客户端内存中，并在用户关闭浏览器时失效。需要注意的是，有些浏览器提供了会话恢复功能，这种情况下即使关闭了浏览器，会话期Cookie也会被保留下来。<br>与会话性Cookie相对的是持久性Cookie，持久性Cookies会保存在用户的硬盘中，直至过期或者清除Cookie。值得注意的是，设定的日期和事件至于客户端相关，而不是服务端。</p>
+<h3 id="max-age"><a href="#max-age" class="headerlink" title="max-age"></a>max-age</h3><p>max-age用于设置在Cookie失效之前需要经过的秒数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set</span>-Cookie: id=a3fWa; Max-Age=<span class="number">604800</span>;</span><br></pre></td></tr></table></figure>
+<p>max-age可以为正数，负数，甚至是0<br>如果max-age属性为正数时，浏览器会将其持久化，即写到对应的Cookie文件中<br>当max-age属性为负数，则表示Cookie只是一个会话性Cookie<br>当max-age为0时，则会立即删除这个Cookie<br>假如max-age和expires都存在，max-age优先级更高</p>
+<h3 id="domain"><a href="#domain" class="headerlink" title="domain"></a>domain</h3><p>domain指定了Cookie可以送达的主机名。假如没有指定，那么默认值为当前文档访问地址中的主机部分（但不包含子域名）<br>想淘宝首页设置的domain就是.taobao.com，这样无论是a.taobao.com还是b.taobao.com都可以使用Cookie<br>这里需要注意的是，不能跨域设置Cookie，比如阿里域名下的页面把domain设置成百度是无效的</p>
+<h3 id="path"><a href="#path" class="headerlink" title="path"></a>path</h3><p>path指定了一个URL路径，这个路径必须出现在要请求的资源的路径中才可以发送Cookie首部。<br>比如设置**Path=/docs，/docs/Web/下的资源才会带Cookie首部，/test则不会懈怠Cookie首部<br>domain和path标示共同定义了Cookie的作用域：即Cookie该发送给哪些URL</p>
+<h3 id="Secure属性"><a href="#Secure属性" class="headerlink" title="Secure属性"></a>Secure属性</h3><p>标记为Secure的Cookie只应通过被HTTPs协议吉阿米果的请求发送给服务端。使用HTTPs安全协议，可以保护Cookie在浏览器和Web服务器间的传输过程不被窃取和篡改。</p>
+<h3 id="HTTPOnly"><a href="#HTTPOnly" class="headerlink" title="HTTPOnly"></a>HTTPOnly</h3><p>设置HTTPOnly属性可以防止客户端脚本通过document.cookie等方式访问Cookie，有助于避免XSS攻击。</p>
+<h3 id="SameSite"><a href="#SameSite" class="headerlink" title="SameSite"></a>SameSite</h3><p>作用<br>SameSite属性可以让Cookie在跨站请求时不会被发送，从而可以组织跨站请求伪造攻击（CSRF）</p>
+<p>属性值<br>SameSite可以有下面三种值<br>1.Strict：仅允许一方请求懈怠Cookie，即浏览器将只发送相同站点请求的Cookie，即当前网页URL与请求目标URL完全一致。<br>2.Lax：允许比分第三方请求懈怠Cookie<br>3.None： 无论是否跨站都会发送Cookie</p>
+<p>之前默认是None的，Chorme80后默认是Lax</p>
+<h3 id="跨域和跨站"><a href="#跨域和跨站" class="headerlink" title="跨域和跨站"></a>跨域和跨站</h3><p>首先要理解的一点就是跨站和跨域是不同的。同站（same-site）、跨站（cross-site）和第一方（first-party）、第三方（third-party）是等价的。但是与浏览器同源策略（SOP）中的同源（same-origin）、跨域（corss-origin）是完全不同的概念。</p>
+<p>同源策略的同源是指两个URL的协议、主机名、端口一致。<br>同源策略作为浏览器的安全基石，其同源判断是比较严格的，相对而言，Cookie中的同站判断就比较宽松：只要两个URL的eTLD+1相同即可，不需要考虑协议和端口。其中，eTLD表示有效顶级域名，注册于Mozilla维护的公共后缀列表中。例如.come,.co.uk,.github.io等。eTLD+1则表示，有效顶级域名+二级域名。例如taobao.com等。</p>
+<p>举几个例子，<a href="http://www.taobao.com" target="_blank" rel="noopener">www.taobao.com</a> 和 <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 是跨站，<a href="http://www.a.taobao.com" target="_blank" rel="noopener">www.a.taobao.com</a> 和 <a href="http://www.b.taobao.com" target="_blank" rel="noopener">www.b.taobao.com</a> 是同站，a.github.io 和 b.github.io 是跨站(注意是跨站)。</p>
+<h3 id="由此带来的改变"><a href="#由此带来的改变" class="headerlink" title="由此带来的改变"></a>由此带来的改变</h3><p><strong>此处有图</strong><br>从上图可以看出，对大部分 web 应用而言，Post 表单，iframe，AJAX，Image 这四种情况从以前的跨站会发送三方 Cookie，变成了不发送。<br>Post表单：应该的，学 CSRF 总会举表单的例子。<br>iframe：iframe 嵌入的 web 应用有很多是跨站的，都会受到影响。<br>AJAX：可能会影响部分前端取值的行为和结果。<br>Image：图片一般放 CDN，大部分情况不需要 Cookie，故影响有限。但如果引用了需要鉴权的图片，可能会受到影响。<br>除了这些还有 script 的方式，这种方式也不会发送 Cookie，像淘宝的大部分请求都是 jsonp，如果涉及到跨站也有可能会被影响。</p>
+<h2 id="带来问题"><a href="#带来问题" class="headerlink" title="带来问题"></a>带来问题</h2><p>我们再看看会出现什么的问题？举几个例子：</p>
+<p>天猫和飞猪的页面靠请求淘宝域名下的接口获取登录信息，由于 Cookie 丢失，用户无法登录，页面还会误判断成是由于用户开启了浏览器的“禁止第三方 Cookie”功能导致而给与错误的提示</p>
+<p>淘宝部分页面内嵌支付宝确认付款和确认收货页面、天猫内嵌淘宝的登录页面等，由于 Cookie 失效，付款、登录等操作都会失败</p>
+<p>阿里妈妈在各大网站比如今日头条，网易，微博等投放的广告，也是用 iframe 嵌入的，没有了 Cookie，就不能准确的进行推荐</p>
+<p>一些埋点系统会把用户 id 信息埋到 Cookie 中，用于日志上报，这种系统一般走的都是单独的域名，与业务域名分开，所以也会受到影响。</p>
+<p>一些用于防止恶意请求的系统，对判断为恶意请求的访问会弹出验证码让用户进行安全验证，通过安全验证后会在请求所在域种一个Cookie，请求中带上这个Cookie之后，短时间内不再弹安全验证码。在Chrome80以上如果因为Samesite的原因请求没办法带上这个Cookie，则会出现一直弹出验证码进行安全验证。</p>
+<p>天猫商家后台请求了跨域的接口，因为没有 Cookie，接口不会返回数据</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>解决方案就是设置 SameSite 为 none。<br>不过也会有两点要注意的地方：</p>
+<p>1.HTTP 接口不支持 SameSite=none<br>如果你想加 SameSite=none 属性，那么该 Cookie 就必须同时加上 Secure 属性，表示只有在 HTTPS 协议下该 Cookie 才会被发送。</p>
+<p>2.需要 UA 检测，部分浏览器不能加 SameSite=none<br>IOS 12 的 Safari 以及老版本的一些 Chrome 会把 SameSite=none 识别成 SameSite=Strict，所以服务端必须在下发 Set-Cookie 响应头时进行 User-Agent 检测，对这些浏览器不下发 SameSite=none 属性</p>
+<h2 id="新的解决方式"><a href="#新的解决方式" class="headerlink" title="新的解决方式"></a>新的解决方式</h2><h3 id="cookie存在问题"><a href="#cookie存在问题" class="headerlink" title="cookie存在问题"></a>cookie存在问题</h3><p>1.网络请求耗费资源<br>2.安全性</p>
+<h3 id="session"><a href="#session" class="headerlink" title="session"></a>session</h3><p>session是服务端存储用户信息，当用户登录后返回sessionId，客户端将sessionID存储在cookie中，客户端在请求时携带sessionID，服务端通过sessionId以及相关映射关系获取用户登录状态。</p>
+<p>解决了传递cookie的资源浪费问题，但仍存在安全性的问题。同时服务端需要存储用户状态，增大服务端压力。</p>
+<h3 id="token"><a href="#token" class="headerlink" title="token"></a>token</h3><p>token在session的基础上，解决了服务端存储的问题，同时防止 CSRF攻击。<br>token和sessionId类似不过由用户名和一个服务端提供的数字签名组成。用户成功登陆后，服务端返回token，token可以存在cookie或localstorage等中。token不是随请求自动发送，需要在请求头中添加，即使token放在cookie中，但服务端不是通过cookie中的token进行验证，而是通过请求头中的token进行验证，由此防止了 CSRF攻击。同时token是无状态的，</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/26/cookie%E7%9B%B8%E5%85%B3/" data-id="ck9gev01f00054cr9hrirb313" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-BOM相关" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/BOM%E7%9B%B8%E5%85%B3/" class="article-date">
+  <time datetime="2020-04-26T02:04:36.563Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/26/BOM%E7%9B%B8%E5%85%B3/">BOM相关</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>BOM相关</p>
+<h2 id="window对象"><a href="#window对象" class="headerlink" title="window对象"></a>window对象</h2><p>BOM的核心对象时windwo，它表示浏览器的一个实例。<strong>在浏览器中，window对象有双重角色，它既是通过JavaScript访问浏览器窗口的一个接口，又是ECMAScript规定的Global对象。</strong>这意味着在网页中定义的任何一个对象、变量和函数，都是以window作为其Global对象，因此有权访问parseInt()等方法。</p>
+<h3 id="全局作用域"><a href="#全局作用域" class="headerlink" title="全局作用域"></a>全局作用域</h3><p>由于window对象同时扮演者ECMAScript中Global对象的角色，因此所有在全局作用域中声明的变量、函数都会变成window的属性和方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age = <span class="number">29</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayAge</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.age)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(<span class="built_in">window</span>.age)  <span class="comment">//29</span></span><br><span class="line">sayAge()  <span class="comment">//29</span></span><br><span class="line"><span class="built_in">window</span>.sayAge()  <span class="comment">//29</span></span><br></pre></td></tr></table></figure>
+
+<p>抛开全局变量会成为window对象的属性不谈，定义全局变量与在window对象上直接定义属性还是有一点差别：全局变量不能通过delete操作符删除，而直接定义在window对象上的属性可以：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age = <span class="number">29</span></span><br><span class="line"><span class="built_in">window</span>.color = <span class="string">'red'</span></span><br><span class="line"><span class="keyword">delete</span> <span class="built_in">window</span>.age</span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> <span class="built_in">window</span>.color</span><br><span class="line">alert(<span class="built_in">window</span>.age)   <span class="comment">//29</span></span><br><span class="line">alert(<span class="built_in">window</span>.color)   <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+
+<p>定义的全局变量再添加到window时[[Configurable]]被设置为false，因此这样定义的属性不可以通过delete操作符删除。</p>
+<p>尝试访问未声明的变量会抛出错误，但通过查询window对象，可以知道某个可能未声明的变量是否存在。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> newValue = oldValue</span><br><span class="line"><span class="comment">// 报错，因为oldValue未定义</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> newValue = <span class="built_in">window</span>.oldValue</span><br><span class="line"><span class="comment">// 不会报错，值为undefined</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="窗口关系及框架"><a href="#窗口关系及框架" class="headerlink" title="窗口关系及框架"></a>窗口关系及框架</h3><p>如果页面中包含框架，则每个框架都拥有自己的window对象，并且保存在frames集合中。在frames集合中，可以通过数值索引（从0开始，从左至右，从上到下）或者框架名称来访问相应的window对象。每个window对象都有一个name属性。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Frameset Example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">frameset</span> <span class="attr">row</span>=<span class="string">"160, *"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"frame.htm"</span> <span class="attr">name</span>=<span class="string">"topFrame"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">frameset</span> <span class="attr">cols</span>=<span class="string">"50%, 50%"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"anotherframe.htm"</span> <span class="attr">name</span>=<span class="string">"leftFrame"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"yetanotherframe.htm"</span> <span class="attr">name</span>=<span class="string">"rightFrame"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">frameset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">frameset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>以上代码创建了一个框架集，可以利用如下代码引用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.frames[<span class="number">0</span>]</span><br><span class="line"><span class="built_in">window</span>.frames.topFrame</span><br><span class="line">top.frames[<span class="number">0</span>]</span><br><span class="line">top.frames.topFrame</span><br><span class="line">frames[<span class="number">0</span>]</span><br><span class="line">frames.topFrame</span><br></pre></td></tr></table></figure>
+<p>其中top对象始终指向最高层，也就是浏览器窗口。与top相对的另一个window对象时parent。parent始终指向当前框架的直接上层框架。<br>除非最高层窗口是通过window.open()打开的，否则其window对象的那么属性不会包含任何值。<br>与框架有关的最后一个对象时self，它始终指向window。<br>所有这些对象都是window对象的属性，可以通过window.parent、window.top等形式来访问。同时也以为这可以将不同层次的window对象连缀起来，例如window.parent.parent.frames[0].</p>
+<p><strong>注意</strong><br>在使用框架的情况下，浏览器中会存在多个Global对象，每个框架中定义的全局变量会自动成为框架中window对象的属性。由于每个window对象都包含原生类型的构造函数，因此每个框架都有一台自己的构造函数，这些构造函数一一对应，但并不相等。例如，top.Object并不等于top.frames[0].Object。这个问题影响到对跨框架传递的对象使用instanceof操作符。</p>
+<h3 id="窗口位置"><a href="#窗口位置" class="headerlink" title="窗口位置"></a>窗口位置</h3><h3 id="导航和打开窗口"><a href="#导航和打开窗口" class="headerlink" title="导航和打开窗口"></a>导航和打开窗口</h3><p>使用window.open()方法既可以导航到一个特定的URL，也可以打开一个新的浏览器窗口。这个方法可以接收4个参数：要加载的URL，窗口目标，一个特性字符串以及一个表示新页面是否取代浏览器历史记录中当前加载页面的布尔值。**通常只需传递一个参数，最后一个参数只在不打开新窗口的情况下使用。<br>如果window.open()传递了第二个参数，而且该参数是已有窗口或框架的名称，那么就会在具有该名称的窗口或框架中加载第一个参数指定的URL。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.open(<span class="string">"http://www.wrox.com"</span>,<span class="string">"topFrame"</span>)</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">&lt;a href=<span class="string">"http://www.wrox.com"</span> target=<span class="string">"topFrame"</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">a</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>调用这行代码，就如同用户单击了href属性为<a href="http://www.word.com/" target="_blank" rel="noopener">http://www.word.com/</a>, target属性为topFrame的链接。如果有一个名叫topFrame的窗口或者框架，就会在该窗口或框架加载这个URL；否则就会创建一个新的窗口并将其命名为topFrame。此外，第二个参数也可以是下列任何一个特殊的窗口名称。**_self, _parent, _top, _blank.</p>
+<p>window.open()方法会返回一个纸箱新窗口的引用。引用的对象与其他window对象大致相似，但可以对其进行更多控制。</p>
+<h2 id="location对象"><a href="#location对象" class="headerlink" title="location对象"></a>location对象</h2><p>location提供了与当前窗口中加载的文档有关的信息，还提供了一些导航功能。事实上，location对象时一个很特别的对象，因为它既是window对象的属性，也是document对象的属性；换句话说，window.location和document.location引用的是同一个对象。location对象的用处不只表现在它保存着当前文档的信息，还表现在它将URL解析为独立的片段，让开发人员可以通过不同的属性访问这些片段。以下为location的属性</p>
+<p>1.hash  “#contents”   返回URL中的hash（#号后跟零个或多个字符），如果URL中不包含散列，则返回空字符串。<br>2.host  “<a href="http://www.wrox.com:80&quot;">www.wrox.com:80&quot;</a>   返回服务器名称含端口号（如果有）<br>3.hostname  “<a href="http://www.wrox.com&quot;" target="_blank" rel="noopener">www.wrox.com&quot;</a>  返回不带端口号的服务器名称<br>4.href   “http:/<a href="http://www.wrox.com&quot;" target="_blank" rel="noopener">www.wrox.com&quot;</a>  返回当前加载页面的完整URL。而location对象的toString()方法也返回这个值<br>5.pathname   “/wileyCDA”  返回URL中的目录和（或）文件名<br>6.port   “8080”  返回URL中指定的端口号。如果URL中不包含端口号，则这个属性返回空字符串。<br>7.protocol  “http:”  返回页面使用的协议。通常是http:或https:<br>8.search   “?q=javascript”   返回URL的查询字符串。这个字符串以问号开头</p>
+<h3 id="查询字符串参数"><a href="#查询字符串参数" class="headerlink" title="查询字符串参数"></a>查询字符串参数</h3><p>似然通过属性search可以得到从问号到URL末尾的所有内容，但无法逐个访问。由此可以建立一个函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAueryStringArgs</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> qs = (location.seratch.length &gt; <span class="number">0</span> ? location.search.substring(<span class="number">1</span>): <span class="string">''</span>)</span><br><span class="line">    <span class="keyword">var</span> args = &#123;&#125;</span><br><span class="line">    <span class="keyword">var</span> items = qs.length ? qs.split(<span class="string">"&amp;"</span>) : []</span><br><span class="line">    <span class="keyword">var</span> item = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">var</span> value = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> len = item.length</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">        item = items[i].split(<span class="string">'='</span>)</span><br><span class="line">        name = <span class="built_in">decodeURIComponent</span>(item[<span class="number">0</span>])</span><br><span class="line">        value = <span class="built_in">decodeURIComponent</span>(item[<span class="number">1</span>])</span><br><span class="line">        <span class="keyword">if</span>(name.length) &#123;</span><br><span class="line">            args[name] = value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> args</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="位置操作"><a href="#位置操作" class="headerlink" title="位置操作"></a>位置操作</h3><p>使用location对象可通过很多方式来改变浏览器的位置。首先，最常用的就是使用assign()方法并为其传递一个URL，如下所示</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location.assign(<span class="string">'http://www.worx.com'</span>)</span><br></pre></td></tr></table></figure>
+<p>这样就可以立即打开新URL并在浏览器的历史记录中生成一条记录。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.location = <span class="string">"http://www.worx.com"</span></span><br><span class="line">location.href = <span class="string">"http://www.worx.com"</span></span><br></pre></td></tr></table></figure>
+<p>以上方式和显式调用assing方法效果一样（因为会调用assing()方法）。<br>通过修改location的其他属性也能改变当前加载的页面。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设初始URL为http://www.worx.com/wikeyCDA</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 将URL修改为"http://www.worx.com/WileyCDA/#section1"</span></span><br><span class="line">location.hash = <span class="string">"#section1"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 将URL修改为"http://www.worx.com/WileyCDA/?q=javascript"</span></span><br><span class="line">location.search = <span class="string">"?q=javascript"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 将URL修改为"http://www.yahoo.com/WileyCDA/"</span></span><br><span class="line">location.hostname = <span class="string">"www.yahoo.com"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 将URL修改为"http://www.yahoo.com/mydir/"</span></span><br><span class="line">location.pathname = <span class="string">"mydir"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 将URL修改为"http://www.worx.com:8080/WileyCDA/"</span></span><br><span class="line">location.port = <span class="string">"8080"</span></span><br></pre></td></tr></table></figure>
+<p>每次修改location的属性（hash除外），页面都会以新URL重新加载。<br>当通过上述任何一种方式修改URL之后，浏览器的历史记录中就会生成一条新纪录，因此用户通过单击后退俺就都会导航到前一个页面。<br>要禁用这种行为，可以使用replace()方法。这个方法只接受一个参数，纪要导航到的URL；结果虽然会导致浏览器位置变化，但不会在历史记录中生成新纪录。再调用replace()方法之后，用户不能回到前一个页面。</p>
+<p>另一个与位置有关的方法是reload(),作用是重新加载当前显示的页面。如果调用reload()时不传递任何参数，页面就会以最有效的方式重新加载。<strong>就是说如果页面自上次请求依赖没有改变过，页面就会从浏览器缓存中重新加载。如果要强制从服务器重新加载，则需要传递参数true。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">location.reload()       <span class="comment">//重新加载（有可能从缓存中加载）</span></span><br><span class="line">location.reload(<span class="literal">true</span>)    <span class="comment">//重新加载（从服务器重新加载）</span></span><br></pre></td></tr></table></figure>
+<p>位于reload()调用之后的代码可能会也可能不会执行，这要取决于网络延迟或系统资源等因素。为此，最好将reload()放在代码的最后一行。</p>
+<h2 id="history对象"><a href="#history对象" class="headerlink" title="history对象"></a>history对象</h2><p>history对象保存着用户上网的历史记录，从窗口被打开的哪一个算起。因为history是window对象的属性，<strong>因此每个浏览器窗口、每个标签页乃至每个框架，都有自己的history对象与特定的window对象关联</strong>。出于安全方面考虑，开发人员无法得知用户浏览过的URL。不过，皆有用户访问过的页面列表，同样可以在不知道实际URL的情况下实现后退和前进。<br>使用go()方法可以在用户的历史记录中任意跳转，可以向后也可以向前。这个方法接收一个参数，表示向后或向前跳转页面数的一个整数值。负的表示向后跳转（类似于单击浏览器的后退），正数表示向前跳转（类似于单击浏览器的前进按钮）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 后退一页</span></span><br><span class="line">history.go(<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">history.go(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">history.go(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p>也可以给go()方法传递一个字符串参数，此时浏览器会跳转到历史记录中包含该字符串的第一个位置（可能前进也可能后退，具体要看哪个位置最近。如果历史记录中不包含该字符串，那么什么也不做。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">history.go(<span class="string">'worx.com'</span>)</span><br></pre></td></tr></table></figure>
+<p>另外还可以使用两个简写方法back()（向后）和forward()（向前）来代替go()。</p>
+<p>除了以上几个方法外，history对象还有一个length属性，保存着历史记录的数量。这个数量包括所有历史记录，即所有向后和向前的记录。对于加载到窗口、标签页或框架中的第一个页面而言，history.length等于0。通过如下测试该属性，可以确定用户是否一开始就打开了你的页面</p>
+<p>```js<br>if (history.length == 0) {<br>    // 是第一个打开的<br>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/26/BOM%E7%9B%B8%E5%85%B3/" data-id="ck9gev01400014cr909zd8vsz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-AMD、CMD、Commonjs和ES6的包管理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/AMD%E3%80%81CMD%E3%80%81Commonjs%E5%92%8CES6%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86/" class="article-date">
+  <time datetime="2020-04-26T02:04:36.534Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/26/AMD%E3%80%81CMD%E3%80%81Commonjs%E5%92%8CES6%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86/">AMD、CMD、Commonjs和ES6的包管理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>AMD、CMD、CommonJs和ES6对比<br>以上都是用于在模块化定义中使用的，AMD、CMD、CommonJs是ES中提供的模块化编程的方案，import/export是ES6中新增的。</p>
+<h2 id="CommonJS-同步"><a href="#CommonJS-同步" class="headerlink" title="CommonJS(同步)"></a>CommonJS(同步)</h2><p>Nodejs模块系统就采用CommonJS模式。CommonJS标准规定，一个单独的文件就是一个模块，模块内将需要对外暴露的变量放到export对象里，可以是任意对象，函数，数组等，潍坊到exports对象里的都是私有的。用require方法加载模块，即读取模块文件获得exports对象。<br>CommonJS编程示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义hi.js：</span></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'Hi'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params">name</span>) </span>&#123;  </span><br><span class="line">    <span class="built_in">console</span>.log(str + <span class="string">', '</span> + name + <span class="string">'!'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = sayHi;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加载</span></span><br><span class="line"><span class="keyword">var</span> Hi = <span class="built_in">require</span>(<span class="string">'./hi'</span>);</span><br><span class="line">Hi(<span class="string">'Jack'</span>);     <span class="comment">// Hi, Jack!</span></span><br></pre></td></tr></table></figure>
+<h3 id="Nodejs中module-exports和exports区别"><a href="#Nodejs中module-exports和exports区别" class="headerlink" title="Nodejs中module.exports和exports区别"></a>Nodejs中module.exports和exports区别</h3><p>module和exports是Node.js给每个js文件内置的两个对象。实际上，这两个对象指向同一块内存。require引入的对象本质上是module.exports。当 module.exports和exports指向的不是同一块内存时，exports的内容就会失效。<br>例如</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;<span class="attr">name</span>: <span class="string">'萤火虫叔叔'</span>&#125;；</span><br><span class="line">exports = &#123;<span class="attr">name</span>: <span class="string">'萤火虫老阿姨'</span>&#125;  <span class="comment">//更改了exports指向</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="AMD-异步模块定义"><a href="#AMD-异步模块定义" class="headerlink" title="AMD-异步模块定义"></a>AMD-异步模块定义</h2><p>AMD（Asynchronous Module Definition)，是RequireJS推广过程中对模块定义的规范化准则，它是一个概念，RequireJS是对这个概念的实现，就好比JavaScript语言是对ECMAScript规范的实现。AMD是一个组织，RequireJS是在这个组织下定义的一套脚本语言。</p>
+<p>AMD采用异步方式加载模块，模块的加载不影响它后面的语句运行。所有依赖这个模块的语句，都定义在一个回调函数中，等到加载完成之后，这个回调函数才会执行。<br>AMD使用define定义模块，AMD可以采用require()语句加载模块，但是不同于CommonJs，它要求两个参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">define([<span class="built_in">module</span>],fn)</span><br><span class="line"><span class="built_in">require</span>([<span class="built_in">module</span>], callback)</span><br></pre></td></tr></table></figure>
+<p>define第一个参数[module]是该模块的依赖，第二个参数fn返回一个可以引用的模块对象。require第一个参数[module]，是一个数组，里面的成员就是要加载的模块，第二个参数callback则是加载成功之后的回调函数。如果将前面的代码改写成AMD形式如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义test.js模块</span></span><br><span class="line">define([<span class="string">'math'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">math</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> addHello = <span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Array</span>(math.add(x,y)).fill(<span class="string">'hello'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        addHello: addHello</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加载</span></span><br><span class="line"><span class="built_in">require</span>([<span class="string">'test'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">    alert(test.addHello)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>math.add()与math模块加载不是同步的。</p>
+<h2 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h2><p>CMD是SeaJS在推广过程中对模块定义的规范化产出，是一个同步模块定义，是SeaJS的一个标准，SeaJS是CMD概念的一个实现，SeaJS是淘宝团队提供的一个模块开发的js框架。</p>
+<p>通过define()定义，没有依赖前置，通过require加载jQuery插件，CMD是依赖就近，在什么地方使用到插件就在什么地方require该插件，即用即返。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 正确写法</span></span><br><span class="line">  <span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    foo: <span class="string">'bar'</span>,</span><br><span class="line">    doSomething: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>SeaJS只会在真正需要使用(依赖)模块时才执行该模块<br>SeaJS是异步加载模块的没错, 但执行模块的顺序也是严格按照模块在代码中出现(require)的顺序,而RequireJS会先尽早地执行(依赖)模块, 相当于所有的require都被提前了, 而且模块执行的顺序也不一定100%就是先mod1再mod2</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/26/AMD%E3%80%81CMD%E3%80%81Commonjs%E5%92%8CES6%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86/" data-id="ck9gev00300004cr95egv78a0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ajax与Comet" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/Ajax%E4%B8%8EComet/" class="article-date">
+  <time datetime="2020-04-26T02:04:36.520Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/26/Ajax%E4%B8%8EComet/">Ajax与Comet</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Ajax与Comet</p>
+<p>Ajax是一种能够向服务器请求额外的数据而无需卸载页面。为Asynchornous.JavaScript + XML的简写。<br>Ajax的技术核心是XMLHttpRequest对象（简称XHR）。在XHR出现之前，Ajax式的通信必须借助一些hack手段来实现，大多数是使用隐藏的框架或内嵌框架。XHR为向服务器发送请求和解析服务器响应提供了流畅的接口。能够以异步方式从服务器取得更多信息，意味着用户单击后，可以不必刷新页面也能取得新数据。也就是说，可以使用XHR对象取得新数据，然后在通过DOM将新数据插入到页面中。另外，虽然名字中包含XML的成分，但Ajax通信与数据格式无关；这种技术就是无需刷新页面即可从服务崎岖的数据，但不一定是XML数据。</p>
+<h2 id="XMLHttpRequest对象"><a href="#XMLHttpRequest对象" class="headerlink" title="XMLHttpRequest对象"></a>XMLHttpRequest对象</h2><h3 id="XHR的用法"><a href="#XHR的用法" class="headerlink" title="XHR的用法"></a>XHR的用法</h3><p>在使用XHR对象时，要调用的第一个方法是open(),它接受三个参数：要发送的请求的类型（’get‘，‘post’等），请求的URL和是否异步发送请求的布尔值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHTTPRequest()</span><br><span class="line">xhr.open(<span class="string">'get'</span>, <span class="string">'example.php'</span>, <span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
+<p>这行代码会启动一个针对example.php的get请求。有关这行代码，需要说明两点： 一是URL相对于执行大妈的当前页面（当然也可以使用绝对路径）；二是调用open()方法并不会真正发送请求，而只是起送一个请求以备发送。<br>要发送特定的请求，必须像如下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xhr.open(<span class="string">'get'</span>, <span class="string">'example.txt'</span>, <span class="literal">false</span>)</span><br><span class="line">xhr.send(<span class="literal">null</span>)</span><br></pre></td></tr></table></figure>
+<p>这里send()方法接收一个参数，即要作为请求主体发送的数据。如果不需要通过请求主体发送的数据，则必须传入null，因为这个参数对于有些浏览器来说是必须的。调用send()之后，请求就会被分派到服务器。由于这次请求时同步的，javaScript代码会等到服务器响应之后再继续执行。在收到响应后，响应的数据会自动填充XHR对象的属性，相关的属性简介如下：</p>
+<p>responseText：作为响应主体被返回的文本<br>responseXML：如果响应的内容是’text/xml‘或“application/xml”，这个属性中将保存包含着响应数据的XML DOM文档<br>status： 形影的HTTP状态<br>statusText： HTTP状态的说明<br>在接收到响应后，第一步是检查status属性，以确定响应已经成功返回。一般来说，可以将HTTP状态代码为200作为成功的标志。此时，responseText属性的内容已经就绪，而且在内容类型正确的情况下，responseXML也应该能够访问了。此外，状态代码为304表示请求的资源并没有被修改，可以直接使用浏览器中缓存的版本；当人也意味着响应时有效的。</p>
+<p>像前面这样发送同步请求相对较少，大多数情况下，需要发送异步请求。此时，可以检测XHR对象的readyState属性，该属性表示请求/响应过程的当前活动阶段。这个属性可取的值如下。<br>0：未初始化。尚未调用open方法<br>1：启动。已经调用open()方法，但尚未调用send()方法<br>2：发送。已经调用send()方法，但尚未接收到响应<br>3：接收。已经接收到部分相应数据。<br>4：完成。已经接收到全部响应数据，而且已经可以在客户端使用。<br>只要readyState属性的值由一个值编程另一个值，都会触发一次readystatechange事件。可以利用这个事件来检测每次状态变化后readyState的值。通常，我们只对readyState值为4的阶段感兴趣。此时所有数据都已经就绪。不过，必须调用open()之前指定onreadystaechange事件处理程序才能确保跨浏览器兼容性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = createXHR()</span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((xhr.status &gt;= <span class="number">200</span> &amp;&amp; xhr.status &lt; <span class="number">300</span>) || xhr.status == <span class="number">304</span>) &#123;</span><br><span class="line">            alert(xhr.responseText)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            alert(<span class="string">'response was unsuccessful: '</span> + xhr.status)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">xhr.open(<span class="string">'get'</span>, <span class="string">'example.txt'</span>, <span class="literal">true</span>)</span><br><span class="line">xhr.send(<span class="literal">null</span>)</span><br></pre></td></tr></table></figure>
+<p>以上代码利用DOM0级方法为XHR对象添加了事件处理程序，原因是并非所有的浏览器都支持DOM2级方法。与其他事件处理程序不同，这里没有像onreadystatechange事件处理程序中传递event对象，必须通过XHR对象本身来确定下一步该怎么做。<br>另外，在接受到响应之前还可以调用abort()方法来取消异步请求，如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.abort()</span><br></pre></td></tr></table></figure>
+<p>调用这个方法后，XHR对象会停止触发事件，而且也不再允许访问任何与响应有关的对象属性。在终止请求之后，还应该对XHR对象进行解引用操作。由于内存原因，不建议重用XHR对象。</p>
+<h3 id="HTTP头部信息"><a href="#HTTP头部信息" class="headerlink" title="HTTP头部信息"></a>HTTP头部信息</h3><p>每个HTTP请求和响应都会带有响应的头部信息，XHR对象也提供了操作这两种头图（即请求头和响应头）信息的方法<br>默认情况下，在发送XHR请求的同时，还会发送下列头部信息<br>Accept：浏览器能够处理的内容类型<br>Accept-Charset：浏览器能够显示地字符集<br>Accept-Encoding：浏览器嫩狗处理的压缩编码。<br>Accept-language：浏览器当前设置的语言。<br>Connection： 浏览器与服务器之间链接的类型。<br>Cookie：当前页面设置的任何Coolie<br>Host：发出请求的页面所在的域。<br>Referer：发出请求的页面的URI。<br>User-Agent：浏览器的用户代理字符串。<br>虽然不同浏览器实际发送的头部信息会有所不同，但以上列出的基本上是所有浏览器都会发送的。使用seRequestHeader()方法可以设置自定义的请求头部信息。这个方法接受两个参数：头部字段的名称和头部字段的值。要成功发送请求头部信息，必须再调用open方法之后且调用send方法之前调用setRequestHeader</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = createXHR();</span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((xhr.status &gt;= <span class="number">200</span> &amp;&amp; xhr.status &lt; <span class="number">300</span>) || xhr.status == <span class="number">304</span>) &#123;</span><br><span class="line">            alert(xhr.responseText)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            alert(<span class="string">'response was unsuccessful: '</span> + xhr.status)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">xhr.open(<span class="string">'get'</span>, <span class="string">'example.php'</span>,<span class="literal">true</span>)</span><br><span class="line">xhr.setRequestHeader(<span class="string">'MyHeader'</span>, <span class="string">'MyValue'</span>)</span><br><span class="line">xhr.send(<span class="literal">null</span>)</span><br></pre></td></tr></table></figure>
+<p>部分浏览器不支持重写默认的头部信息。<br>调用XHR对象的getResponseHeader()方法并传入头部字段名称，可以取得相应的响应头部信息。而调用getAllReponseHeader()方法则可以取得一个包含所有头部信息的长字符串。</p>
+<h3 id="GET请求"><a href="#GET请求" class="headerlink" title="GET请求"></a>GET请求</h3><p>get常用语向服务器查询某些信息。必要时，可以将查询字符串参数追加到URL末尾，以便将信息发送给服务器。对XHR而言，<strong>位于传入open()方法的URL末尾的查询字符串必须经过正确的编码才行。</strong><br>使用GET请求经常会发生一个错误，就是查询字符串的格式有问题。查询字符串中每个参数的名称和值都必须使用encodeURIComponent()进行编码，然后才能放到URL的末尾；而且所有名值对都必须由（&amp;）号分隔，如下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.open(<span class="string">'get'</span>, <span class="string">'example.php?name1=value1&amp;name2=value2'</span>,<span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+<p>下面这个函数可以辅助向现有URL的末尾添加查询字符串参数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addURLParam</span>(<span class="params">url, name, value</span>) </span>&#123;</span><br><span class="line">    url += (url.indexof(<span class="string">'?'</span>) == <span class="number">-1</span> ? <span class="string">'?'</span>: <span class="string">'&amp;'</span>)</span><br><span class="line">    url += <span class="built_in">encodeURIComponent</span>(name) + <span class="string">'='</span> + <span class="built_in">encodeURIComponent</span>(value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="POST请求"><a href="#POST请求" class="headerlink" title="POST请求"></a>POST请求</h3><p>POST通常用于向服务器发送应该被保存的数据。POST请求应该把数据作为请求的主体提交。POST请求的主体可以包含非常多的数据，而且格式不限。在open()方法第一个参数的位置传入’post‘，就可以初始化一个POST请求<br>发送POST请求的第二步就是想send()方法中传入某些数据。由于XHR最初的设计主要是为了处理XML，因此可以在此传入XML DOM文档，传入的文档经序列话之后将作为请求主体被提交到服务器。<strong>也可以在此传入任何想发送到服务器的字符串。</strong><br>默认情况下，服务器对POST请求和提交Web表单的请求并不会一视同仁。因此服务器端必须有程序来读取发送过来的原始数据，并从中解析出有用的部分。不过，我们可以使用XHR来模仿表单提交：<br>首先将Content-Type头部信息设置为application/x-www-form-urlencoded,就是表单提交时的内容类型，其次是以适当的格式创建一个字符串。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// serialize()函数为表单序列化函数</span></span><br><span class="line"></span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((xhr.status &gt;= <span class="number">200</span> &amp;&amp; xhr.status &lt; <span class="number">300</span>) || xhr.status == <span class="number">304</span>) &#123;</span><br><span class="line">            alert(xhr.responseText)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            alert(<span class="string">'response was unsuccessful: '</span> + xhr.status)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">xhr.open(<span class="string">'post'</span>, <span class="string">'postexample.php'</span>,<span class="literal">true</span>)</span><br><span class="line">xhr.setRequestHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/x-www-form-urlencoded'</span>)</span><br><span class="line"><span class="keyword">var</span> form = <span class="built_in">document</span>.getElementById(<span class="string">'user-info'</span>)</span><br><span class="line">xhr.send(serialize(form))</span><br></pre></td></tr></table></figure>
+<p>这个函数可以将ID为’user-info’的表单中的数据序列化之后发送给服务器。而下面的示例PHP文件postexample.php就可以通过$_POST取得提交的数据了。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">header(<span class="string">'Content-Type: text/plain'</span>)&gt;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&lt;&lt;&lt;EOF</span></span><br><span class="line"><span class="string">Name: <span class="subst">&#123;$_POST['user-name']&#125;</span></span></span><br><span class="line"><span class="string">Email: <span class="subst">&#123;$_POST['user-email']&#125;</span></span></span><br><span class="line"><span class="string">EOF;</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果不设置Content-Type头部信息，那么发送给服务器的数据就不会出现在$_POST超级全局变量中。这时候，要访问同样的数据，就必须借助$HTTP_RAW_POST_DATA.</p>
+<h2 id="XMLHttpRequest-2级"><a href="#XMLHttpRequest-2级" class="headerlink" title="XMLHttpRequest 2级"></a>XMLHttpRequest 2级</h2><p>XMLHttpRequest 2级并非所有浏览器都完整实现了。</p>
+<h3 id="FormData"><a href="#FormData" class="headerlink" title="FormData"></a>FormData</h3><p>XMLHttpRequest 2级定义了FormData类型。FormData为序列化表单以及创建表单格式相同的数据（用于通过XHR传输）提供了便利。下面的代码创建了一个FormData对象，并向其中添加了一些数据。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="keyword">new</span> FormData()</span><br><span class="line">data.append(<span class="string">'name'</span>, <span class="string">'Nicholas'</span>)</span><br></pre></td></tr></table></figure>
+<p>这个append()方法接收两个参数：键和值，分别对应表单字段的名字和字段中包含的值。可以像这样添加任意多个键值对。而通过向FormData构造函数中传入表单元素，也可以用表单元素的数据预先向其中键入键值对。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="keyword">new</span> FormData(<span class="built_in">document</span>.form[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<p>创建了FormData实例后，可以将它直接传给XHR的send方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = createXHR()</span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((xhr.status &gt;= <span class="number">200</span> &amp;&amp; xhr.status &lt; <span class="number">300</span>) || xhr.status == <span class="number">304</span>) &#123;</span><br><span class="line">            alert(xhr.responseText)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            alert(<span class="string">'response was unsuccessful: '</span> + xhr.status)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">xhr.open(<span class="string">'post'</span>, <span class="string">'postexample.php'</span>, <span class="literal">true</span>)</span><br><span class="line"><span class="keyword">var</span> form = <span class="built_in">document</span>.getElementById(<span class="string">'user-info'</span>);</span><br><span class="line">xhr.send(<span class="keyword">new</span> FormData(form))</span><br></pre></td></tr></table></figure>
+<p>使用FormData的方便之处在于<strong>不必明确地在XHR对象上设置请求头部。</strong>XHR对象能够识别传入的数据类型是FormData的实例，并配置适当的头部信息。</p>
+<h3 id="超时设定"><a href="#超时设定" class="headerlink" title="超时设定"></a>超时设定</h3><p>IE8位XHR对象添加了一个timeout属性，表示请求在等待响应多少毫秒之后就终止。在给timeout设置衣蛾数值后，如果在规定的事件内浏览器还没有接收到响应，那么就会触发timeout事件，进而会调用ontimeout事件处理程序。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = createXHR();</span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> ((xhr.status &gt;= <span class="number">200</span> &amp;&amp; xhr.status &lt; <span class="number">300</span>) || xhr.status == <span class="number">304</span>) &#123;</span><br><span class="line">            alert(xhr.responseText)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                alert(<span class="string">'response was unsuccessful: '</span> + xhr.status)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ex) &#123;</span><br><span class="line">            <span class="comment">// 假设由ontimeout事件处理程序处理</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">xhr.open(<span class="string">'get'</span>, <span class="string">'timeout.php'</span>, <span class="literal">true</span>)</span><br><span class="line">xhr.timeout = <span class="number">1000</span>;</span><br><span class="line">xhr.ontomeout = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'Request did not return in a second'</span>)</span><br><span class="line">&#125;</span><br><span class="line">xhr.send(<span class="literal">null</span>)</span><br></pre></td></tr></table></figure>
+<p>请求终止时，会调用ontimeout事件处理程序。但此时readyState可能已经变为4了，这意味着会调用onreadystateChange事件处理程序。因此需要封装在try-catch语句中。</p>
+<h3 id="overrideMineType-方法"><a href="#overrideMineType-方法" class="headerlink" title="overrideMineType()方法"></a>overrideMineType()方法</h3><p>该方法用于重写XHR响应的MIME类型。这个方法后来也被纳入XMLHttpRequest 2级规范。因为返回响应的MIME类型决定了XHR对象如何处理它，所以提供一种方法能够重写服务器返回的MIME类型是很有用的。<br>比如服务器返回的MIME类型是text/plain,但数据中实际包含的是XML。根据MIME类型，即使数据是XML，responseXML属性中仍然是null。通过overrideMimeType()方法，可以保证把响应当做XML而非纯文本来处理。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = createXHR()</span><br><span class="line">xhr.open(<span class="string">'get'</span>, <span class="string">'text.php'</span>, <span class="literal">true</span>)</span><br><span class="line">xhr.overrideMimeType(<span class="string">'text/xml'</span>)</span><br><span class="line">xhr.send(<span class="literal">null</span>)</span><br></pre></td></tr></table></figure>
+<p>这个例子强迫XHR对象将响应当做XML而非纯文本来处理。调用overrideMimeType()必须在send()方法之前，才能保证重写响应的MIME类型。</p>
+<h2 id="进度事件"><a href="#进度事件" class="headerlink" title="进度事件"></a>进度事件</h2><p>Progress Events规范是W3C的一个工作草案，定义了与客户端服务器通信的有关事件。有以下6个进度事件。<br>loasstart: 在接收响应数据的第一个字节时触发。<br>progress： 在接收响应期间持续不断地触发。<br>error: 在青丘发生错误时触发。<br>load： 在接收到完整的响应数据时触发。<br>loadend：在通信完成或者触发error、abort或load事件后触发。<br>每个请求都从触发loadstart事件开始，接下来是一或多个progress事件，然后触发error、abort或load事件中的一个，最后触发loadend事件结束。</p>
+<h3 id="load事件"><a href="#load事件" class="headerlink" title="load事件"></a>load事件</h3><p>引入load事件，用以替代readystatechange事件。响应接收完毕后将触发load事件，因此也就没有必要去检查readyState属性了。而onload事件处理程序会接收到一个event对象，其target属性就只想XHR对象实例。因此可以访问到XHR对象的所有方法和属性。然而，并非所有浏览器都为这个事件实现了适当的事件对象。因此还需要引用XHR对象变量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = createXHR()</span><br><span class="line">xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ((xhr.status &gt;= <span class="number">200</span> &amp;&amp; xhr.status &lt; <span class="number">300</span>) || xhr.status == <span class="number">304</span>) &#123;</span><br><span class="line">        alert(xhr.responseText)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        alert(<span class="string">'resquest was unsuccessful: '</span> + xhr.status)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">xhr.open(<span class="string">'get'</span> <span class="string">'altevents.php'</span>, <span class="literal">true</span>)</span><br><span class="line">xhr.send(<span class="literal">null</span>)</span><br></pre></td></tr></table></figure>
+<p>只要浏览器接收到服务器的响应，不管其状态如何，都会触发load事件。这意味着必须检查status属性。</p>
+<h3 id="progress事件"><a href="#progress事件" class="headerlink" title="progress事件"></a>progress事件</h3><p>这个事件会在浏览器接收新数据期间周期性的触发。而onporgress事件处理程序会接收到一个event对象，qitarget属性是XHR对象，但包含三个额外的属性：lengthComputable、position和totalSize。其中，lengthComputable时表示进度信息是否可用的布尔值，position表示已经接收的字节数，totalSize表示根据Content-Length响应头部确定的预期字节数。有了这些信息，就可以为用户创建一个进度指示器了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = createXHR()</span><br><span class="line">xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ((xhr.status &gt;= <span class="number">200</span> &amp;&amp; xhr.status &lt; <span class="number">300</span>) || xhr.status == <span class="number">304</span>) &#123;</span><br><span class="line">        alert(xhr.responseText)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        alert(<span class="string">'resquest was unsuccessful: '</span> + xhr.status)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">xhr.onprogress = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> divStatus = <span class="built_in">document</span>.getElementById(<span class="string">'status'</span>)</span><br><span class="line">    <span class="keyword">if</span> (event.lengthComputable) &#123;</span><br><span class="line">        divStatus.innerHTML = <span class="string">'Received'</span> + event.position + <span class="string">'of'</span> + event.totalSize + <span class="string">'bytes'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">xhr.open(<span class="string">'get'</span>,<span class="string">'altevents.php'</span>, <span class="literal">true</span>)</span><br><span class="line">xhr.send(<span class="literal">null</span>)</span><br></pre></td></tr></table></figure>
+<p>为确保正常执行，必须在调用open()方法之前添加onprogress事件处理程序。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/26/Ajax%E4%B8%8EComet/" data-id="ck9gev021000b4cr9dd6pfi9w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-计算机网络/前端缓存" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98/" class="article-date">
+  <time datetime="2020-04-26T02:04:36.456Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98/">计算机网络/前端缓存</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="缓存分类分类"><a href="#缓存分类分类" class="headerlink" title="缓存分类分类"></a>缓存分类分类</h1><p>前端缓存分为浏览器缓存和http缓存<br>浏览器缓存包括cookie，session，localstorage，sessionstorage，indexDB，service worker。</p>
+<p>http缓存包括强制缓存和协商缓存</p>
+<h2 id="http缓存"><a href="#http缓存" class="headerlink" title="http缓存"></a>http缓存</h2><p>通过Expires或Cache-Control（优先级更高）控制<br>Expires为绝对值，由于客户端和服务端时间可能不一致出错。<br>Cache-Control可以的取值有：<br>public：所有内容都将被缓存（客户端和代理服务器都可缓存）<br>private：所有内容只有客户端可以缓存，Cache-Control的默认取值<br>no-cache：客户端缓存内容，但是是否使用缓存则需要经过协商缓存来验证决定<br>no-store：所有内容都不会被缓存，即不使用强制缓存，也不使用协商缓存<br>max-age=xxx (xxx is numeric)：缓存内容将在xxx秒后失效</p>
+<p>当Expires或max-age不超时时，将使用强制缓存，即从本地内存或硬盘中获取数据。<br>当max-age超时，会向服务端发送含有If-None-Match字段的请求头，其值为初次请求的响应头包含的Etag（或者If-Modified-Since字段的请求头，其值为初次向服务端请求时<strong>响应头</strong>包含的Last-Modified字段，其优先级叫Etag/if-None-Match字段低），如果数据没有改变，则响应的编码为304，使用本地缓存数据，否则由服务器返回更新后的数据。</p>
+<p> 总结：强制缓存优先于协商缓存进行，若强制缓存(Expires和Cache-Control)生效则直接使用缓存，若不生效则进行协商缓存(Last-Modified / If-Modified-Since和Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若协商缓存失效，那么代表该请求的缓存失效，重新获取请求结果，再存入浏览器缓存中；生效则返回304，继续使用缓存</p>
+<!-- 缓存小结（包含severice worker）
+当浏览器要请求资源时
+
+调用 Service Worker 的 fetch 事件响应
+查看 memory cache
+查看 disk cache。这里又细分：
+如果有强制缓存且未失效，则使用强制缓存，不请求服务器。这时的状态码全部是 200
+如果有强制缓存但已失效，使用对比缓存，比较后确定 304 还是 200
+发送网络请求，等待网络响应
+把响应内容存入 disk cache (如果 HTTP 头信息配置可以存的话)
+把响应内容 的引用 存入 memory cache (无视 HTTP 头信息的配置)
+把响应内容存入 Service Worker 的 Cache Storage (如果 Service Worker 的脚本调用了 cache.put()) -->
+
+<h3 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a>浏览器缓存</h3><h2 id="localStorage-和-sessionStorage"><a href="#localStorage-和-sessionStorage" class="headerlink" title="localStorage 和 sessionStorage"></a>localStorage 和 sessionStorage</h2><p>客户端存储数据的两个对象为：</p>
+<p>localStorage - 用于长久保存整个网站的数据，保存的数据没有过期时间，直到手动去除。<br>sessionStorage - 用于临时保存同一窗口(或标签页)的数据，在关闭窗口或标签页之后将会删除这些数据。<br>在使用 web 存储前,应检查浏览器是否支持 localStorage 和sessionStorage:</p>
+<p>if(typeof(Storage)!==”undefined”)<br>{<br>    // 是的! 支持 localStorage  sessionStorage 对象!<br>    // 一些代码…..<br>} else {<br>    // 抱歉! 不支持 web 存储。<br>}</p>
+<h3 id="localStorage-对象"><a href="#localStorage-对象" class="headerlink" title="localStorage 对象"></a>localStorage 对象</h3><p>localStorage 对象存储的数据没有时间限制。第二天、第二周或下一年之后，数据依然可用。</p>
+<p>实例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">localStorage.sitename=<span class="string">"菜鸟教程"</span>;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML=<span class="string">"网站名："</span> + localStorage.sitename;</span><br></pre></td></tr></table></figure>
+<p>实例解析：</p>
+<p>使用 key=”sitename” 和 value=”菜鸟教程” 创建一个 localStorage 键/值对。<br>检索键值为”sitename” 的值然后将数据插入 id=”result”的元素中。<br>以上实例也可以这么写：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 存储</span></span><br><span class="line">localStorage.sitename = <span class="string">"菜鸟教程"</span>;</span><br><span class="line"><span class="comment">// 查找</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML = localStorage.sitename;</span><br></pre></td></tr></table></figure>
+<p>移除 localStorage 中的 “sitename” :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localStorage.removeItem(<span class="string">"sitename"</span>);</span><br></pre></td></tr></table></figure>
+<p>不管是 localStorage，还是 sessionStorage，可使用的API都相同，常用的有如下几个（以localStorage为例）：</p>
+<p>保存数据：localStorage.setItem(key,value);<br>读取数据：localStorage.getItem(key);<br>删除单个数据：localStorage.removeItem(key);<br>删除所有数据：localStorage.clear();<br>得到某个索引的key：localStorage.key(index);<br>提示: 键/值对通常以字符串存储，你可以按自己的需要转换该格式。</p>
+<p>下面的实例展示了用户点击按钮的次数。</p>
+<p>代码中的字符串值转换为数字类型:</p>
+<p>实例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (localStorage.clickcount)</span><br><span class="line">&#123;</span><br><span class="line">    localStorage.clickcount=<span class="built_in">Number</span>(localStorage.clickcount)+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    localStorage.clickcount=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML=<span class="string">" 你已经点击了按钮 "</span> + localStorage.clickcount + <span class="string">" 次 "</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="sessionStorage-对象"><a href="#sessionStorage-对象" class="headerlink" title="sessionStorage 对象"></a>sessionStorage 对象</h3><p>sessionStorage 方法针对一个 session 进行数据存储。当用户关闭浏览器窗口后，数据会被删除。</p>
+<p>如何创建并访问一个 sessionStorage：</p>
+<p>实例<br>if (sessionStorage.clickcount)<br>{<br>    sessionStorage.clickcount=Number(sessionStorage.clickcount)+1;<br>}<br>else<br>{<br>    sessionStorage.clickcount=1;<br>}<br>document.getElementById(“result”).innerHTML=”在这个会话中你已经点击了该按钮 “ + sessionStorage.clickcount + “ 次 “;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98/" data-id="ck9gev02j000i4cr9c6215oph" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-计算机网络/TCP协议" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP%E5%8D%8F%E8%AE%AE/" class="article-date">
+  <time datetime="2020-04-26T02:04:36.420Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP%E5%8D%8F%E8%AE%AE/">计算机网络/TCP协议</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>TCP连接被称为是面向连接的，这是因为在一个应用进程可以开始面向另一个应用进程发送数据之前，这两个进程必须先相互握手，即它们必须相互发送某些预备报文段，已建立确保数据传输的参数。</p>
+<p>TCP的三次握手和四次挥手<br>其中涉及几个比较重要的字段<br>1.序号（sequlize number）：seq字段，占32位，用来标示从TCP源端向目的端口发送的字节流，发起方发送数据时对此进行标记</p>
+<p>2.确认号（acknowledgement number）：ack序号，占32位，只有ACK标志位为1时，确认序号字段才有效，ack=seq+1；</p>
+<p>3.标志位（flags）：共6个即URG、ACK、PSH、RST、SYN、FiN等。具体含义如下：<br>URG：紧急指针有效<br>ACK：确认序号有效<br>PSH：接收方应该尽快将这个报文交给应用层。<br>RST：重置连接<br>SYN：发起一个新连接。<br>FIN：释放一个新连接。</p>
+<p>TCP是一个面向连接的协议，无论哪一方向另一方发送数据之前，都必须先在双方之间建立一条连接，建立一条连接有以下过程。</p>
+<p>1.首先客户端向服务器端发送一段TCP报文，其中：<br>标记位为SYN=1表示“请求建立新连接”<br>序号为seq=cliend_isn（随机生成）</p>
+<p>2.服务器端接收到来自客户端的TCP报文之后，返回一段TCP报文：<br>标志位为SYN=1和ACK=1，表示确认客户端的报文seq序号有效，服务器能正常接收客户端发送的数据，并且同意创建新连接。<br>序号seq=sever_isn；<br>确认序号为ack=client_isn+1，表示收到客户端的序号seq并且将其值加1作为自己确认号的ack值</p>
+<p>3.客户端接收到来自服务器端的确认收到数据的TCP报文之后，明确了从客户端到服务器的数据传输是正常的，返回最后一段TCP报文。其中：<br>标志位为ACK=1，SYN=0，表示确认收到服务器端同一连接的信号<br>序号seq = client_isn+1,表示收到服务器端的确认号ack，并将其值作为自己的序号值</p>
+<p>四次挥手<br>1.首先客户端想要释放连接，向服务器端发送一段TCP报文，其中：<br>标记位为FIN=1，表示请求释放连接<br>序号为seq=client_isn1<br>随后客户端进入半关闭阶段。并且停止在客户端到服务器端方向发送数据，但是客户端仍然能接收到从服务器端传输过来的数据。</p>
+<p>2.服务器端接收到从客户端发出的TCP报文之后，确认了客户端想要释放连接，随后服务器端进入半关闭状态，返回一段TCP报文<br>标记位ACK=1，表示接收到客户端发送的释放连接请求<br>序号为seq=sever_isn1<br>确认号为ack=client_isn1+1,表示是在收到客户端报文的基础上，将其序号seq加1作为本段报文确认号ack的值<br>随后服务器端开始准备释放服务器端到客户端方向上的连接。</p>
+<p>3.服务器端锁好了释放服务器端到客户端方向上的连接准备，再次向客户端发出一段TCP报文，其中<br>标记位FIN=1，ACK=1，表示已经准备好释放连接了。<br>序号为seq=sever_isn2<br>确认号为ack=client1+1，表示是在接收到客户端报文的基础上，将其序号seq值加1作为本段报文确认号ack的值。</p>
+<p>4.客户端收到从服务器端发出的TCP报文，确认了服务器端已做好释放连接的准备，并向服务器端发送一段报文：<br>标记位为ACK=1，表示接收到服务器准备好释放连接的信号<br>序号为client_isn1+1,表示是在收到了服务器端报文的基础上，将其却热号ack值作为本段报文序号的值<br>确认号为ack=sever_isn2+1表示是在收到了服务气短报文的基础上，将其序号值seq作为本段报文确认号的值。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP%E5%8D%8F%E8%AE%AE/" data-id="ck9gev02l000j4cr9ftjj5zcn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-计算机网络/http协议" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/http%E5%8D%8F%E8%AE%AE/" class="article-date">
+  <time datetime="2020-04-26T02:04:36.401Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/http%E5%8D%8F%E8%AE%AE/">计算机网络/http协议</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>http是无状态的协议。<br>持续连接和非持续连接指的是TCP连接持续还是非持续，长轮询和短轮询指的是http的请求方式。<br>非持续连接：每个TCP连接在服务器发送一个对象后关闭，即该连接并不为其他对象而持续下来，每个TCP连接只传输一个请求报文和一个响应报文。<br>持续连接，服务器在发送响应后保持该TCP连接打开。在相同的客户与服务器之间的后续请求和响应报文能够通过相同的连接进行传递。当一条连接经过一定时间间隔未被使用就关闭。</p>
+<h2 id="http报文格式"><a href="#http报文格式" class="headerlink" title="http报文格式"></a>http报文格式</h2><p>http请求报文的第一行叫做请求行，其后继的行叫做首部行。<br>如下为一个典型的HTTP请求报文<br>GET /somedir/page.html HTTP/1.1<br>Host: <a href="http://www.someschool.edu" target="_blank" rel="noopener">www.someschool.edu</a><br>connecttion: close<br>User-agent: Mozilla/5.0<br>Accept-language: fr<br>请求行有三个字段：方法字段、URL字段和HTTP版本字段。方法字段可以的取值有GET，POST，HEAD，PUT和DELETE。绝大部分的HTTP请求报文使用GET方法。</p>
+<p>首部行<br>Host: ww.someschool.edu指明了对象所在的主机。<br>Connecttion：是否使用持续连接<br>User-agent：指明用户代理，即浏览器类型</p>
+<p>HTTP响应报文<br>如下为典型响应报文<br>HTTP1.1 200 ok<br>Connection： close<br>Date: Tue, 09 Aug 2011 15:44:04 GMT<br>Sever: Apache/2.2.3(Centos)<br>Last-Modified: Tue, 09 Aug 2011 15:11:03 GMT<br>Content-Length: 6821<br>Content-Type: text/html<br>由三部分组成一个初始状态行，6个首部行，然后是实体体。实体体部分值报文的主要部分，它包含了请求的对象本身。状态行有三个字段：协议版本字段、状态码和相应状态信息。<br>首部行<br>Connection：发送完报文后将关闭TCP连接<br>Date：服务器从他的文件系统中检索到该对象，插入到响应报文的事件<br>Sever：报文由什么服务器产生。<br>Last-Modified：对象创建或者最后修改的日期和时间。<br>Content-Length：被发送对象中的字节数。<br>Content-Type：指示实体体中的对象的类型</p>
+<p>首部行扩展<br>http为无状态协议，引入cookie将用户和内容联系起来<br>由此请求首部行将加入cookie，响应首部行将加入Set-cookie</p>
+<p><strong>与缓存相关引入的请求首部行if-Modified-Since</strong></p>
+<p>请求状态码<br><strong>2开头 （请求成功）表示成功处理了请求的状态代码。</strong></p>
+<p>200   （成功）  服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页。<br>201   （已创建）  请求成功并且服务器创建了新的资源。<br>202   （已接受）  服务器已接受请求，但尚未处理。<br>203   （非授权信息）  服务器已成功处理了请求，但返回的信息可能来自另一来源。<br>204   （无内容）  服务器成功处理了请求，但没有返回任何内容。<br>205   （重置内容） 服务器成功处理了请求，但没有返回任何内容。<br>206   （部分内容）  服务器成功处理了部分 GET 请求。</p>
+<p><strong>3开头 （请求被重定向）表示要完成请求，需要进一步操作。 通常，这些状态代码用来重定向。</strong></p>
+<p>300   （多种选择）  针对请求，服务器可执行多种操作。 服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择。<br>301   （永久移动）  请求的网页已永久移动到新位置。 服务器返回此响应（对 GET 或 HEAD 请求的响应）时，会自动将请求者转到新位置。<br>302   （临时移动）  服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。<br>303   （查看其他位置） 请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。<br>304   （未修改） 自从上次请求后，请求的网页未修改过。 服务器返回此响应时，不会返回网页内容。<br>305   （使用代理） 请求者只能使用代理访问请求的网页。 如果服务器返回此响应，还表示请求者应使用代理。<br>307   （临时重定向）  服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</p>
+<p><strong>4开头 （请求错误）这些状态代码表示请求可能出错，妨碍了服务器的处理。</strong></p>
+<p>400   （错误请求） 服务器不理解请求的语法。<br>401   （未授权） 请求要求身份验证。 对于需要登录的网页，服务器可能返回此响应。<br>403   （禁止） 服务器拒绝请求。<br>404   （未找到） 服务器找不到请求的网页。<br>405   （方法禁用） 禁用请求中指定的方法。<br>406   （不接受） 无法使用请求的内容特性响应请求的网页。<br>407   （需要代理授权） 此状态代码与 401（未授权）类似，但指定请求者应当授权使用代理。<br>408   （请求超时）  服务器等候请求时发生超时。<br>409   （冲突）  服务器在完成请求时发生冲突。 服务器必须在响应中包含有关冲突的信息。<br>410   （已删除）  如果请求的资源已永久删除，服务器就会返回此响应。<br>411   （需要有效长度） 服务器不接受不含有效内容长度标头字段的请求。<br>412   （未满足前提条件） 服务器未满足请求者在请求中设置的其中一个前提条件。<br>413   （请求实体过大） 服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。<br>414   （请求的 URI 过长） 请求的 URI（通常为网址）过长，服务器无法处理。<br>415   （不支持的媒体类型） 请求的格式不受请求页面的支持。<br>416   （请求范围不符合要求） 如果页面无法提供请求的范围，则服务器会返回此状态代码。<br>417   （未满足期望值） 服务器未满足”期望”请求标头字段的要求。</p>
+<p><strong>5开头（服务器错误）这些状态代码表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身的错误，而不是请求出错。</strong></p>
+<p>500   （服务器内部错误）  服务器遇到错误，无法完成请求。<br>501   （尚未实施） 服务器不具备完成请求的功能。 例如，服务器无法识别请求方法时可能会返回此代码。<br>502   （错误网关） 服务器作为网关或代理，从上游服务器收到无效响应。<br>503   （服务不可用） 服务器目前无法使用（由于超载或停机维护）。 通常，这只是暂时状态。<br>504   （网关超时）  服务器作为网关或代理，但是没有及时从上游服务器收到请求。<br>505   （HTTP 版本不受支持） 服务器不支持请求中所用的 HTTP 协议版本。</p>
+<h2 id="http1-0、http1-1、http2-0对比"><a href="#http1-0、http1-1、http2-0对比" class="headerlink" title="http1.0、http1.1、http2.0对比"></a>http1.0、http1.1、http2.0对比</h2><h3 id="HTTP1-0和HTTP1-1的区别"><a href="#HTTP1-0和HTTP1-1的区别" class="headerlink" title="HTTP1.0和HTTP1.1的区别"></a>HTTP1.0和HTTP1.1的区别</h3><p>1.1 长连接(Persistent Connection)<br>       HTTP1.1支持长连接和请求的流水线处理，在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟，在HTTP1.1中默认开启长连接keep-alive，一定程度上弥补了HTTP1.0每次请求都要创建连接的缺点。HTTP1.0需要使用keep-alive参数来告知服务器端要建立一个长连接。</p>
+<p>1.2 节约带宽<br>       HTTP1.0中存在一些浪费带宽的现象，例如客户端只是需要某个对象的一部分，而服务器却将整个对象送过来了，并且不支持断点续传功能。HTTP1.1支持只发送header信息（不带任何body信息），如果服务器认为客户端有权限请求服务器，则返回100，客户端接收到100才开始把请求body发送到服务器；如果返回401，客户端就可以不用发送请求body了节约了带宽。</p>
+<p>1.3 HOST域<br>       在HTTP1.0中认为每台服务器都绑定一个唯一的IP地址，因此，请求消息中的URL并没有传递主机名（hostname），HTTP1.0没有host域。随着虚拟主机技术的发展，在一台物理服务器上可以存在多个虚拟主机（Multi-homed Web Servers），并且它们共享一个IP地址。HTTP1.1的请求消息和响应消息都支持host域，且请求消息中如果没有host域会报告一个错误（400 Bad Request）。</p>
+<p>1.4缓存处理<br>       在HTTP1.0中主要使用header里的If-Modified-Since,Expires来做为缓存判断的标准，HTTP1.1则引入了更多的缓存控制策略例如Entity tag，If-Unmodified-Since, If-Match, If-None-Match等更多可供选择的缓存头来控制缓存策略。</p>
+<p>1.5错误通知的管理<br>       在HTTP1.1中新增了24个错误状态响应码，如409（Conflict）表示请求的资源与资源的当前状态发生冲突；410（Gone）表示服务器上的某个资源被永久性的删除。</p>
+<h3 id="HTTP1-1和HTTP2-0的区别"><a href="#HTTP1-1和HTTP2-0的区别" class="headerlink" title="HTTP1.1和HTTP2.0的区别"></a>HTTP1.1和HTTP2.0的区别</h3><p>2.1 多路复用<br>       HTTP2.0使用了多路复用的技术，做到同一个连接并发处理多个请求，而且并发请求的数量比HTTP1.1大了好几个数量级。HTTP1.1也可以多建立几个TCP连接，来支持处理更多并发的请求，但是创建TCP连接本身也是有开销的。</p>
+<p>2.2 头部数据压缩<br>       在HTTP1.1中，HTTP请求和响应都是由状态行、请求/响应头部、消息主体三部分组成。一般而言，消息主体都会经过gzip压缩，或者本身传输的就是压缩过后的二进制文件，但状态行和头部却没有经过任何压缩，直接以纯文本传输。随着Web功能越来越复杂，每个页面产生的请求数也越来越多，导致消耗在头部的流量越来越多，尤其是每次都要传输UserAgent、Cookie这类不会频繁变动的内容，完全是一种浪费。</p>
+<pre><code>HTTP1.1不支持header数据的压缩，HTTP2.0使用HPACK算法对header的数据进行压缩，这样数据体积小了，在网络上传输就会更快。</code></pre><p>2.3 服务器推送<br>       服务端推送是一种在客户端请求之前发送数据的机制。网页使用了许多资源：HTML、样式表、脚本、图片等等。在HTTP1.1中这些资源每一个都必须明确地请求。这是一个很慢的过程。浏览器从获取HTML开始，然后在它解析和评估页面的时候，增量地获取更多的资源。因为服务器必须等待浏览器做每一个请求，网络经常是空闲的和未充分使用的。</p>
+<pre><code>为了改善延迟，HTTP2.0引入了server push，它允许服务端推送资源给浏览器，在浏览器明确地请求之前，免得客户端再次创建连接发送请求到服务器端获取。这样客户端可以直接从本地加载这些资源，不用再通过网络。</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/http%E5%8D%8F%E8%AE%AE/" data-id="ck9gev02i000h4cr9gi8abovk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/26/%E4%BA%8B%E4%BB%B6/">事件</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/">跨域资源共享</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">防抖与节流</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0/">定位元素</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/">迭代器和生成器</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

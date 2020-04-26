@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>代理和反射接口 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title 代理和反射接口ES5和ES6都推进了JS功能的公开。例如，JS运行环境包含一些不可枚举、不可写入的对象属性。ES5引入了Object.defineProperty()方法以便开发者在这方面能够像JS引擎那样做。SE6让开发者能进一步接近JS引擎的能力，这些能力原先只存在于内置对象上。语言通过代理（proxy）暴露在对象上的内部工作，代理是一种封装，能够拦截并改变JS引擎的底层操作。 数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代理和反射接口">
+<meta property="og:url" content="http://yoursite.com/2020/04/26/%E4%BB%A3%E7%90%86%E5%92%8C%E5%8F%8D%E5%B0%84%E6%8E%A5%E5%8F%A3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="title 代理和反射接口ES5和ES6都推进了JS功能的公开。例如，JS运行环境包含一些不可枚举、不可写入的对象属性。ES5引入了Object.defineProperty()方法以便开发者在这方面能够像JS引擎那样做。SE6让开发者能进一步接近JS引擎的能力，这些能力原先只存在于内置对象上。语言通过代理（proxy）暴露在对象上的内部工作，代理是一种封装，能够拦截并改变JS引擎的底层操作。 数">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-26T02:04:36.812Z">
+<meta property="article:modified_time" content="2020-03-02T07:14:42.223Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-代理和反射接口" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/%E4%BB%A3%E7%90%86%E5%92%8C%E5%8F%8D%E5%B0%84%E6%8E%A5%E5%8F%A3/" class="article-date">
+  <time datetime="2020-04-26T02:04:36.812Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      代理和反射接口
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title 代理和反射接口<br>ES5和ES6都推进了JS功能的公开。例如，JS运行环境包含一些不可枚举、不可写入的对象属性。ES5引入了Object.defineProperty()方法以便开发者在这方面能够像JS引擎那样做。<br>SE6让开发者能进一步接近JS引擎的能力，这些能力原先只存在于内置对象上。语言通过代理（proxy）暴露在对象上的内部工作，代理是一种封装，能够拦截并改变JS引擎的底层操作。</p>
+<h2 id="数组问题"><a href="#数组问题" class="headerlink" title="数组问题"></a>数组问题</h2><p>在ES6之前，JS的数组对象拥有特定的行为方式，无法被开发者在自定义对象中进行模拟。当你给数组元素赋值时，数组的length属性会受到影响，同时也可以通过修改length属性来变更数组的元素。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = [<span class="string">'red'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>]</span><br><span class="line"><span class="built_in">console</span>.log(colors.length)       <span class="comment">//3</span></span><br><span class="line">colors[<span class="number">3</span>] = <span class="string">'black'</span></span><br><span class="line"><span class="built_in">console</span>.log(colors.length)       <span class="comment">//4</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">3</span>])           <span class="comment">//black</span></span><br><span class="line">colors.length = <span class="number">2</span></span><br><span class="line"><span class="built_in">console</span>.log(colors.length)       <span class="comment">//2</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">3</span>])           <span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">2</span>])           <span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">1</span>])           <span class="comment">//green</span></span><br></pre></td></tr></table></figure>
+<h2 id="代理与反射是什么"><a href="#代理与反射是什么" class="headerlink" title="代理与反射是什么"></a>代理与反射是什么</h2><p>通过调用new Proxy()，可以创建一个代理用来替代另一个对象（被称为目标），这个代理对目标对象进行了虚拟，因此该代理与该目标对象表面上可以被当作同一个对象来对待。<br>代理允许拦截在目标对象上的底层操作。拦截行为使用了一个能够响应特定操作的函数（被称为陷阱）。<br>被Reflect对象所代表的反射接口，是给底层操作提供默认行为的方法的集合，这些操作是能够被代理重写的。每个代理陷阱都有一个对应的反射方法，每个方法都与对应的陷阱函数重名，并且接受的参数也与之一致。下表总结了这些行为：<br>每个陷阱函数都可以重写 JS 对象的一个特定内置行为，允许你拦截并修改它。如果你仍然需要使用原先的内置行为，则可使用对应的反射接口方法。一旦创建了代理，你就能清晰了解代理与反射接口之间的关系，因此我们最好通过一些例子来进行深入研究。</p>
+<h2 id="创建一个简单的代理"><a href="#创建一个简单的代理" class="headerlink" title="创建一个简单的代理"></a>创建一个简单的代理</h2><p>当你使用 Proxy 构造器来创建一个代理时，需要传递两个参数：目标对象以及一个处理器（handler），后者是定义了一个或多个陷阱函数的对象。如果未提供陷阱函数，代理会对所有操作采取默认行为。为了创建一个仅进行传递的代理，你需要使用不包含任何陷阱函数的处理器：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> target = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(target, &#123;&#125;);</span><br><span class="line">proxy.name = <span class="string">"proxy"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(proxy.name); <span class="comment">// "proxy"</span></span><br><span class="line"><span class="built_in">console</span>.log(target.name); <span class="comment">// "proxy"</span></span><br><span class="line">target.name = <span class="string">"target"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(proxy.name); <span class="comment">// "target"</span></span><br><span class="line"><span class="built_in">console</span>.log(target.name); <span class="comment">// "target"</span></span><br></pre></td></tr></table></figure>
+<p>该例中的 proxy 对象将所有操作直接传递给 target 对象。当 proxy.name 属性被赋值为字符串 “proxy” 的时候， target.name 属性也同时被创建，代理对象 proxy 自身其实并没有存储该属性，它只是简单将值传递给 target 对象。同样， proxy.name 与 target.name 的属性值总是相等，因为它们都指向 target.name ，这就意味着：为 target.name 设置一个新值会在 proxy.name 上反映出相同的改变。当然，缺少陷阱函数的代理没什么用，那么若为其定义一个陷阱函数，又会如何？</p>
+<h2 id="使用set陷阱函数验证属性值"><a href="#使用set陷阱函数验证属性值" class="headerlink" title="使用set陷阱函数验证属性值"></a>使用set陷阱函数验证属性值</h2><p>假设你想要创建一个对象，并要求其属性值只能是数值，这就意味着该对象的每个新增属性都要被验证，并且在属性值不为数值类型时应当抛出错误。为此你需要定义 set 陷阱函数来重写设置属性值时的默认行为，该陷阱函数能接受四个参数：</p>
+<ol>
+<li>trapTarget ：将接收属性的对象（即代理的目标对象）；</li>
+<li>key ：需要写入的属性的键（字符串类型或符号类型）；</li>
+<li>value ：将被写入属性的值；</li>
+<li>receiver ：操作发生的对象（通常是代理对象）。<br>Reflect.set() 是 set 陷阱函数对应的反射方法，同时也是 set 操作的默认行为。<br>Reflect.set() 方法与 set 陷阱函数一样，能接受这四个参数，让该方法能在陷阱函数内部被方便使用。该陷阱函数需要在属性被设置完成的情况下返回 true ，否则就要返回 false，而 Reflect.set() 也会基于操作是否成功而返回相应的结果。你需要使用 set 陷阱函数来拦截传入的 value 值，以便对属性值进行验证。这里有个例子：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> target = &#123;</span><br><span class="line">    name: <span class="string">"target"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(target, &#123;</span><br><span class="line">    <span class="keyword">set</span>(trapTarget, key, value, receiver) &#123;</span><br><span class="line">    <span class="comment">// 忽略已有属性，避免影响它们</span></span><br><span class="line">        <span class="keyword">if</span> (!trapTarget.hasOwnProperty(key)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">isNaN</span>(value)) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">"Property must be a number."</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 添加属性</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Reflect</span>.set(trapTarget, key, value, receiver)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 添加一个新属性</span></span><br><span class="line">proxy.count = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(proxy.count) <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(target.count) <span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 你可以为 name 赋一个非数值类型的值，因为该属性已经存在</span></span><br><span class="line">proxy.name = <span class="string">"proxy"</span></span><br><span class="line"><span class="built_in">console</span>.log(proxy.name) <span class="comment">// "proxy"</span></span><br><span class="line"><span class="built_in">console</span>.log(target.name) <span class="comment">// "proxy"</span></span><br><span class="line"><span class="comment">// 抛出错误</span></span><br><span class="line">proxy.anotherName = <span class="string">"proxy"</span></span><br></pre></td></tr></table></figure>
+这段代码定义了一个代理陷阱，用于对 target 对象新增属性的值进行验证。当执行proxy.count = 1 时， set 陷阱函数被调用，此时 trapTarget 的值等于 target 对象，key 的值是字符串 “count” ， value 的值是 1 ，而 receiver 的值是 proxy （该参数在本例中并没有被使用）。 target 对象上尚不存在名为 count 的属性，因此代理将value 参数传递给 isNaN() 方法进行验证；如果验证结果是 NaN ，表示传入的属性值不是一个数值，需要抛出错误；但由于这段代码将 count 参数设置为 1 ，验证通过，代理使用一致的四个参数去调用 Reflect.set() 方法，从而创建了一个新的属性。<br>当 proxy.name 被赋值为字符串时，操作成功完成。这是因为 target 对象已经拥有一个name 属性，因此验证时通过调用 trapTarget.hasOwnProperty() 会忽略该属性，这就确保允许在该对象的已有属性上使用非数值的属性值。<br>当 proxy.anotherName 被赋值为字符串时，抛出了一个错误。这是因为该对象上并不存在anotherName 属性，因此该属性的值必须被验证，而因为提供的值不是一个数值，验证过程就会抛出错误。<br>set 代理陷阱允许你在写入属性值的时候进行拦截，而 get 代理陷阱则允许你在读取属性<br>值的时候进行拦截。<h2 id="使用get陷阱函数进行对象外形验证"><a href="#使用get陷阱函数进行对象外形验证" class="headerlink" title="使用get陷阱函数进行对象外形验证"></a>使用get陷阱函数进行对象外形验证</h2></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/26/%E4%BB%A3%E7%90%86%E5%92%8C%E5%8F%8D%E5%B0%84%E6%8E%A5%E5%8F%A3/" data-id="ck9gev028000f4cr9882m8ued" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/26/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          迭代器和生成器
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/26/Promise%E4%B8%8E%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Promise与异步编程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/26/%E4%BA%8B%E4%BB%B6/">事件</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/">跨域资源共享</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">防抖与节流</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0/">定位元素</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/">迭代器和生成器</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

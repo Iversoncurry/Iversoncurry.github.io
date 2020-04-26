@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>跨域资源共享 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="跨域资源共享 通过XHR实现Ajax通信的一个主要限制，来源于跨域安全策略（同源策略）。 同源的定义如果两个URL的协议（protocol）、端口（port）（如果有指定的话）和域名（host）都相同的话，则这两个URL是同源。这个方案也被称为‘协议&#x2F;主机&#x2F;端口元组’，或者直接是‘元组’。（‘元组’是指一组项目构成的整体，‘三重&#x2F;四重&#x2F;五重&#x2F;等的通用形式）。一下给出了与URL http:&#x2F;&#x2F;sto">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跨域资源共享">
+<meta property="og:url" content="http://yoursite.com/2020/04/26/%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="跨域资源共享 通过XHR实现Ajax通信的一个主要限制，来源于跨域安全策略（同源策略）。 同源的定义如果两个URL的协议（protocol）、端口（port）（如果有指定的话）和域名（host）都相同的话，则这两个URL是同源。这个方案也被称为‘协议&#x2F;主机&#x2F;端口元组’，或者直接是‘元组’。（‘元组’是指一组项目构成的整体，‘三重&#x2F;四重&#x2F;五重&#x2F;等的通用形式）。一下给出了与URL http:&#x2F;&#x2F;sto">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-26T02:04:36.923Z">
+<meta property="article:modified_time" content="2020-04-13T13:44:17.925Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-跨域资源共享" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/" class="article-date">
+  <time datetime="2020-04-26T02:04:36.923Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      跨域资源共享
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>跨域资源共享</p>
+<p>通过XHR实现Ajax通信的一个主要限制，来源于跨域安全策略（同源策略）。</p>
+<h2 id="同源的定义"><a href="#同源的定义" class="headerlink" title="同源的定义"></a>同源的定义</h2><p>如果两个URL的协议（protocol）、端口（port）（如果有指定的话）和域名（host）都相同的话，则这两个URL是同源。这个方案也被称为‘协议/主机/端口元组’，或者直接是‘元组’。（‘元组’是指一组项目构成的整体，‘三重/四重/五重/等的通用形式）。<br>一下给出了与URL <a href="http://store.company.com/dir/page.html的源进行对比的示例。" target="_blank" rel="noopener">http://store.company.com/dir/page.html的源进行对比的示例。</a></p>
+<p>1.<a href="http://store.company.com/dir2/other.html" target="_blank" rel="noopener">http://store.company.com/dir2/other.html</a><br>同源，只有路径不同<br>2.<a href="http://store.company.com/dir/inner/another.html" target="_blank" rel="noopener">http://store.company.com/dir/inner/another.html</a><br>同源，只有路径不同<br>3.<a href="https://store.company.com/secure.html" target="_blank" rel="noopener">https://store.company.com/secure.html</a><br>不同源，协议不同<br>4.<a href="http://store.company.com:81/dir/etc.html" target="_blank" rel="noopener">http://store.company.com:81/dir/etc.html</a><br>不同源，端口不同（http默认是80端口）<br>5.<a href="http://news.company.com/dir/other.html" target="_blank" rel="noopener">http://news.company.com/dir/other.html</a><br>不同源，主机（域名）不同</p>
+<h2 id="源的继承"><a href="#源的继承" class="headerlink" title="源的继承"></a>源的继承</h2><p>在页面中通过 about:blank 或 javascript: URL 执行的脚本会继承打开该 URL 的文档的源，因为这些类型的 URLs 没有包含源服务器的相关信息。</p>
+<p>例如，about:blank 通常作为父脚本写入内容的新的空白弹出窗口的 URL（例如，通过  Window.open()  ）。 如果此弹出窗口也包含 JavaScript，则该脚本将从创建它的脚本那里继承对应的源。</p>
+<p>注意：在Gecko 6.0之前，如果用户在位置栏中输入 data URLs，data URLs 将继承当前浏览器窗口中网页的安全上下文。</p>
+<p>data：URLs 获得一个新的，空的安全上下文。</p>
+<h2 id="源的更改"><a href="#源的更改" class="headerlink" title="源的更改"></a>源的更改</h2><p>满足某些限制条件的情况下，页面是可以修改它的源。脚本可以将documet.domain的值设置为其当前域的父域。如果将其设置为当前域的父域，则这个较短的父域将用于后续源检查。<br>例如，假设http://<strong>store.company.com</strong>/dir/other.html文档中的一个脚本执行以下语句：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.domain = <span class="string">'company.com'</span></span><br></pre></td></tr></table></figure>
+<p>这条语句执行以后，页面将会成功地通过与http://<strong>company.com</strong>/dir/page.html的同源检测（假设<a href="http://company.com.dir/page.html将其document设置为“company.com&quot;,已表明它希望允许这样做。然而，company.com" target="_blank" rel="noopener">http://company.com.dir/page.html将其document设置为“company.com&quot;,已表明它希望允许这样做。然而，company.com</a> 不能设置 document.domain 为 othercompany.com，因为它不是 company.com 的父域。</p>
+<h2 id="跨域资源共享"><a href="#跨域资源共享" class="headerlink" title="跨域资源共享"></a>跨域资源共享</h2><p>通过XHR实现Ajax通信的一个主要限制，来源于跨域安全策略。默认情况下，XHR对象只能访问与包含它的页面位于同一个域中的资源。这种安全策略可以预防某些恶意行为。<br>CORS（Cross-Origin Resource Sharing，跨源资源共享），定义了在必须访问跨域资源时，浏览器与服务器应该如何沟通。CORS背后的基本思想，就是使用自定义的HTTP头部让浏览器与服务器进行沟通，从而决定请求或相应应该是成功，还是失败。<br>比如一个简单的使用GET或POST发送的请求，它没有自定义的头部，而主体内容是text/plain。在发送请求时，需要给它附加一个额外的Origin头部，其中包含情感求页面的源信息（协议、域名和端口），以便服务器进行根据这个头部信息来决定是否给予响应。<br>  Origin: <a href="http://www.nczonline.net" target="_blank" rel="noopener">http://www.nczonline.net</a><br>如果服务器认为这个请求可以接受，就在Access-Control-Allow-Origin头部中回发相同的源信息（如果是公共资源，可以回发<strong><em>）<br>  Access-Control-Allow-Origin: <a href="http://www.nczonline.net" target="_blank" rel="noopener">http://www.nczonline.net</a><br>如果没有这个头部，或者有这个头部但源信息不匹配，浏览器就会驳回请求。正常情况下，浏览器会处理请求。*</em></strong>注意，请求和响应都不包含cookie信息。</p>
+<h3 id="IE对CORS的实现"><a href="#IE对CORS的实现" class="headerlink" title="IE对CORS的实现"></a>IE对CORS的实现</h3><p>IE8中引入了XDR（XDomainRequest）类型。这个对象与XHR类似，但能实现安全可靠的跨域通信。XDR对象的安全机制部分实现了W3C的CORS规范。一下是XDR与XHR的一些不同之处。<br>1.cookie不会随请求发送，也不会随响应返回<br>2.只能设置请求头部信息的Content-Type字段<br>3.不能访问响应头部信息<br>4.只支持GET和POST请求。<br>这些变化使CSRF（Cross-Site Request Forgey，跨站点请求伪造）和XSS（Corss-Site Scripting，跨站点脚本）的问题得到了缓解。被请求的资源可以根据它认为合适的任意数据（用户代理、来源页面等）来决定是否设置Access-Control-Allow-Origin头部。作为请求的一部分，Origin头部的值表示请求的来源域，以便远程资源明确地识别XDR请求。<br>XDR对象的使用方法与XHR对象非常相似。也是创建一个XDomainRequest的实例，调用open()方法，再调用send()方法。但与XHR对象的open()方法不同，XDR对象的open()方法只接收两个参数：请求的类型和URL。<br>所有XDR请求都是异步执行的，不能用它来创建同步请求。请求返回后，会触发load事件，响应的数据也会保存在reponseText属性中</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xdr = <span class="keyword">new</span> XDomainRequest()</span><br><span class="line">xdr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(xdr.responseText)</span><br><span class="line">&#125;</span><br><span class="line">xdr.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'error'</span>)</span><br><span class="line">&#125;</span><br><span class="line">xdr.open(<span class="string">'get'</span>, <span class="string">'http://www.somewhere-else.com/page/'</span>)</span><br><span class="line">xdr.send(<span class="literal">null</span>)</span><br></pre></td></tr></table></figure>
+<p>在请求返回前调用abort()方法可以终止请求：<br>xdr.abort()   //终止请求</p>
+<p>与XHR一样XDR对象也支持timeout属性以及ontimeout事件处理程序。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xdr = <span class="keyword">new</span> XDomainRequest()</span><br><span class="line">xdr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(xdr.responseText)</span><br><span class="line">&#125;</span><br><span class="line">xdr.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'error'</span>)</span><br><span class="line">&#125;</span><br><span class="line">xdr.timeout = <span class="number">1000</span>;</span><br><span class="line">xdr.ontimeout = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'timeout'</span>)</span><br><span class="line">&#125;</span><br><span class="line">xdr.open(<span class="string">'get'</span>,<span class="string">'url'</span>)</span><br><span class="line">xdr.send(<span class="literal">null</span>)</span><br></pre></td></tr></table></figure>
+<p>为支持POST请求，XDR对象提供了contentType属性，用来表示发送数据的格式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xdr = <span class="keyword">new</span> XDomainRequest()</span><br><span class="line">xdr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(xdr.responseText)</span><br><span class="line">&#125;</span><br><span class="line">xdr.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'error'</span>)</span><br><span class="line">&#125;</span><br><span class="line">xdr.timeout = <span class="number">1000</span>;</span><br><span class="line">xdr.ontimeout = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'timeout'</span>)</span><br><span class="line">&#125;</span><br><span class="line">xdr.open(<span class="string">'post'</span>,<span class="string">'url'</span>)</span><br><span class="line">xdr.contentType = <span class="string">'application/x-www-form-urlencoded'</span></span><br><span class="line">xdr.send(<span class="literal">null</span>)</span><br></pre></td></tr></table></figure>
+<p>这个属性是通过XDR对象影响头部信息的唯一方式</p>
+<h3 id="其他浏览器对CORS的实现"><a href="#其他浏览器对CORS的实现" class="headerlink" title="其他浏览器对CORS的实现"></a>其他浏览器对CORS的实现</h3><p>其他浏览器都通过XMLHttpRequest对象实现了对CORS的原生支持。在尝试打开不同来源的资源时，无需额外编写代码就可以触发这个行为。要请求位于另一个域中的资源，使用标准的XHR对象并在open()方法中传入绝对URL即可</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = createXHR()</span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(xhr.readyState == <span class="number">4</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (xhr.status &gt;= <span class="number">200</span> &amp;&amp; xhr.status &lt; <span class="number">300</span> || xhr.status == <span class="number">304</span>) &#123;</span><br><span class="line">            alert(xhr.responseText)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            alert(<span class="string">'error'</span> + xhr.status)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">xhr.open(<span class="string">'get'</span>, <span class="string">'http://www.somewhere-else.com/page/'</span>, <span class="literal">true</span>)</span><br><span class="line">xhr.send(<span class="literal">null</span>)</span><br></pre></td></tr></table></figure>
+<p>由于无论同源请求还是跨源请求都使用相同的接口，因此对于本地资源，最好使用相对URL，在访问远程资源时再使用绝对URL。这样做能消除歧义，避免出现限制访问头部或本地cookie信息等问题。</p>
+<h3 id="Preflighted-Requests"><a href="#Preflighted-Requests" class="headerlink" title="Preflighted Requests"></a>Preflighted Requests</h3><p>CORS通过一种叫做Prefilghed Request的透明服务器验证机制支持开发人员使用自定义的头部、GET或POST之外的方法，以及不同类型的主体内容。在使用下列高级选项来发送请求时，就会像服务器发送一个Preflight请求。这种请求使用OPTIONS方法，发送下列头部。<br>1.Origin：与简单的请求相同<br>2.Access-Control-Request-Method：请求自身使用的方法。<br>3.Access-Control-Request-Headers：（可选）自定义的头部信息，多个头部以逗号分隔。<br>以下是一个带有自定义头部NCZ的使用POST方法发送的请求。<br>Origin: <a href="http://www.nczonline.net" target="_blank" rel="noopener">http://www.nczonline.net</a><br>Access-Control-Request-Method: POST<br>Access-Control-Request-Headers: NCZ<br>发送这个请求后，服务器可以决定是否允许这种类型的请求。服务器通过在响应中发送如下头部与浏览器进行沟通。<br>1.Access-Control-Allow-Origin：与简单的请求相同。<br>2.Access-Control-Allow-Methods：允许的方法，多个方法以逗号分隔<br>3.Access-Control-Allow-Headers：允许的头部，多个头部以逗号分隔<br>4.Access-Control-Max-Age：应该讲这个Preflight请求缓存多长时间</p>
+<p>例如：<br>Access-Control-Allow-Origin: <a href="http://www.nczonline.net" target="_blank" rel="noopener">http://www.nczonline.net</a><br>Access-Control-Allow-Methods: POST, GET<br>Access-Control-Allow-Headers: NCZ<br>Access-Control-Max-Age: 172800<br>Preflight请求结束后，结果将按照响应中指定的时间缓存起来</p>
+<h3 id="带凭据的请求"><a href="#带凭据的请求" class="headerlink" title="带凭据的请求"></a>带凭据的请求</h3><p>默认情况下，跨域请求不提供凭据（cookie、HTTP认证及客户端SSL证明等）。通过将withCredentials属性设置为true，可以指定某个请求应该发送凭据。如果服务器接收带凭据的请求，就会用下面的HTTP头部来响应。<br>Access-Control-Allow-Credentials: true<br>如果发送的是带凭据的请求，单服务器的响应中没有包含这个头部，那么浏览器就不会把响应交给JavaScript（于是，responseText中将是空字符串，status的值为0，而且会调用onerror()事件处理程序）。另外服务器还可以在Preflight响应中发送这个HTTP头部，表示允许源发送带凭据的请求。</p>
+<h2 id="其他跨域技术"><a href="#其他跨域技术" class="headerlink" title="其他跨域技术"></a>其他跨域技术</h2><p>在CORS出现以前，要实现跨域Ajax通信破费一些周折。开发人员想出了一些办法，利用DOM中能够执行跨域请求的功能，在不依赖XHR对象的情况下也能发送某种请求。虽然CORS技术已经无处不在，但开发人员自己发明的技术仍然被广泛使用，因为不需要修改服务器端代码。</p>
+<h3 id="子域和父域跨域"><a href="#子域和父域跨域" class="headerlink" title="子域和父域跨域"></a>子域和父域跨域</h3><p>修改脚本的documet.domain为同一域名实现跨域（必须在同一父域下）。</p>
+<h3 id="图像Ping"><a href="#图像Ping" class="headerlink" title="图像Ping"></a>图像Ping</h3><p>上述第一种跨域请求技术是使用<img>标签。一个网页可以从任何网页中加载图像，不用担心跨域不跨域。这也是在线广告跟踪浏览量的主要方式。也可以动态地创建图像，使用它们的onload和onerror事件处理程序来确定是否接收到了响应。<br>动态创建图像经常用于图像Ping。图像Ping是服务器进行简单、单向的跨域通信的一种方式。请求的数据是通过查询字符形式发送的，而响应可以是任意内容，但通常是像素图或204响应。通过图像Ping，浏览器得不到任何具体的数据，但通过真挺load和error事件，能知道响应是什么时候接收到的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> img = <span class="keyword">new</span> Image()</span><br><span class="line">img.onload = img.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'done'</span>)</span><br><span class="line">&#125;</span><br><span class="line">img.src = <span class="string">'http://www.example.com/test?name=Nicholas"</span></span><br></pre></td></tr></table></figure>
+<p>这里创建了一个Image的实例，然后将onload和onerror事件吹程序指定为同一个函数。这样无论是什么响应，只要请求完成，就能得到通知。**请求从设置src属性那一刻开始，而这个例子在啊请求中发送了一个name参数。<br>图像Ping最常用于跟踪用户点击页面活动太广告曝光次数。图像Ping有两个主要的缺点，一是只能发送GET请求，二是无法访问服务器的响应文本。因此图像Ping只能用于浏览器与服务器之间额单向通信。</p>
+<h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><p>JSONP是JSON with padding（填充式JSON或参数式JSON）的简写，是应用JSON的一种新方法，再后来的Web服务中非常流行。JSONP看起来与JSON差不多，只不过是包含在函数调用中的JSON就像下面这样。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">callback(&#123;<span class="string">'name'</span>: <span class="string">'Nicholas'</span>&#125;)</span><br></pre></td></tr></table></figure>
+<p>JSONP由两部分组成：回调函数和数据。回调函数是当响应到来时应该在页面中调用的函数。回调函数的名字一般是在请求中指定的。而数据就是传入回调函数中的JSON数据。下面是一个典型的JSONP请求<br><a href="http://freegeoip.net/json/?callback=handleResponse" target="_blank" rel="noopener">http://freegeoip.net/json/?callback=handleResponse</a><br>这个URL是在请求一个JSONP地理定位服务。通过查询字符串来指定JSONP服务的回调函数，就像上面的URL所示，这里指定的回调函数的名字叫handlerResponse()<br>JSONP是通过动态script标签来使用，使用时可以为src属性指定一个跨域URL。这里的script元素与img元素类似，都有能力不受限制的从其他域中加载资源。因为JSONP是有效的JavaScript代码，所以在请求完成后，即在JSONP响应加载到页面中以后，就会立即执行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleResponse</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'you are at ip address'</span> + response.ip + <span class="string">'which is in'</span> resoponse.city + <span class="string">','</span> + response.region_name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>)</span><br><span class="line">script.src = <span class="string">'http://freegeoip.net/json/?callback=handleResponse'</span></span><br><span class="line"><span class="built_in">document</span>.body.insertBefore(script, documetn.body.firstChild)</span><br></pre></td></tr></table></figure>
+<p>这个例子通过查询地理定位服务来显示IP地址和位置信息。<br>JSONP之所以在开发人员中极为流行，只要原因是它非常简单易用。与图像Ping相比，它的优点在于能够直接访问响应文本，支持在浏览器与服务器之间双向通信。不过，JSONP也有两点不足。<br>首先，JSONP是从其他域中加载代码执行。如果其他域不安全，很可能会在响应夹带一些恶意代码，而此时除了完全放弃JSONP调用之外，没有办法追究。<br>其次要确定JSONP请求是否失败并不容易。虽然HTML5给‘script’元素新增了一个onerror事件处理程序，但目前还没有得到任何浏览器支持。为此，开发人员不得不使用计时器检测指定时间内是否接收到了响应。但就算这样也不能尽如人意，毕竟不是每个用户上网的速度和带宽都一样。</p>
+<h3 id="Comet"><a href="#Comet" class="headerlink" title="Comet"></a>Comet</h3><p>Comet值得是一种更高级的Ajax技术（经常也有人称为‘服务器推送’）。Ajax是一种从页面向服务器请求数据的技术，而Comet则是一种服务器向页面推送数据的技术。Comet能够让信息近乎实时地被推送到页面上，非常适合处理体育比赛的分数和股票报价。<br>有两种实现Comet的方式：长轮询和流。长轮询是传统轮询（也称短轮询）的一个翻版，即浏览器定时向服务器发送请求，看有没有更新的数据。<br>长轮询把短轮询颠倒了一下。页面发起一个到服务器的请求，然后服务器一直保持连接打开，直到有数据可以发送。发送完数据时候，浏览器关闭连接，随即又发起一个到服务器的新请求。<br>无论长轮询还是短轮询，浏览器都要在接收数据之前，先发起对服务器的链接。两者最大的区别在于服务器如何发送数据。短轮询是服务器立即发送响应，无论数据是否有效，而长轮询则是等待发送响应。轮询的优势是所有浏览器都支持，因为使用XHR对象和setTimeout()就能实现。<br>第二种流行的Comet实现是HTTP流。流不同于上述两种轮询方式，因为它在页面的整个生命周期内只是用一个HTTP链接。具体来说就是浏览器向服务器发送一个请求，而服务器保持链接打开，然后周期性的向浏览器发送数据。<br>在Firefox和Chorme中，通过侦听readystatechange事件及readyState的值是否为3，就可以利用XHR对象实现HTTP流。在上述这些浏览器中，随着不断从服务器接收数据，readyState的值会周期性地变为3.dangreadyState值变为3时，responseText属性中就会保存接收到的所有数据。此时，就需要比较此前接收到的数据，决定从什么位置开始取得最新的数据。使用XHR对象实现HTTP流的典型代码如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createStreamingClinet</span>(<span class="params">url, progress, finished</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">    <span class="keyword">var</span> received = <span class="number">0</span>;</span><br><span class="line">    xhr.open(<span class="string">'get'</span>, url, <span class="literal">true</span>)</span><br><span class="line">    xrh.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> result;</span><br><span class="line">        <span class="keyword">if</span> (xhr.readyState == <span class="number">3</span>) &#123;</span><br><span class="line">            result = xhr.responseText.substring(received)</span><br><span class="line">            received +=result.length</span><br><span class="line">            progress(result)</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span>) &#123;</span><br><span class="line">            finished(xhr.responseText)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    xhr.send(<span class="literal">null</span>)</span><br><span class="line">    <span class="keyword">return</span> xhr</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> client = creatStreamingClient(<span class="string">'streaming.php'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'Received: '</span> + data)</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'done'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这个createStreamingClient()函数接收三个参数：要连接的URL、在接收到数据时调用的函数。有时候，当连接关闭时，很有可能需要重新建立，所以关注连接，所以关注连接什么时候关闭还是有必要的。<br>只要readystatechange事件发生，而且readyState值为3，就对responseText进行分割以取得最新数据。这里的received变量用于记录已经处理了多少个字符，每次readyState值为3时都递增。然后，通过process回调函数来处理传入的新数据。而当readyState值为4时则执行finished回调函数，传入响应返回的全部内容。</p>
+<h3 id="服务器发送事件"><a href="#服务器发送事件" class="headerlink" title="服务器发送事件"></a>服务器发送事件</h3><p>SSE（Serve-Sent Events，服务器发送事件）是围绕只读Comet交互推出的API或者模式。SSEAPI用于创建到服务器的单向连接，服务器通过这个链接可以发送任意数量的数据。服务器响应的MIME类型必须是text/event-stream,而且是浏览器中的JavaScript API能解析格式输出。SSE支持短轮询、长轮询和HTTP流，而且能在断开连接时自动确定合适重新连接。有了这么简单实用的API，再实现Comet就容易多了。</p>
+<p>1.SSE API<br>SSE的JavaScript API与其他传递消息的JavaScript API很相似。要预定新的事件流，首先要创建一个新的EventSource对象，并传进一个入口点：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> source = <span class="keyword">new</span> EVENTSource(<span class="string">'myevents.php'</span>)</span><br></pre></td></tr></table></figure>
+<p>注意，传入的URL必须与创建对象的页面同源（相同的URL模式、域以及端口）。EventSource的实例有一个readyState属性，值为0表示正连接到服务器，值为1表示打开了连接，值为2表示关闭了连接。<br>另外，还有以下三个事件。<br>1.open：在建立连接时触发<br>2.message：在从服务器接收到新事件时触发。<br>3.error：在无法建立连接时触发。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data = event.data</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>服务器发回的数据以字符串形式保存在event.data中。默认情况下，eventsource对象会保持与服务器的活动连接。如果连接断开，还会重新连接。这就意味着SSE社和长轮询和HTTP流。如果想强制立即断开连接并且不再重新连接，可以调用close()方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source.close()</span><br></pre></td></tr></table></figure>
+
+<p>2.事件流<br>所谓的服务器事件会通过一个持久的HTTP响应发送，这个响应的MIME类型为text/event-stream。响应的格式是纯文本，最简单的情况是每个数据项都带有前缀data：，例如<br>data: foo</p>
+<p>data: bar</p>
+<p>data: foo<br>data: bar<br>对于以上响应，事件流中的第一个message事件返回的event.data值为foo，第二个message事件返回的event.data值为bar，第三个message事件返回的event.data值为foo\nbar。对于多个连续的以data:开头的数据行，将作为多端数据解析，每个值之间以一个换行符分隔。只有在包含data:的数据行后面有空行时，才会触发message事件，因此在服务器上生成事件流时不能忘了多添加这一行。<br>通过id:前缀可以给特定的事件指定一个关联的ID，这个ID行位于data:行前面或后面<br>data: foo<br>id: 1<br>设置了ID后，EventSource对象上会跟踪上一次触发的事件。如果连接断开，会向服务器发送一个包含名为Last-Event-ID的特殊HTTP头部的请求，以便服务器知道下次该触发哪个事件。再多次连接的事件流中，这种机制可以确保浏览器以正确的顺序接收到连接的数据段。</p>
+<h3 id="Web-Sockets"><a href="#Web-Sockets" class="headerlink" title="Web Sockets"></a>Web Sockets</h3><p>Web Sockets的目标是在一个单独的持久连接上提供全双工、双向通信。在JavaScript中创建了Web Socket之后，会有一个HTTP请求发送到浏览器以发起连接。在取得服务器响应之后，建立的链接会使用HTTP升级从HTTP协议交换为Web Socket协议，就是说，使用标准的HTTP服务器无法实现Web Sockets，只有支持这种协议的专门服务器才能正常工作。<br>由于Web Sockets使用了自定义的协议，所以URL模式也略有不同。未加密的链接不再是http://,而是ws://。加密的链接也不是https://,而是wss://。在使用Web Socket URL时，必须带着这个模式，因为将来还有可能支持其他模式。<br>使用自定义协议而非HTTP协议的好处是，能够在客户端和服务器之间发送非常少量的数据，而不必担心HTTP那样的字节级的开销。由于传递的数据包很小，因此Web Sockets非常适合移动应用。毕竟对移动应用而言，带宽和网络延迟都是关键问题。使用自定义协议的缺点在于，指定协议的时间比指定JavaScript API的时间还要长。</p>
+<p>1.Web Sockets API<br>要创建Web Socket，先实例化一个WebSocket对象并传入要连接的URL</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> socket = <span class="keyword">new</span> WebSocket(<span class="string">'ws://www.example.com/server.php'</span>)</span><br></pre></td></tr></table></figure>
+<p>注意必须给WebSocket构造函数传入绝对URL。同源策略对Web Sockets不适用，因此可以通过它打开到任何站点的链接。至于是否会与某个域中的页面通信，则完全取决于服务器。（通过握手信息就可以知道请求来自何方）</p>
+<p>实例化了WebSocket对象后，浏览器就会马上尝试创建连接。与XHR类似，WebSocket也有一个表示当前状态的readyState属性，取值如下：<br>WebSocket.OPENING(0):正在建立连接<br>WebSocket.OPEN(1)：已经建立连接<br>WebSocket.CLOSING(2)：正在关闭连接<br>WebSocket.CLOSE(3)：已经关闭连接</p>
+<p>WebSocket没有readystatechange事件，步步哦有其他事件，对应着不同的状态。readyState的值永远从0开始。<br>要关闭Web Socket连接，可以任何时候调用close()方法。<br>socket.close()<br>调用了close()之后，readyState的值立即变为2（正在关闭），而在关闭连接后就会变为3.</p>
+<p>2.发送和接收数据<br>Web Socket打开之后，就可以通过链接发送和接收数据。要向服务器发送数据，使用send()方法并传入任意字符串</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> socket = <span class="keyword">new</span> WebSocket(<span class="string">'ws://www.example.com/server.php'</span>)</span><br><span class="line">socket.send(<span class="string">'hello world'</span>)</span><br></pre></td></tr></table></figure>
+<p>因为Web Socket只能通过连接发送纯文本数据，所以对于复杂的数据结构，在通过连接发送之前，必须进行序列化。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> message = &#123;</span><br><span class="line">    time: <span class="keyword">new</span> Data(),</span><br><span class="line">    text: <span class="string">'hello world'</span>,</span><br><span class="line">    clientId: <span class="string">'asdfp'</span></span><br><span class="line">&#125;</span><br><span class="line">socket.send(<span class="built_in">JSON</span>.stringify(message))</span><br></pre></td></tr></table></figure>
+<p>接下来，服务器要读取其中的数据，就要解析接收到的JSON字符串。<br>当服务器向客户端发来消息时，WebSocket对象就会触发message事件。这个message事件与掐他产地消息的协议类似，也是吧返回的数据保存在event.data属性中</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">socket.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data = event.data</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>与通过send()发送到服务器的数据一样，event.data中返回的数据也是字符串，需要手工解析。</p>
+<p>3.其他事件<br>WebSocket对象还有其他三个事件，在连接声明追的不同阶段触发<br>open：在成功建立连接时触发<br>error：在发生错误时触发，连接不能持续<br>close：在连接关闭时触发。<br>WevScket对象不支持DOM2级事件侦听器，因此必须使用DOM0级语法分别定义每个事件处理程序</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> socket = <span class="keyword">new</span> WebSocket(<span class="string">'wsurl'</span>)</span><br><span class="line">socket.onopen = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'connect on'</span>)</span><br><span class="line">&#125;</span><br><span class="line">socket.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'error'</span>)</span><br><span class="line">&#125;</span><br><span class="line">socket.onclose = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'close'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="vue开发模式和生产模式下跨域"><a href="#vue开发模式和生产模式下跨域" class="headerlink" title="vue开发模式和生产模式下跨域"></a>vue开发模式和生产模式下跨域</h3><p>开发模式<br>找到并打开config文件夹下的index.js,做如下配置proxyTable：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">proxyTable: &#123;</span><br><span class="line">  <span class="string">'/api'</span>: &#123;</span><br><span class="line">    target: <span class="string">'http://xxxxxxxx.com/api'</span>,</span><br><span class="line">    changeOrigin: <span class="literal">true</span>,</span><br><span class="line">    pathRewrite: &#123;</span><br><span class="line">      <span class="string">'^/api'</span>: <span class="string">'/api'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//说明配置中的target后面内容为后端人员提供的数据接口。</span></span><br><span class="line"><span class="comment">//原理就是类似vpn做了一个中转，Node替你去接口请求数据而已</span></span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line"><span class="keyword">this</span>.$http.get(<span class="string">'/api/login'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>生产模式<br>将项目部署到nginx服务器，利用nginx做反向代理进行跨域，只需配置nginx文件<br>参考链接 <a href="https://www.cnblogs.com/web-record/p/9467258.html" target="_blank" rel="noopener">https://www.cnblogs.com/web-record/p/9467258.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/26/%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/" data-id="ck9gev022000c4cr97km21zwy" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/26/%E4%BA%8B%E4%BB%B6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          事件
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/26/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">防抖与节流</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/26/%E4%BA%8B%E4%BB%B6/">事件</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/">跨域资源共享</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">防抖与节流</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0/">定位元素</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/">迭代器和生成器</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

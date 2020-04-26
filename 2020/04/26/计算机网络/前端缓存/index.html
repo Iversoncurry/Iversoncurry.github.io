@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>计算机网络/前端缓存 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="缓存分类分类前端缓存分为浏览器缓存和http缓存浏览器缓存包括cookie，session，localstorage，sessionstorage，indexDB，service worker。 http缓存包括强制缓存和协商缓存 http缓存通过Expires或Cache-Control（优先级更高）控制Expires为绝对值，由于客户端和服务端时间可能不一致出错。Cache-Control可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络&#x2F;前端缓存">
+<meta property="og:url" content="http://yoursite.com/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="缓存分类分类前端缓存分为浏览器缓存和http缓存浏览器缓存包括cookie，session，localstorage，sessionstorage，indexDB，service worker。 http缓存包括强制缓存和协商缓存 http缓存通过Expires或Cache-Control（优先级更高）控制Expires为绝对值，由于客户端和服务端时间可能不一致出错。Cache-Control可以">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-26T02:04:36.456Z">
+<meta property="article:modified_time" content="2020-04-19T08:39:54.843Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-计算机网络/前端缓存" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98/" class="article-date">
+  <time datetime="2020-04-26T02:04:36.456Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      计算机网络/前端缓存
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="缓存分类分类"><a href="#缓存分类分类" class="headerlink" title="缓存分类分类"></a>缓存分类分类</h1><p>前端缓存分为浏览器缓存和http缓存<br>浏览器缓存包括cookie，session，localstorage，sessionstorage，indexDB，service worker。</p>
+<p>http缓存包括强制缓存和协商缓存</p>
+<h2 id="http缓存"><a href="#http缓存" class="headerlink" title="http缓存"></a>http缓存</h2><p>通过Expires或Cache-Control（优先级更高）控制<br>Expires为绝对值，由于客户端和服务端时间可能不一致出错。<br>Cache-Control可以的取值有：<br>public：所有内容都将被缓存（客户端和代理服务器都可缓存）<br>private：所有内容只有客户端可以缓存，Cache-Control的默认取值<br>no-cache：客户端缓存内容，但是是否使用缓存则需要经过协商缓存来验证决定<br>no-store：所有内容都不会被缓存，即不使用强制缓存，也不使用协商缓存<br>max-age=xxx (xxx is numeric)：缓存内容将在xxx秒后失效</p>
+<p>当Expires或max-age不超时时，将使用强制缓存，即从本地内存或硬盘中获取数据。<br>当max-age超时，会向服务端发送含有If-None-Match字段的请求头，其值为初次请求的响应头包含的Etag（或者If-Modified-Since字段的请求头，其值为初次向服务端请求时<strong>响应头</strong>包含的Last-Modified字段，其优先级叫Etag/if-None-Match字段低），如果数据没有改变，则响应的编码为304，使用本地缓存数据，否则由服务器返回更新后的数据。</p>
+<p> 总结：强制缓存优先于协商缓存进行，若强制缓存(Expires和Cache-Control)生效则直接使用缓存，若不生效则进行协商缓存(Last-Modified / If-Modified-Since和Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若协商缓存失效，那么代表该请求的缓存失效，重新获取请求结果，再存入浏览器缓存中；生效则返回304，继续使用缓存</p>
+<!-- 缓存小结（包含severice worker）
+当浏览器要请求资源时
+
+调用 Service Worker 的 fetch 事件响应
+查看 memory cache
+查看 disk cache。这里又细分：
+如果有强制缓存且未失效，则使用强制缓存，不请求服务器。这时的状态码全部是 200
+如果有强制缓存但已失效，使用对比缓存，比较后确定 304 还是 200
+发送网络请求，等待网络响应
+把响应内容存入 disk cache (如果 HTTP 头信息配置可以存的话)
+把响应内容 的引用 存入 memory cache (无视 HTTP 头信息的配置)
+把响应内容存入 Service Worker 的 Cache Storage (如果 Service Worker 的脚本调用了 cache.put()) -->
+
+<h3 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a>浏览器缓存</h3><h2 id="localStorage-和-sessionStorage"><a href="#localStorage-和-sessionStorage" class="headerlink" title="localStorage 和 sessionStorage"></a>localStorage 和 sessionStorage</h2><p>客户端存储数据的两个对象为：</p>
+<p>localStorage - 用于长久保存整个网站的数据，保存的数据没有过期时间，直到手动去除。<br>sessionStorage - 用于临时保存同一窗口(或标签页)的数据，在关闭窗口或标签页之后将会删除这些数据。<br>在使用 web 存储前,应检查浏览器是否支持 localStorage 和sessionStorage:</p>
+<p>if(typeof(Storage)!==”undefined”)<br>{<br>    // 是的! 支持 localStorage  sessionStorage 对象!<br>    // 一些代码…..<br>} else {<br>    // 抱歉! 不支持 web 存储。<br>}</p>
+<h3 id="localStorage-对象"><a href="#localStorage-对象" class="headerlink" title="localStorage 对象"></a>localStorage 对象</h3><p>localStorage 对象存储的数据没有时间限制。第二天、第二周或下一年之后，数据依然可用。</p>
+<p>实例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">localStorage.sitename=<span class="string">"菜鸟教程"</span>;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML=<span class="string">"网站名："</span> + localStorage.sitename;</span><br></pre></td></tr></table></figure>
+<p>实例解析：</p>
+<p>使用 key=”sitename” 和 value=”菜鸟教程” 创建一个 localStorage 键/值对。<br>检索键值为”sitename” 的值然后将数据插入 id=”result”的元素中。<br>以上实例也可以这么写：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 存储</span></span><br><span class="line">localStorage.sitename = <span class="string">"菜鸟教程"</span>;</span><br><span class="line"><span class="comment">// 查找</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML = localStorage.sitename;</span><br></pre></td></tr></table></figure>
+<p>移除 localStorage 中的 “sitename” :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localStorage.removeItem(<span class="string">"sitename"</span>);</span><br></pre></td></tr></table></figure>
+<p>不管是 localStorage，还是 sessionStorage，可使用的API都相同，常用的有如下几个（以localStorage为例）：</p>
+<p>保存数据：localStorage.setItem(key,value);<br>读取数据：localStorage.getItem(key);<br>删除单个数据：localStorage.removeItem(key);<br>删除所有数据：localStorage.clear();<br>得到某个索引的key：localStorage.key(index);<br>提示: 键/值对通常以字符串存储，你可以按自己的需要转换该格式。</p>
+<p>下面的实例展示了用户点击按钮的次数。</p>
+<p>代码中的字符串值转换为数字类型:</p>
+<p>实例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (localStorage.clickcount)</span><br><span class="line">&#123;</span><br><span class="line">    localStorage.clickcount=<span class="built_in">Number</span>(localStorage.clickcount)+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    localStorage.clickcount=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML=<span class="string">" 你已经点击了按钮 "</span> + localStorage.clickcount + <span class="string">" 次 "</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="sessionStorage-对象"><a href="#sessionStorage-对象" class="headerlink" title="sessionStorage 对象"></a>sessionStorage 对象</h3><p>sessionStorage 方法针对一个 session 进行数据存储。当用户关闭浏览器窗口后，数据会被删除。</p>
+<p>如何创建并访问一个 sessionStorage：</p>
+<p>实例<br>if (sessionStorage.clickcount)<br>{<br>    sessionStorage.clickcount=Number(sessionStorage.clickcount)+1;<br>}<br>else<br>{<br>    sessionStorage.clickcount=1;<br>}<br>document.getElementById(“result”).innerHTML=”在这个会话中你已经点击了该按钮 “ + sessionStorage.clickcount + “ 次 “;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98/" data-id="ck9gev02j000i4cr9c6215oph" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/26/Ajax%E4%B8%8EComet/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Ajax与Comet
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP%E5%8D%8F%E8%AE%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">计算机网络/TCP协议</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/26/%E4%BA%8B%E4%BB%B6/">事件</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/">跨域资源共享</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">防抖与节流</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0/">定位元素</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/">迭代器和生成器</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
