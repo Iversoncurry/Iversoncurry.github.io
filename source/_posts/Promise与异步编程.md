@@ -80,6 +80,7 @@ method1(function(err, result) {
 let promise = readFile('example.txt')
 ```
 在此代码中，readFile()实际上并未立即开始读取文件，这将会在稍后发生。此函数反而会返回一个Promise对象仪表室异步读取操作，因此可以在奖励啊再操作它。能对结果进行操作的确切时刻，完全取决于Promise的声明周期是如何进行的。
+
 ### Promise的声明周期
 每个Promise都会经历一个短暂的声明周期，出事为挂起态（pending state)，这表示异步操作尚未结束。一个挂起的Promise也被认为是未决的（unsettled）。上个例子中的Promise在readFile()函数返回它的时候就是出于挂起态。一旦异步操作结束，Promise就会被认为是已决的（settled），并进入两种可能状态之一。
 1.已完成（fulfilled）：Promise的异步操作已成功结束；
@@ -264,6 +265,112 @@ value 参数不是 42 ，而是原先处于拒绝态的 Promise 。也就是说�
 总结：对挂起态或完成态的 Promise 使用 Promise.resolve() 没问题，会返回原
 Promise ；对拒绝态的 Promise 使用 Promise.reject() 也没问题。而除此之外的情况全
 都会在原 Promise 上包装出一个新的 Promise 。
+**实际测试**
+```js
+function testFunction() {
+	return new Promise(function(resolve, reject) {
+		if (1 === '1') {            //写的有点别扭
+			reject(0)
+		}
+		resolve(1)
+	})
+}
+
+let promiseResol = Promise.resolve(11)
+let promiseRej = Promise.resolve(12)
+
+let promise = testFunction()
+
+let returnP = Promise.resolve(promise)
+let returnPRej = Promise.reject(promise)
+let returnP1 = Promise.resolve(promiseResol)
+let returnPRej1 = Promise.reject(promiseResol)
+let returnP2 = Promise.resolve(promiseRej)
+let returnPRej2 = Promise.reject(promiseRej)
+
+returnP.then(val => {
+	console.log('returnPthen' + val)    //returnPthen1
+})
+.catch(val => {
+	console.log('returnPcatch' + val)
+})
+
+returnPRej.then(val => {
+	console.log('returnPRejthen' + val)
+})
+.catch(val => {
+	console.log('returnPRejcatch' + val)         ////returnPRejcatch[object Promise]
+	val.then(val => {
+		console.log('then' + val)                //then1
+	})
+	.catch(val => {
+		console.log('catch' + val)
+	})
+})
+
+returnP1.then(val => {
+	console.log('returnP1then' + val)        //returnP1then11
+})
+.catch(val => {
+	console.log('returnP1catch' + val)
+})
+
+returnPRej1.then(val => {
+	console.log('returnPRej1then' + val)       
+	val.then(val => {
+		console.log('then' + val)
+	})
+	.catch(val => {
+		console.log('catch' + val)
+	})
+})
+.catch(val => {
+	console.log('returnPRej1catch' + val)    //returnPRej1catch[object Promise]
+	val.then(val => {
+		console.log('then' + val)            //then11
+	})
+	.catch(val => {
+		console.log('catch' + val)
+	})
+})
+
+returnP2.then(val => {
+	console.log('returnP2then' + val)            //returnP2then12
+})
+.catch(val => {
+	console.log('returnP2catch' + val)
+})
+
+returnPRej2.then(val => {
+	console.log('returnPRej2then' + val)
+	val.then(val => {
+		console.log('then' + val)
+	})
+	.catch(val => {
+		console.log('catch' + val)
+	})
+})
+.catch(val => {
+	console.log('returnPRej2catch' + val)         //returnPRej2catch[object Promise]
+	val.then(val => {
+		console.log('then' + val)                 //then12
+	})
+	.catch(val => {
+		console.log('catch' + val)
+	})
+})
+```
+输出结果
+returnPthen1
+returnP1then11
+returnP2then12
+returnPRejcatch[object Promise]
+returnPRej1catch[object Promise]
+returnPRej2catch[object Promise]
+then1
+then11
+then12
+**当时用Promise.resolve()时，无论输入的promise是什么状态，都会返回promise，并且该promise的状态是已完成，结果是传入的promise的返回（完成或者拒绝），即都通过then返回。当时用Promise.reject()时，不论什么状态，都会在catch中返回一个promise，传入的promise为已决，则结果从该promise的then输出，若传入的promise为未决，则根据promise决议的结果从then或者catch返回。**
 
 非Promise的Thenable
 Promise.resolve()与Promise.reject()都能接受非Promise的thenable作为参数。当传入了非Promise的thenable时，这些方法会创建一个新的Promise，此Promise会在then函数之后被调用。
