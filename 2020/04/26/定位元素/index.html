@@ -28,7 +28,7 @@
 <meta property="og:description" content="这部分介绍盒模型，position和display属性以及如何浮动（float）和清除（clear）元素。以及flex属性。所谓盒模型，就是浏览器为页面中的每个HTML元素生成的矩形盒子。这些盒子都要按照课件版式模型（visual formatting model）在页面上排布。可见的页面版式主要由三个属性控制：position属性、display属性和float属性。其中position属性控制">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-26T02:04:36.845Z">
-<meta property="article:modified_time" content="2020-04-26T03:14:43.528Z">
+<meta property="article:modified_time" content="2020-04-29T07:31:28.975Z">
 <meta property="article:author" content="蚂蚁">
 <meta name="twitter:card" content="summary">
 
@@ -172,10 +172,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-04-26 10:04:36 / Modified: 11:14:43" itemprop="dateCreated datePublished" datetime="2020-04-26T10:04:36+08:00">2020-04-26</time>
+              <time title="Created: 2020-04-26 10:04:36" itemprop="dateCreated datePublished" datetime="2020-04-26T10:04:36+08:00">2020-04-26</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-29 15:31:28" itemprop="dateModified" datetime="2020-04-29T15:31:28+08:00">2020-04-29</time>
+              </span>
 
           
 
@@ -196,6 +202,7 @@
 <h3 id="叠加外边距"><a href="#叠加外边距" class="headerlink" title="叠加外边距"></a>叠加外边距</h3><p><strong>垂直方向上的外边距会叠加</strong>，假设有三个段落，前后相接，而且都应用以下规则：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;<span class="attribute">height</span>:<span class="number">50px</span>; <span class="attribute">border</span>:<span class="number">1px</span> solid <span class="number">#000</span>; <span class="attribute">backgroundcolor</span>:<span class="number">#fff</span>; <span class="attribute">margin-top</span>:<span class="number">50px</span>; <span class="attribute">margin-bottom</span>:<span class="number">30px</span>;&#125;</span><br></pre></td></tr></table></figure>
 <p>第一段和第二段之间的实际间距是50px。像这样上下外边距相遇时，就会相互重叠，直至一个外边距碰到另一个元素的边框。<br><strong>注意，叠加的只是垂直外边距，水平外边距不叠加。对于水平相邻的元素，它们的水平间距是相邻外边距之和。</strong></p>
+<p>外边距合并问题：<a href="https://segmentfault.com/a/1190000009519546" target="_blank" rel="noopener">https://segmentfault.com/a/1190000009519546</a></p>
 <h2 id="盒子有多大"><a href="#盒子有多大" class="headerlink" title="盒子有多大"></a>盒子有多大</h2><p>1.没有宽度的盒子<br>所谓没有宽度的盒子就是指没有显示地设置元素的width属性。如果不设置块级元素的width属性，那么这个属性的默认值是auto，结果会让元素的宽度扩展到与父元素同宽。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span> </span><br><span class="line"> <span class="tag">&lt;<span class="name">p</span>&gt;</span>This element's width property is not set…<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;<span class="attribute">font-family</span>:helvetica, arial, sans-serif; <span class="attribute">font-size</span>:<span class="number">1em</span>; <span class="attribute">margin</span>:<span class="number">0px</span>; </span><br><span class="line"><span class="attribute">background-color</span>:<span class="number">#caebff</span>;&#125; </span><br><span class="line"><span class="selector-tag">p</span> &#123;<span class="attribute">margin</span>:<span class="number">0</span>; <span class="attribute">background-color</span>:<span class="number">#fff</span>;&#125;</span><br></pre></td></tr></table></figure>
@@ -221,6 +228,7 @@
 <p>以上规则会让图片浮动到左侧，而让文本绕排到右侧。<br>2.创建分栏<br>在上一部分的基础上创建多栏，只要再用一次float属性，只要给段落设定宽度然后也浮动它即可。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: left; <span class="attribute">margin</span>: <span class="number">0</span>; <span class="attribute">weidth</span>: <span class="number">200px</span>; <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: left;<span class="attribute">margin</span>: <span class="number">0</span> <span class="number">4px</span> <span class="number">4px</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><em>这样同时浮动图片和“有宽度的”段落，会导致段落的文本绕排效果消失，而浮动的段落也会尽可能向左向上移动。就这样，这个段落就构成了紧挨着图片的一栏。这就是使用 float 属性创建多栏布局的原理。换句话说，如果几个相邻的元素都具有设定的宽度，都是浮动的，而且水平空间也足以容纳它们，它们就会并列排在一行。</em></p>
+<p>float脱离了normal flow但没脱离text flow<br>参考理解 <a href="https://www.zhihu.com/question/21911352" target="_blank" rel="noopener">https://www.zhihu.com/question/21911352</a></p>
 <h4 id="围住浮动元素的三种方法"><a href="#围住浮动元素的三种方法" class="headerlink" title="围住浮动元素的三种方法"></a>围住浮动元素的三种方法</h4><p>浮动元素脱离了文档流，其父元素也看不到它，因而也不会包围它。这种情况有时候并非我们想要的。<br>为了演示浮动元素的行为，这种行为对布局会产生什么影响，以及解决这个问题的三种方法，我们首先要从一张带标题的图片开始。图片和标签包含在一个 section元素中，而 section 元素后面跟着一个 footer 元素。可以把这个 footer 元素想象成很多网页底部都会有的与页面同宽的页脚。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">section</span>&gt;</span> </span><br><span class="line"> <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"images/rubber_duck2.jpg"</span>&gt;</span> </span><br><span class="line"> <span class="tag">&lt;<span class="name">p</span>&gt;</span>It's fun to float.<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span>&gt;</span> Here is the footer element that runs across the bottom of the </span><br><span class="line">page.<span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">section</span> &#123;<span class="attribute">border</span>:<span class="number">1px</span> solid blue; <span class="attribute">margin</span>:<span class="number">0</span> <span class="number">0</span> <span class="number">10px</span> <span class="number">0</span>;&#125;</span><br><span class="line">p &#123;margin 0;&#125;</span><br><span class="line"><span class="selector-tag">footer</span> &#123;<span class="attribute">border</span>:<span class="number">1px</span> solid red;&#125;</span><br></pre></td></tr></table></figure>
@@ -423,7 +431,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -432,7 +440,7 @@
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
