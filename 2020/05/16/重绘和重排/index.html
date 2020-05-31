@@ -5,25 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Iversoncurry.github.io/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Iversoncurry.github.io/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Iversoncurry.github.io/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/Iversoncurry.github.io/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/Blog/css/main.css">
+<link rel="stylesheet" href="/Iversoncurry.github.io/css/main.css">
 
 
-<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/Iversoncurry.github.io/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"gitee.com","root":"/Blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"github.com","root":"/Iversoncurry.github.io/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="重排 &amp; 重绘简单的说，重排负责元素的几何属性更新，重绘负责元素的样式更新。而且，重排必然带来重绘，但是重绘未必带来重排。比如，改变某个元素的背景，这个就不涉及元素的几何属性，所以只发生重绘。重绘占用的性能要小于重排 重绘触发机制重绘是指一个元素外观的改变所触发的浏览器行为，浏览器会根据元素的新属性重新绘制，使元素呈现新的外观。触发重绘的条件：改变元素外观属性。如：color，backgr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="重绘和重排">
-<meta property="og:url" content="https://gitee.com/iversoncurry/Blog.git/2020/05/16/%E9%87%8D%E7%BB%98%E5%92%8C%E9%87%8D%E6%8E%92/index.html">
+<meta property="og:url" content="https://github.com/Iversoncurry/Iversoncurry.github.io.git/2020/05/16/%E9%87%8D%E7%BB%98%E5%92%8C%E9%87%8D%E6%8E%92/index.html">
 <meta property="og:site_name" content="蚂蚁的博客">
 <meta property="og:description" content="重排 &amp; 重绘简单的说，重排负责元素的几何属性更新，重绘负责元素的样式更新。而且，重排必然带来重绘，但是重绘未必带来重排。比如，改变某个元素的背景，这个就不涉及元素的几何属性，所以只发生重绘。重绘占用的性能要小于重排 重绘触发机制重绘是指一个元素外观的改变所触发的浏览器行为，浏览器会根据元素的新属性重新绘制，使元素呈现新的外观。触发重绘的条件：改变元素外观属性。如：color，backgr">
 <meta property="og:locale" content="en_US">
@@ -32,7 +32,7 @@
 <meta property="article:author" content="蚂蚁">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://gitee.com/iversoncurry/Blog.git/2020/05/16/%E9%87%8D%E7%BB%98%E5%92%8C%E9%87%8D%E6%8E%92/">
+<link rel="canonical" href="https://github.com/Iversoncurry/Iversoncurry.github.io.git/2020/05/16/%E9%87%8D%E7%BB%98%E5%92%8C%E9%87%8D%E6%8E%92/">
 
 
 <script id="page-configurations">
@@ -94,7 +94,7 @@
 
   <div class="site-meta">
 
-    <a href="/Blog/" class="brand" rel="start">
+    <a href="/Iversoncurry.github.io/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <h1 class="site-title">蚂蚁的博客</h1>
       <span class="logo-line-after"><i></i></span>
@@ -114,12 +114,12 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+    <a href="/Iversoncurry.github.io/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+    <a href="/Iversoncurry.github.io/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
   </ul>
@@ -150,10 +150,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://gitee.com/iversoncurry/Blog.git/2020/05/16/%E9%87%8D%E7%BB%98%E5%92%8C%E9%87%8D%E6%8E%92/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Iversoncurry/Iversoncurry.github.io.git/2020/05/16/%E9%87%8D%E7%BB%98%E5%92%8C%E9%87%8D%E6%8E%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="image" content="/Iversoncurry.github.io/images/avatar.gif">
       <meta itemprop="name" content="蚂蚁">
       <meta itemprop="description" content="">
     </span>
@@ -261,11 +261,11 @@ visibility: hidden -->
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/Blog/2020/05/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8E%9F%E7%90%86/" rel="prev" title="浏览器原理">
+    <a href="/Iversoncurry.github.io/2020/05/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8E%9F%E7%90%86/" rel="prev" title="浏览器原理">
       <i class="fa fa-chevron-left"></i> 浏览器原理
     </a></div>
       <div class="post-nav-item">
-    <a href="/Blog/2020/05/22/%E5%AF%B9%E4%BA%8E%E4%BA%8C%E5%8F%89%E6%A0%91%E6%93%8D%E4%BD%9C%E7%9A%84%E7%90%86%E8%A7%A3/" rel="next" title="对于二叉树操作的理解">
+    <a href="/Iversoncurry.github.io/2020/05/22/%E5%AF%B9%E4%BA%8E%E4%BA%8C%E5%8F%89%E6%A0%91%E6%93%8D%E4%BD%9C%E7%9A%84%E7%90%86%E8%A7%A3/" rel="next" title="对于二叉树操作的理解">
       对于二叉树操作的理解 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -338,7 +338,7 @@ visibility: hidden -->
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/Blog/archives/">
+          <a href="/Iversoncurry.github.io/archives/">
         
           <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
@@ -399,19 +399,19 @@ visibility: hidden -->
   </div>
 
   
-  <script src="/Blog/lib/anime.min.js"></script>
-  <script src="/Blog/lib/velocity/velocity.min.js"></script>
-  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/Iversoncurry.github.io/lib/anime.min.js"></script>
+  <script src="/Iversoncurry.github.io/lib/velocity/velocity.min.js"></script>
+  <script src="/Iversoncurry.github.io/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/Blog/js/utils.js"></script>
+<script src="/Iversoncurry.github.io/js/utils.js"></script>
 
-<script src="/Blog/js/motion.js"></script>
-
-
-<script src="/Blog/js/schemes/pisces.js"></script>
+<script src="/Iversoncurry.github.io/js/motion.js"></script>
 
 
-<script src="/Blog/js/next-boot.js"></script>
+<script src="/Iversoncurry.github.io/js/schemes/pisces.js"></script>
+
+
+<script src="/Iversoncurry.github.io/js/next-boot.js"></script>
 
 
 
