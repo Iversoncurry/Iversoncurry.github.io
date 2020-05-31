@@ -1,5 +1,6 @@
 ---
 title: BOM相关
+date: 2020-01-08 20:27:08
 tags: JavaScript
 ---
 

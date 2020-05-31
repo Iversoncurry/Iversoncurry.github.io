@@ -1,5 +1,6 @@
 ---
 title: Promise与异步编程
+date: 2020-02-15 20:27:08
 tags: JavaScript
 ---
 

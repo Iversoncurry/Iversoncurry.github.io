@@ -1,5 +1,6 @@
 ---
 title: AMD、CMD、CommonJs和ES6对比
+date: 2020-03-26 20:27:08
 tags: JavaScript
 ---
 

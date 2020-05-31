@@ -7,13 +7,13 @@ tags: JavaScript
 ## 属性
 该元素包含全局属性。
 这里只介绍比较常用的几个
-name： 用于定位嵌入的浏览器上下文的名称。该名称可以用作<a>标签与<form>标签的target属性值，也可以用作<input>标签和<button>标签的formtarget属性值，还可以用作window.open()方法的windowName参数值。
+name： 用于定位嵌入的浏览器上下文的名称。该名称可以用作a标签与form标签的target属性值，也可以用作input标签和button标签的formtarget属性值，还可以用作window.open()方法的windowName参数值。
 
 src：被嵌套的页面的URL地址。使用about:blank值可以嵌入一个遵从同源策略的空白页。
 
 ## 脚本
-内联的框架，就像<frame>元素一样，会被包含在window.frames伪数组中。
-有了DOMHTMLIFrameElement对象，脚本可以通过contentWindow访问内联框架的window对象。contentDocument属性则引用了<iframe>内部的document元素。
+内联的框架，就像frame元素一样，会被包含在window.frames伪数组中。
+有了DOMHTMLIFrameElement对象，脚本可以通过contentWindow访问内联框架的window对象。contentDocument属性则引用了iframe内部的document元素。
 在框架内部，脚本可以通过window.parent引用父窗口对象。
 脚本访问框架内容必须遵守同源策略，并且无法访问同源的window对象的几乎所有属性。同源策略同样适用于子窗体访问父窗体的window对象。跨域通信可以通过window.postMessage实现。
 
@@ -31,7 +31,7 @@ message: 将要发送到其他window的数据。它将会被结构化克隆算�
 
 targetOrigin：通过窗口的origin属性来指定哪些窗口能接收到消息事件，其值可以是字符串"*"*（表示无限制）或者一个URI。在发送消息的时候，如果目标窗口的协议、主机地址或端口这三者的任意一项不匹配targetOrigin提供的值，那么消息就不会被发送；只有三者完全匹配，消息才会被发送。这个机制用来控制消息可以发送到哪些窗口；例如，当用postMessage传送密码时，这个参数就显得尤为重要，必须保证它的值与这条包含密码的信息的预期接受者的origin属性完全一致，来防止密码被恶意的第三方截获。如果你明确的知道消息应该发送到哪个窗口，那么请始终提供一个有确切值的targetOrigin，而不是"*"。不提供确切的目标将导致数据泄露到任何对数据感兴趣的恶意站点。
 
-**对otherWindw和targetOrigin的理解**：otherWindow设定了要传递信息的窗口，并不会限制信息只向这个窗口传递信息。targetOrigin设定了要传递窗口所在的URI包括协议，主机和端口。
+**对otherWindw和targetOrigin的理解**：otherWindow设定了要传递信息的窗口，并不会限制信息只向这个窗口传递信息，**是目标窗口**。targetOrigin设定了要传递窗口所在的URI包括协议，主机和端口，**限定了目标窗口的URI**。
 
 transfer 可选
 是一串和message 同时传递的 Transferable 对象. 这些对象的所有权将被转移给消息的接收方，而发送一方将不再保有所有权。
@@ -73,7 +73,7 @@ var popup = window.open(...popup details...);
 
 // 如果弹出框没有被阻止且加载完成
 
-// 这行语句没有发送信息出去，即使假设当前页面没有改变location（因为targetOrigin设置不对）
+// 这行语句没有发送信息出去，即使假设当前页面没有改变location（因为targetOrigin设置不对）,协议不同
 popup.postMessage("The user is 'bob' and the password is 'secret'",
                   "https://secure.example.net");
 
