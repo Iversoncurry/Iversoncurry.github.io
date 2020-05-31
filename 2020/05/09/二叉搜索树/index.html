@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Blog/css/main.css">
+
+
+<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gitee.com","root":"/Blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="注：NIL表示空的节点 二叉树遍历1.前序遍历按照线根节点再左节点再右节点的顺序遍历 12345inorder-tree-walk(x)    if x !&#x3D; NIL:        print(x.key)        inorder-tree-walk(x.left)         inorder-tree-walk(x.right)  2.中序遍历按照先左节点，再根节点最后右节点的顺序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二叉搜索树">
+<meta property="og:url" content="https://gitee.com/iversoncurry/Blog.git/2020/05/09/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/index.html">
+<meta property="og:site_name" content="蚂蚁的博客">
+<meta property="og:description" content="注：NIL表示空的节点 二叉树遍历1.前序遍历按照线根节点再左节点再右节点的顺序遍历 12345inorder-tree-walk(x)    if x !&#x3D; NIL:        print(x.key)        inorder-tree-walk(x.left)         inorder-tree-walk(x.right)  2.中序遍历按照先左节点，再根节点最后右节点的顺序">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-09T14:48:44.000Z">
+<meta property="article:modified_time" content="2020-05-10T10:01:30.311Z">
+<meta property="article:author" content="蚂蚁">
+<meta property="article:tag" content="算法与数据结构">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://gitee.com/iversoncurry/Blog.git/2020/05/09/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>二叉搜索树 | 蚂蚁的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蚂蚁的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/iversoncurry/Blog.git/2020/05/09/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="蚂蚁">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          二叉搜索树
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-09 22:48:44" itemprop="dateCreated datePublished" datetime="2020-05-09T22:48:44+08:00">2020-05-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-10 18:01:30" itemprop="dateModified" datetime="2020-05-10T18:01:30+08:00">2020-05-10</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>注：</strong>NIL表示空的节点</p>
+<h2 id="二叉树遍历"><a href="#二叉树遍历" class="headerlink" title="二叉树遍历"></a>二叉树遍历</h2><p>1.前序遍历<br>按照线根节点再左节点再右节点的顺序遍历</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">inorder-tree-walk(x)</span><br><span class="line">    <span class="keyword">if</span> x != NIL:</span><br><span class="line">        print(x.key)</span><br><span class="line">        inorder-tree-walk(x.left) </span><br><span class="line">        inorder-tree-walk(x.right)</span><br></pre></td></tr></table></figure>
+
+<p>2.中序遍历<br>按照先左节点，再根节点最后右节点的顺序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">inorder-tree-walk(x)</span><br><span class="line">    <span class="keyword">if</span> x != NIL:</span><br><span class="line">        inorder-tree-walk(x.left) </span><br><span class="line">        print(x.key)</span><br><span class="line">        inorder-tree-walk(x.right)</span><br></pre></td></tr></table></figure>
+<p>3.后序遍历<br>按照左节点，右节点最后根节点的顺序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">inorder-tree-walk(x)</span><br><span class="line">    <span class="keyword">if</span> x != NIL:</span><br><span class="line">        inorder-tree-walk(x.left) </span><br><span class="line">        inorder-tree-walk(x.right)</span><br><span class="line">        print(x.key)</span><br></pre></td></tr></table></figure>
+
+<h2 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h2><p>二叉搜索树节点包含父节点指针，左孩子指针，右孩子指针和存储的值。</p>
+<p>二叉搜索树的特点<br>左节点小于根节点小于右节点，由于这样的特点中序遍历的二叉搜索树的结果就是从小到大的排列。</p>
+<h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><p>在树中查找某个值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tree-search(x, k)</span><br><span class="line">    <span class="keyword">if</span> x == NIL <span class="keyword">or</span> k == x.key</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line">    <span class="keyword">if</span> k &lt; x.key</span><br><span class="line">        <span class="keyword">return</span> tree-search(x.left, k)</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        tree-search(x.right, k)</span><br></pre></td></tr></table></figure>
+
+<p>查找树中最小值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tree-minimum(x)</span><br><span class="line">    <span class="keyword">while</span> x.left != NIL</span><br><span class="line">        x = x.left</span><br><span class="line">    <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+
+<p>查找树中最大值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tree-maximum(x)</span><br><span class="line">    <span class="keyword">while</span> x.right != NIL</span><br><span class="line">        x = x.right</span><br><span class="line">    <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+
+<p>查找后继（比key大的最小值）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">tree-successor(x)</span><br><span class="line"><span class="comment"># 右子树不为空，在右子树中找到最小</span></span><br><span class="line">    <span class="keyword">if</span> x.right != NIL</span><br><span class="line">        <span class="keyword">return</span> tree-minimum(x.right)  </span><br><span class="line"><span class="comment"># 右子树为空，向上查找，向上查找直到x为y的左子树或者y为空</span></span><br><span class="line">    y = x.p</span><br><span class="line">    <span class="keyword">while</span> y != NIL <span class="keyword">and</span> x == y.right</span><br><span class="line">        x = y</span><br><span class="line">        y = y.p</span><br><span class="line">    <span class="keyword">return</span> y</span><br></pre></td></tr></table></figure>
+
+<p>查找前驱（比key小的最大值）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">tree-successor(x)</span><br><span class="line"><span class="comment"># 左子树不为空，在左子树中找到最大</span></span><br><span class="line">    <span class="keyword">if</span> x.left != NIL</span><br><span class="line">        <span class="keyword">return</span> tree-maximum(x.left) </span><br><span class="line"><span class="comment"># 左子树为空，向上查找，若x为y的左子树，则返回NIL，否则向上查找直到x为y的左子树</span></span><br><span class="line"></span><br><span class="line">    y = x.p</span><br><span class="line">    <span class="keyword">if</span> (x == y.left)</span><br><span class="line">        <span class="keyword">return</span> NIL</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">while</span> y != NIL <span class="keyword">and</span> x == y.right</span><br><span class="line">            x = y</span><br><span class="line">            y = y.p</span><br><span class="line">    <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+
+<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>查找后继（比key大的最小值）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">tree-insert(T, z)</span><br><span class="line">    x = T.root</span><br><span class="line"><span class="comment"># 向下查找直到找到一个叶子节点y，然后判断叶子节点和要插入节点的大小关系</span></span><br><span class="line">    <span class="keyword">while</span> x != NIL</span><br><span class="line">        y = x</span><br><span class="line">        <span class="keyword">if</span> z.key &lt; x.key</span><br><span class="line">            x = x.left</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            x = x.right</span><br><span class="line">    z.p = y</span><br><span class="line">    <span class="keyword">if</span> y == NIL</span><br><span class="line">        T.root = z</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span></span><br><span class="line">        z.key &lt; y.key</span><br><span class="line">            y.left = z</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        y.right = z</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 子程序，实现用树v替换树u并成为树u双亲的孩子节点。其中考虑到u为根节点故添加参数T。</span></span><br><span class="line">transplant(T, u, v)</span><br><span class="line">    <span class="keyword">if</span> u.p == NIL</span><br><span class="line">        T.root = v</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> u == u.p.left</span><br><span class="line">        u.p.left = v</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        u.p.right = v</span><br><span class="line">    <span class="keyword">if</span> v != NIL</span><br><span class="line">        v.p = u.p</span><br><span class="line"></span><br><span class="line">tree-delete(T, z)</span><br><span class="line"><span class="comment"># 情况1，左孩子为空，直接把用z的右孩子替换z</span></span><br><span class="line">    <span class="keyword">if</span> z.left == NIL</span><br><span class="line">        transplant(T, z, z.right)</span><br><span class="line"><span class="comment"># 情况2，右孩子为空，直接把用z的左孩子替换z</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> z.right == NIL</span><br><span class="line">        transplant(T, z, z.left)</span><br><span class="line"><span class="comment"># 情况三，左右孩子都不为空，为保证修改树的结构仍满足二叉树的形式（防止z的右子树向上移动与z的左子树出现冲突）</span></span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        y = tree-minimum(z.right)</span><br><span class="line">        <span class="comment"># 当z的后继不为z的孩子，先将z的后继y的右孩子（y不会有左孩子）把y替换，然后将y插入到z的位置（注意，if外的代码也会执行，即要调整z的左右孩子的父节点为y，同时将y的左右孩子赋值为z的左右孩子）</span></span><br><span class="line">        <span class="keyword">if</span> y.p != z</span><br><span class="line">            transplant(T, y, y.right)</span><br><span class="line">            y.right = z.right</span><br><span class="line">            y.right.p = y</span><br><span class="line">        <span class="comment"># 当z的后继为z的孩子，直接将y插入到z的位置</span></span><br><span class="line">        transplant(T, z, y)</span><br><span class="line">        y.left = z.left</span><br><span class="line">        y.left.p = y</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/Blog/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 算法与数据结构</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Blog/2020/05/02/%E6%AD%A3%E5%88%99%E5%8C%96/" rel="prev" title="正则表达式">
+      <i class="fa fa-chevron-left"></i> 正则表达式
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Blog/2020/05/10/%E7%90%86%E8%A7%A3%E9%80%92%E5%BD%92/" rel="next" title="理解递归">
+      理解递归 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树遍历"><span class="nav-number">1.</span> <span class="nav-text">二叉树遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉搜索树"><span class="nav-number">2.</span> <span class="nav-text">二叉搜索树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查找"><span class="nav-number">2.1.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入"><span class="nav-number">2.2.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除"><span class="nav-number">2.3.</span> <span class="nav-text">删除</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">蚂蚁</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Blog/archives/">
+        
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/Blog/lib/anime.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Blog/js/utils.js"></script>
+
+<script src="/Blog/js/motion.js"></script>
+
+
+<script src="/Blog/js/schemes/pisces.js"></script>
+
+
+<script src="/Blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

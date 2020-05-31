@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Blog/css/main.css">
+
+
+<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gitee.com","root":"/Blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="浏览器的多进程架构以chorme浏览器为例，其主要进程及其职责如下：Browser Process:1.负责包括地址栏，书签栏，前进后退按钮等部分的工作；2.负责处理浏览器的一些不可见的底层操作，比如网络请求和文件访问。 Renderer Process负责一个tab（标签页）内关于网页呈现的所有事情 Plugin Process负责控制一个网页用到的所以有插件，如flash GPU Proces">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器原理">
+<meta property="og:url" content="https://gitee.com/iversoncurry/Blog.git/2020/05/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="蚂蚁的博客">
+<meta property="og:description" content="浏览器的多进程架构以chorme浏览器为例，其主要进程及其职责如下：Browser Process:1.负责包括地址栏，书签栏，前进后退按钮等部分的工作；2.负责处理浏览器的一些不可见的底层操作，比如网络请求和文件访问。 Renderer Process负责一个tab（标签页）内关于网页呈现的所有事情 Plugin Process负责控制一个网页用到的所以有插件，如flash GPU Proces">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-13T14:30:27.000Z">
+<meta property="article:modified_time" content="2020-05-31T02:18:21.408Z">
+<meta property="article:author" content="蚂蚁">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://gitee.com/iversoncurry/Blog.git/2020/05/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8E%9F%E7%90%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>浏览器原理 | 蚂蚁的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蚂蚁的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/iversoncurry/Blog.git/2020/05/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="蚂蚁">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          浏览器原理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-13 22:30:27" itemprop="dateCreated datePublished" datetime="2020-05-13T22:30:27+08:00">2020-05-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-31 10:18:21" itemprop="dateModified" datetime="2020-05-31T10:18:21+08:00">2020-05-31</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="浏览器的多进程架构"><a href="#浏览器的多进程架构" class="headerlink" title="浏览器的多进程架构"></a>浏览器的多进程架构</h2><p>以chorme浏览器为例，其主要进程及其职责如下：<br>Browser Process:<br>1.负责包括地址栏，书签栏，前进后退按钮等部分的工作；<br>2.负责处理浏览器的一些不可见的底层操作，比如网络请求和文件访问。</p>
+<p>Renderer Process<br>负责一个tab（标签页）内关于网页呈现的所有事情</p>
+<p>Plugin Process负责控制一个网页用到的所以有插件，如flash</p>
+<p>GPU Process<br>负责处理GPU相关的任务</p>
+<p>在不同硬件上，根据硬件性能产生不同的进程（提供不同服务，例如UI进程），当硬件资源贫瘠时，部分服务会合并到一个进程中（上述提到的几个进程是比较基本的）。</p>
+<h2 id="Browser-Process"><a href="#Browser-Process" class="headerlink" title="Browser Process"></a>Browser Process</h2><p>浏览器tab（标签）外的工作主要由Browser Process掌握，Browser Process又对这些工作进行划分，由不同线程进行处理。</p>
+<p>1.UI thread: 控制浏览器上的按钮及输入框<br>2.newwork thread：处理网络请求，从网上获取数据<br>3.storage thread：控制文件等的访问</p>
+<h2 id="Render-Process"><a href="#Render-Process" class="headerlink" title="Render Process"></a>Render Process</h2><p>渲染进程几乎负责Tab内的所有事情，渲染进程的核心目的在于转换HTML CSS JS为用户可交互的web页面。渲染进程中主要包含以下线程：<br>1.主线程（Main thread）<br>2.工作线程（Worker thread）<br>3.排版线程 （Compositior therad）<br>4.光栅线程 （Raster thread）</p>
+<h3 id="渲染流程"><a href="#渲染流程" class="headerlink" title="渲染流程"></a>渲染流程</h3><h4 id="构建DOOM（生成DOM树）"><a href="#构建DOOM（生成DOM树）" class="headerlink" title="构建DOOM（生成DOM树）"></a>构建DOOM（生成DOM树）</h4><p>当渲染进程接收到导航的确认信息，开始接受HTML数据时，主线程会解析文本字符串为DOM<br>渲染html为DOM的方法由HTML Standard定义</p>
+<h4 id="加载次级的资源"><a href="#加载次级的资源" class="headerlink" title="加载次级的资源"></a>加载次级的资源</h4><p>网页中常常包含诸如图片，CSS，JS等额外的资源，这些资源需要从网络上或者cache中获取。主进程可以在构建DOM过程中逐一请求它们，为了加速preload scanner会同时运行，如果html中存在img，link等标签，preload scanner会把这些请求传递给Browser process中的network thread进行相关资源的下载。</p>
+<h4 id="JS的下载与执行"><a href="#JS的下载与执行" class="headerlink" title="JS的下载与执行"></a>JS的下载与执行</h4><p>当遇到script标签时，渲染进程会停止解析HTML，而去加载解析和执行JS代码，停止解析html的愿意在于JS可能会改变DOM结构。</p>
+<p>通过给script标签添加async（异步加载，加载完成直接运行且无序），defer（异步加载，解析完成后执行，有序）</p>
+<h4 id="样式计算（生成样式树）"><a href="#样式计算（生成样式树）" class="headerlink" title="样式计算（生成样式树）"></a>样式计算（生成样式树）</h4><p>仅渲染DOM还不足以获知页面的具体样式，主进程还会基于CSS选择器解析CSS获取每一个节点的最终的计算样式值，即使不提供任何CSS，浏览器对每个元素也会有一个默认的样式。</p>
+<h4 id="获取布局"><a href="#获取布局" class="headerlink" title="获取布局"></a>获取布局</h4><p>想要渲染一个完整的页面，除了获知每个节点的具体样式，还需要获知每一个节点在页面上的位置，布局其实是找到所有元素的几何关系的过程。<br>通过遍历DOM级相关元素的计算样式，主线程会构建出包含每个元素的坐标信息即盒子大小的布局树（Layout tree）。布局树和DOM树类似，但是其中只包含页面可见的元素，如果一个元素设置了‘display:none’,这个元素不会出现在布局树上，伪元素虽然在DOM树上不可见，但是在布局树上是可见的。</p>
+<h4 id="绘制各元素"><a href="#绘制各元素" class="headerlink" title="绘制各元素"></a>绘制各元素</h4><p>即使知道了不同元素的位置及样式信息，我们还需要知道不同元素的绘制先后顺序才能正确绘制出整个页面。在绘制阶段，主线程会遍历布局树以创建绘制记录。绘制记录可以看做是记录各元素绘制先后顺序的笔记。</p>
+<h4 id="合成帧"><a href="#合成帧" class="headerlink" title="合成帧"></a>合成帧</h4><p>熟悉 PS 等绘图软件的童鞋肯定对图层这一概念不陌生，现代 Chrome 其实利用了这一概念来组合不同的层。</p>
+<p>复合是一种分割页面为不同的层，并单独栅格化，随后组合为帧的技术。不同层的组合由 compositor 线程（合成器线程）完成。</p>
+<p>主线程会遍历布局树来创建层树（layer tree），添加了 ‘will-change’ CSS 属性的元素，会被看做单独的一层，</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/Blog/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Blog/2020/05/10/%E7%BA%A2%E9%BB%91%E6%A0%91/" rel="prev" title="红黑树">
+      <i class="fa fa-chevron-left"></i> 红黑树
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Blog/2020/05/16/%E9%87%8D%E7%BB%98%E5%92%8C%E9%87%8D%E6%8E%92/" rel="next" title="重绘和重排">
+      重绘和重排 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器的多进程架构"><span class="nav-number">1.</span> <span class="nav-text">浏览器的多进程架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Browser-Process"><span class="nav-number">2.</span> <span class="nav-text">Browser Process</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Render-Process"><span class="nav-number">3.</span> <span class="nav-text">Render Process</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#渲染流程"><span class="nav-number">3.1.</span> <span class="nav-text">渲染流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#构建DOOM（生成DOM树）"><span class="nav-number">3.1.1.</span> <span class="nav-text">构建DOOM（生成DOM树）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加载次级的资源"><span class="nav-number">3.1.2.</span> <span class="nav-text">加载次级的资源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JS的下载与执行"><span class="nav-number">3.1.3.</span> <span class="nav-text">JS的下载与执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样式计算（生成样式树）"><span class="nav-number">3.1.4.</span> <span class="nav-text">样式计算（生成样式树）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取布局"><span class="nav-number">3.1.5.</span> <span class="nav-text">获取布局</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绘制各元素"><span class="nav-number">3.1.6.</span> <span class="nav-text">绘制各元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合成帧"><span class="nav-number">3.1.7.</span> <span class="nav-text">合成帧</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">蚂蚁</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Blog/archives/">
+        
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/Blog/lib/anime.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Blog/js/utils.js"></script>
+
+<script src="/Blog/js/motion.js"></script>
+
+
+<script src="/Blog/js/schemes/pisces.js"></script>
+
+
+<script src="/Blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

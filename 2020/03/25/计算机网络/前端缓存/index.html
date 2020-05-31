@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Blog/css/main.css">
+
+
+<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gitee.com","root":"/Blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="缓存分类分类前端缓存分为浏览器缓存和http缓存浏览器缓存包括cookie，session，localstorage，sessionstorage，indexDB，service worker。 http缓存包括强制缓存和协商缓存 http缓存通过Expires或Cache-Control（优先级更高）控制Expires为绝对值，由于客户端和服务端时间可能不一致出错。Cache-Control可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端缓存">
+<meta property="og:url" content="https://gitee.com/iversoncurry/Blog.git/2020/03/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98/index.html">
+<meta property="og:site_name" content="蚂蚁的博客">
+<meta property="og:description" content="缓存分类分类前端缓存分为浏览器缓存和http缓存浏览器缓存包括cookie，session，localstorage，sessionstorage，indexDB，service worker。 http缓存包括强制缓存和协商缓存 http缓存通过Expires或Cache-Control（优先级更高）控制Expires为绝对值，由于客户端和服务端时间可能不一致出错。Cache-Control可以">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-25T12:27:08.000Z">
+<meta property="article:modified_time" content="2020-05-31T02:24:46.105Z">
+<meta property="article:author" content="蚂蚁">
+<meta property="article:tag" content="前端相关">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://gitee.com/iversoncurry/Blog.git/2020/03/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>前端缓存 | 蚂蚁的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蚂蚁的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/iversoncurry/Blog.git/2020/03/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="蚂蚁">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          前端缓存
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-25 20:27:08" itemprop="dateCreated datePublished" datetime="2020-03-25T20:27:08+08:00">2020-03-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-31 10:24:46" itemprop="dateModified" datetime="2020-05-31T10:24:46+08:00">2020-05-31</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="缓存分类分类"><a href="#缓存分类分类" class="headerlink" title="缓存分类分类"></a>缓存分类分类</h1><p>前端缓存分为浏览器缓存和http缓存<br>浏览器缓存包括cookie，session，localstorage，sessionstorage，indexDB，service worker。</p>
+<p>http缓存包括强制缓存和协商缓存</p>
+<h2 id="http缓存"><a href="#http缓存" class="headerlink" title="http缓存"></a>http缓存</h2><p>通过Expires或Cache-Control（优先级更高）控制<br>Expires为绝对值，由于客户端和服务端时间可能不一致出错。<br>Cache-Control可以的取值有：<br>public：所有内容都将被缓存（客户端和代理服务器都可缓存）<br>private：所有内容只有客户端可以缓存，Cache-Control的默认取值<br>no-cache：客户端缓存内容，但是是否使用缓存则需要经过协商缓存来验证决定<br>no-store：所有内容都不会被缓存，即不使用强制缓存，也不使用协商缓存<br>max-age=xxx (xxx is numeric)：缓存内容将在xxx秒后失效</p>
+<p>当Expires或max-age不超时时，将使用强制缓存，即从本地内存或硬盘中获取数据。<br>当max-age超时，会向服务端发送含有If-None-Match字段的请求头，其值为初次请求的响应头包含的Etag（或者If-Modified-Since字段的请求头，其值为初次向服务端请求时<strong>响应头</strong>包含的Last-Modified字段，其优先级叫Etag/if-None-Match字段低），如果数据没有改变，则响应的编码为304，使用本地缓存数据，否则由服务器返回更新后的数据。</p>
+<p> 总结：强制缓存优先于协商缓存进行，若强制缓存(Expires和Cache-Control)生效则直接使用缓存，若不生效则进行协商缓存(Last-Modified / If-Modified-Since和Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若协商缓存失效，那么代表该请求的缓存失效，重新获取请求结果，再存入浏览器缓存中；生效则返回304，继续使用缓存</p>
+<!-- 缓存小结（包含severice worker）
+当浏览器要请求资源时
+
+调用 Service Worker 的 fetch 事件响应
+查看 memory cache
+查看 disk cache。这里又细分：
+如果有强制缓存且未失效，则使用强制缓存，不请求服务器。这时的状态码全部是 200
+如果有强制缓存但已失效，使用对比缓存，比较后确定 304 还是 200
+发送网络请求，等待网络响应
+把响应内容存入 disk cache (如果 HTTP 头信息配置可以存的话)
+把响应内容 的引用 存入 memory cache (无视 HTTP 头信息的配置)
+把响应内容存入 Service Worker 的 Cache Storage (如果 Service Worker 的脚本调用了 cache.put()) -->
+
+<h3 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a>浏览器缓存</h3><h2 id="localStorage-和-sessionStorage"><a href="#localStorage-和-sessionStorage" class="headerlink" title="localStorage 和 sessionStorage"></a>localStorage 和 sessionStorage</h2><p>客户端存储数据的两个对象为：</p>
+<p>localStorage - 用于长久保存整个网站的数据，保存的数据没有过期时间，直到手动去除。<br>sessionStorage - 用于临时保存同一窗口(或标签页)的数据，在关闭窗口或标签页之后将会删除这些数据。<br>在使用 web 存储前,应检查浏览器是否支持 localStorage 和sessionStorage:</p>
+<p>if(typeof(Storage)!==”undefined”)<br>{<br>    // 是的! 支持 localStorage  sessionStorage 对象!<br>    // 一些代码…..<br>} else {<br>    // 抱歉! 不支持 web 存储。<br>}</p>
+<h3 id="localStorage-对象"><a href="#localStorage-对象" class="headerlink" title="localStorage 对象"></a>localStorage 对象</h3><p>localStorage 对象存储的数据没有时间限制。第二天、第二周或下一年之后，数据依然可用。</p>
+<p>实例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">localStorage.sitename=<span class="string">"菜鸟教程"</span>;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML=<span class="string">"网站名："</span> + localStorage.sitename;</span><br></pre></td></tr></table></figure>
+<p>实例解析：</p>
+<p>使用 key=”sitename” 和 value=”菜鸟教程” 创建一个 localStorage 键/值对。<br>检索键值为”sitename” 的值然后将数据插入 id=”result”的元素中。<br>以上实例也可以这么写：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 存储</span></span><br><span class="line">localStorage.sitename = <span class="string">"菜鸟教程"</span>;</span><br><span class="line"><span class="comment">// 查找</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML = localStorage.sitename;</span><br></pre></td></tr></table></figure>
+<p>移除 localStorage 中的 “sitename” :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localStorage.removeItem(<span class="string">"sitename"</span>);</span><br></pre></td></tr></table></figure>
+<p>不管是 localStorage，还是 sessionStorage，可使用的API都相同，常用的有如下几个（以localStorage为例）：</p>
+<p>保存数据：localStorage.setItem(key,value);<br>读取数据：localStorage.getItem(key);<br>删除单个数据：localStorage.removeItem(key);<br>删除所有数据：localStorage.clear();<br>得到某个索引的key：localStorage.key(index);<br>提示: 键/值对通常以字符串存储，你可以按自己的需要转换该格式。</p>
+<p>下面的实例展示了用户点击按钮的次数。</p>
+<p>代码中的字符串值转换为数字类型:</p>
+<p>实例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (localStorage.clickcount)</span><br><span class="line">&#123;</span><br><span class="line">    localStorage.clickcount=<span class="built_in">Number</span>(localStorage.clickcount)+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    localStorage.clickcount=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML=<span class="string">" 你已经点击了按钮 "</span> + localStorage.clickcount + <span class="string">" 次 "</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="sessionStorage-对象"><a href="#sessionStorage-对象" class="headerlink" title="sessionStorage 对象"></a>sessionStorage 对象</h3><p>sessionStorage 方法针对一个 session 进行数据存储。当用户关闭浏览器窗口后，数据会被删除。</p>
+<p>如何创建并访问一个 sessionStorage：</p>
+<p>实例<br>if (sessionStorage.clickcount)<br>{<br>    sessionStorage.clickcount=Number(sessionStorage.clickcount)+1;<br>}<br>else<br>{<br>    sessionStorage.clickcount=1;<br>}<br>document.getElementById(“result”).innerHTML=”在这个会话中你已经点击了该按钮 “ + sessionStorage.clickcount + “ 次 “;</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/Blog/tags/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/" rel="tag"># 前端相关</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Blog/2020/03/20/cookie%E7%9B%B8%E5%85%B3/" rel="prev" title="cookie">
+      <i class="fa fa-chevron-left"></i> cookie
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Blog/2020/03/26/AMD%E3%80%81CMD%E3%80%81Commonjs%E5%92%8CES6%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86/" rel="next" title="AMD、CMD、CommonJs和ES6对比">
+      AMD、CMD、CommonJs和ES6对比 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#缓存分类分类"><span class="nav-number">1.</span> <span class="nav-text">缓存分类分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#http缓存"><span class="nav-number">1.1.</span> <span class="nav-text">http缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器缓存"><span class="nav-number">1.1.1.</span> <span class="nav-text">浏览器缓存</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#localStorage-和-sessionStorage"><span class="nav-number">1.2.</span> <span class="nav-text">localStorage 和 sessionStorage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#localStorage-对象"><span class="nav-number">1.2.1.</span> <span class="nav-text">localStorage 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sessionStorage-对象"><span class="nav-number">1.2.2.</span> <span class="nav-text">sessionStorage 对象</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">蚂蚁</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Blog/archives/">
+        
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/Blog/lib/anime.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Blog/js/utils.js"></script>
+
+<script src="/Blog/js/motion.js"></script>
+
+
+<script src="/Blog/js/schemes/pisces.js"></script>
+
+
+<script src="/Blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

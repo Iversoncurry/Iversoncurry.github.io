@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Blog/css/main.css">
+
+
+<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gitee.com","root":"/Blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="除Object之外，Array类型是ECMAScript中最常用的类型，与其他语言不同，数组中可以保存任何类型的数据；同时数组大小可以随意调整，不同于java，当数组长度确定时不能再进行改变；Array 存储的对象能动态增多和减少，并且可以存储任何JavaScript值。 创建数组1.利用Array构造函数 1var colors &#x3D; new Array(args) 其中args可以为空，也可以为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="引用类型之数组">
+<meta property="og:url" content="https://gitee.com/iversoncurry/Blog.git/2019/11/02/%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:site_name" content="蚂蚁的博客">
+<meta property="og:description" content="除Object之外，Array类型是ECMAScript中最常用的类型，与其他语言不同，数组中可以保存任何类型的数据；同时数组大小可以随意调整，不同于java，当数组长度确定时不能再进行改变；Array 存储的对象能动态增多和减少，并且可以存储任何JavaScript值。 创建数组1.利用Array构造函数 1var colors &#x3D; new Array(args) 其中args可以为空，也可以为">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E5%8E%9F%E5%9E%8B%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E%E5%AE%9E%E4%BE%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.png">
+<meta property="article:published_time" content="2019-11-02T12:27:08.000Z">
+<meta property="article:modified_time" content="2020-05-31T02:38:16.638Z">
+<meta property="article:author" content="蚂蚁">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E5%8E%9F%E5%9E%8B%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E%E5%AE%9E%E4%BE%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.png">
+
+<link rel="canonical" href="https://gitee.com/iversoncurry/Blog.git/2019/11/02/%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>引用类型之数组 | 蚂蚁的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蚂蚁的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/iversoncurry/Blog.git/2019/11/02/%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="蚂蚁">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          引用类型之数组
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-02 20:27:08" itemprop="dateCreated datePublished" datetime="2019-11-02T20:27:08+08:00">2019-11-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-31 10:38:16" itemprop="dateModified" datetime="2020-05-31T10:38:16+08:00">2020-05-31</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>除Object之外，Array类型是ECMAScript中最常用的类型，与其他语言不同，数组中可以保存任何类型的数据；同时数组大小可以随意调整，不同于java，当数组长度确定时不能再进行改变；Array 存储的对象能动态增多和减少，并且可以存储任何JavaScript值。</p>
+<h2 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h2><p>1.利用Array构造函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = <span class="keyword">new</span> <span class="built_in">Array</span>(args)</span><br></pre></td></tr></table></figure>
+<p>其中args可以为空，也可以为一个数值或是字符串，当为数值时，生成一个长度为该数值的数组，当为字符串时，生成一个含有该字符串的数组；其中，new可以省略<br>2.利用数组字面量表示法进行创建</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>]</span><br></pre></td></tr></table></figure>
+<p>其中数组中最后一项不要为逗号，如为逗号将产生一个长度不定的数组</p>
+<h2 id="数组索引"><a href="#数组索引" class="headerlink" title="数组索引"></a>数组索引</h2><p>在读取和设置数组的值时，利用方括号并提供相应的数字索引，数字索引是从0开始：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">0</span>])</span><br><span class="line">colors[<span class="number">1</span>] = <span class="number">4</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+<p>通过length属性可以获取数组长度</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">23</span>]</span><br><span class="line"><span class="built_in">console</span>.log(colors.length)</span><br></pre></td></tr></table></figure>
+<p>对数组的length进行设置时，会改变数组项数，当设置的length大于数组实际长度时，超过的数组位置为undefined，当设置的length小于数组实际长度时，多余的数组会被移除</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">23</span>]</span><br><span class="line">colors.length = <span class="number">4</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">3</span>])</span><br><span class="line">colors.length = <span class="number">2</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+<p>由此可以利用length属性实现数组的栈方法（构想，还没写😁）</p>
+<h2 id="检测数组"><a href="#检测数组" class="headerlink" title="检测数组"></a>检测数组</h2><p>对于同一个网页或者一个全局作用域而言，利用instanceof操作符可以实现数组的检测</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(value <span class="keyword">instanceof</span> <span class="built_in">Array</span>)</span><br></pre></td></tr></table></figure>
+<p>但如果网页中包含多个框架，导致存在两个及以上不同全局执行环境，从而导致多个不同版本的Array构造函数，instanceof方法将失效，此时可以利用Array.isArray()方法，该方法是最终确定一个值是否是数组：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.isArray(value))</span><br></pre></td></tr></table></figure>
+
+<h2 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h2><p>所有对象都有toLocaleString(), toString(), valueOf()方法。其中调用数组的toString()会返回有数组中每个值的字符串形式拼接而成的一个以逗号分隔的字符串（调用数组每一项的toString()方法；而调用valueOf()，返回的是数组；toLocaleString()方法调用每一项的toLocaleString()方法，对于alert方法，当其参数为数组时，会先调用数组的toString()方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> color = [<span class="string">'red'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>]</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'hello'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(color)</span><br><span class="line"><span class="built_in">console</span>.log(color.toString())</span><br><span class="line"><span class="built_in">console</span>.log(color.valueOf())</span><br></pre></td></tr></table></figure>
+<p>通过调用数组的join()方法，传入分隔符参数，更改分隔符</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> color = [<span class="string">'red'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>]</span><br><span class="line"><span class="built_in">console</span>.log(color.join(<span class="string">"||"</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="栈方法"><a href="#栈方法" class="headerlink" title="栈方法"></a>栈方法</h2><p>数组的push()方法可以接收任意数量的参数，把它们逐个添加到数组末尾，并返回修改数组长度；pop()方法从数组末尾移除最后一项，减少数组的length，然后返回移除的项。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> color = [<span class="string">'red'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>]</span><br><span class="line"><span class="keyword">var</span> count = color.push(<span class="string">'yellow'</span>, <span class="string">'black'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(count)</span><br><span class="line">myColor = color.pop()</span><br><span class="line"><span class="built_in">console</span>.log(myColor)</span><br></pre></td></tr></table></figure>
+
+<h2 id="队列方法"><a href="#队列方法" class="headerlink" title="队列方法"></a>队列方法</h2><p>与栈方法相比，队列方法将pop()方法变为shift()方法，该方法移除数组第一项并返回该项，push()方法与栈方法相同。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> color = [<span class="string">'red'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>]</span><br><span class="line">myColor = color.shift()</span><br><span class="line"><span class="built_in">console</span>.log(myColor)</span><br></pre></td></tr></table></figure>
+
+<h2 id="重排序方法"><a href="#重排序方法" class="headerlink" title="重排序方法"></a>重排序方法</h2><p>数组有两个可以直接用来重排序的方法，reverse()和sort()方法。<br>reverse()方法将数组进行倒排</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> values = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">values.reverse()</span><br><span class="line"><span class="built_in">console</span>.log(values)</span><br></pre></td></tr></table></figure>
+<p>sort()方法默认按升序排列数组，为实现排序，sort()方法会调用每个数组项的toString()方法，然后比较字符串，即使数组里每一项都是数值，sort()方法比较的也是字符串。但有些情况下，通过字符串比较会出现错误：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> values = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>]</span><br><span class="line">values.sort()</span><br><span class="line"><span class="built_in">console</span>.log(values) <span class="comment">//0,1,10,15,5</span></span><br></pre></td></tr></table></figure>
+<p>可通过给sort()函数传递一个比较函数作为参数（升序）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compare</span>(<span class="params">value1, value2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (value &lt; value) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (value1 &gt; value2) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> values = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>]</span><br><span class="line">values.sort(compare)</span><br><span class="line"><span class="built_in">console</span>.log(values) <span class="comment">//0,1,5,10,15</span></span><br></pre></td></tr></table></figure>
+<p>当数组元素为数值类型或其valueOf方法会返回数值类型对象时比较函数可简化为（升序）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compare</span>(<span class="params">value1, value2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value2 - value1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：reverse()和sort()方法都是对原始数组进行修改</p>
+<h2 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a>操作方法</h2><p>concat()方法可以基于当前数组中的所有项创建一个新数组。具体来说，这个方法会先创建当前数组的一个副本，然后将接收到的参数添加到这个副本的末尾，最后返回新构建的数组。当concat()方法不传入参数时，只是对原数组进行复制并返回副本；当传入参数为一个或多个数组该方法将每个数组的每一项都添加到结果数组中；如果传入的参数不是数组，则值将会被简单添加到结果数组的末尾。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> color = [<span class="string">'red'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>]</span><br><span class="line"><span class="keyword">var</span> color2 = colors.concat(<span class="string">'yellow'</span>, [<span class="string">'black'</span>, <span class="string">'brown'</span>])</span><br><span class="line"><span class="built_in">console</span>.log(color)</span><br><span class="line"><span class="built_in">console</span>.log(color2)</span><br></pre></td></tr></table></figure>
+<p>注意concat()方法不改变原始数组。<br>slice()方法能够基于当前数组中的一或多个项创建一个新数组。slice()方法可以接受一个或两个参数，即要返回项的起始和结束位置；若slice()方法只传递一个参数，则返回从该参数指定位置看是到当前数组末尾的所有项。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> color = [<span class="string">'red'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>, <span class="string">'yellow'</span>, <span class="string">'black'</span>, <span class="string">'brown'</span>]</span><br><span class="line"><span class="keyword">var</span> color2 = colors.slice(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">var</span> color3 = colors.slice(<span class="number">1</span>, <span class="number">4</span>)</span><br><span class="line"><span class="built_in">console</span>.log(color)</span><br><span class="line"><span class="built_in">console</span>.log(color2)</span><br><span class="line"><span class="built_in">console</span>.log(color3)</span><br></pre></td></tr></table></figure>
+<p>注意slice()方法不改变原始数组。<br>splice()方法主要用途时向数组中部插入项：<br>1.删除：可以删除任意数量的的项，需指定2个参数：要删除的第一项的位置和要删除的项数；<br>2.插入：可以向指定位置插入任意数量的项，需提供3个参数：起始位置、0（要删除的项）和要插入的项。最后一个参数可以为任意多项<br>3.替换：可以项指定位置插入任意数量的项，且同时删除任意数量的项，需指定3个参数：其实位置、要删除的项数和要插入的任意数量的项。插入的项数不必与删除的项数相等。<br>splice()方法始终返回一个数组，该数组中包含从原始数组中删除的项（如果没有删除任何项，则返回一个空数组）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> color = [<span class="string">'red'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>]</span><br><span class="line"><span class="keyword">var</span> removed = color.splice(<span class="number">0</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">console</span>.log(color)</span><br><span class="line"><span class="built_in">console</span>.log(removed)</span><br><span class="line"></span><br><span class="line">removed = color.splice(<span class="number">1</span>,<span class="number">0</span>,<span class="string">'yellow'</span>,<span class="string">'orange'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(color)</span><br><span class="line"><span class="built_in">console</span>.log(removed)</span><br><span class="line"></span><br><span class="line">removed = color.splice(<span class="number">1</span>,<span class="number">1</span>,<span class="string">'red'</span>, <span class="string">'purple'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(color)</span><br><span class="line"><span class="built_in">console</span>.log(removed)</span><br></pre></td></tr></table></figure>
+<p>splice()方法改变原数组</p>
+<h2 id="位置方法"><a href="#位置方法" class="headerlink" title="位置方法"></a>位置方法</h2><p>数组实例有两个位置方法：indexOf()和lastIndexOf()。这两个方法都接收两个参数，要查找的项和表示查找起点位置的索引（可选）。其中，indexOf()方法从起点位置从前向后查找，lastIndexOf()方法从起始点从后向前查找，两个方法返回要查找项在数组中的位置。如果要查找项不在数组中则返回-1.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> number = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line"><span class="built_in">console</span>.log(number.indexOf(<span class="number">4</span>,<span class="number">4</span>))</span><br><span class="line"><span class="built_in">console</span>.log(number.lastIndexOf(<span class="number">4</span>,<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="迭代方法"><a href="#迭代方法" class="headerlink" title="迭代方法"></a>迭代方法</h2><p>ECMAScript5为数组定义了5个迭代方法，每个方法接受两个参数：要在每一项上运行的函数和运行该函数的作用域对象—-影响this的值。传入这些方法的函数接收三个参数：数组项的值、该项在数组中的位置和数组对象本身。<br>1.every(): 对数组中的每一项运行给定函数，如果该函数对每一项都返回true则返回true；(当找到不满足条件的项时停止迭代)(不改变原数组)<br>2.filter(): 对数组中的每一项运行给定函数，返回该函数会返回true的项组成的数组；(不改变原数组)<br>3.forEach(): 对数组中的每一项运行给定函数。这个方法没有返回值；本质上与for循环迭代数组一样。 (不改变原数组)<br>4.map(): 对数组中的每一项运行给定函数，返回每次函数调用结果组成的数组；(不改变原数组)<br>5.some(): 对数组中的每一项运行给定函数，如果该函数对任一项返回true，则返回true。(当找到满足条件的项时停止迭代) (不改变原数组)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> number = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line"><span class="keyword">var</span> everyResult = number.every(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (item &gt; <span class="number">2</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">var</span> someResult = number.some(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (item &gt; <span class="number">2</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">var</span> filterResult = number.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (item &gt; <span class="number">2</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">var</span> mapResult = number.map(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> item*<span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line">number.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>) </span>&#123;</span><br><span class="line">	number[index] = item*<span class="number">3</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="缩小方法"><a href="#缩小方法" class="headerlink" title="缩小方法"></a>缩小方法</h2><p>reduce()和reduceRight()方法为两个缩小数组方法，这两个方法都会迭代数组的所有项，其中reduce()方法从数组的第一项开始，逐个遍历到最后；而reduceRight()则从数组的最后一项开始，向前遍历到第一项。这连个方法都接收两个参数：一个在每一项上调用的函数和作为缩小基础的初始值（可选）。串给reduce()和reduceRight()函数接收4个参数：前一个值，当前值，想的索引和数组对象，函数返回的任何值都会作为第一个参数自动传给下一项，第一次迭代发生在数组的第二项上，因此第一个参数时数组的第一项，第二个参数就是数组的第二项。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> values = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="keyword">var</span> sum = values.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">prev, cur, index, array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> prev + cur</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(sum)</span><br></pre></td></tr></table></figure>
+<p>reduceRight()方法相较reduce()方法区别在于执行的方向不同。</p>
+<h2 id="ES6增强的数组功能"><a href="#ES6增强的数组功能" class="headerlink" title="ES6增强的数组功能"></a>ES6增强的数组功能</h2><h3 id="Array-of-方法"><a href="#Array-of-方法" class="headerlink" title="Array.of()方法"></a>Array.of()方法</h3><p>JS语言中存在一个怪异点：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> item = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(item.length) <span class="comment">//2</span></span><br><span class="line"><span class="built_in">console</span>.log(item[<span class="number">0</span>])     <span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(item[<span class="number">1</span>])     <span class="comment">//undefined</span></span><br><span class="line"></span><br><span class="line">item = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">"2"</span>)</span><br><span class="line"><span class="built_in">console</span>.log(item.length) <span class="comment">//2</span></span><br><span class="line"><span class="built_in">console</span>.log(item[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">item = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(item.length) <span class="comment">//2</span></span><br><span class="line"><span class="built_in">console</span>.log(item[<span class="number">0</span>])     <span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(item[<span class="number">1</span>])     <span class="comment">//2</span></span><br><span class="line"></span><br><span class="line">item = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>,<span class="string">"2"</span>)</span><br><span class="line"><span class="built_in">console</span>.log(item.length) <span class="comment">//2</span></span><br><span class="line"><span class="built_in">console</span>.log(item[<span class="number">0</span>])     <span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(item[<span class="number">1</span>])     <span class="comment">//"2"</span></span><br></pre></td></tr></table></figure>
+
+<p>ES6中引用Array.of()方法来解决这个问题，该方法类似 Array 构造器，但在使用多个数值参数的时候不会导致特殊结果。Array.of()方法总会创建一个包含所有出入参数的数组，不管参数的数量和类型。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> item = <span class="built_in">Array</span>.of(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(item.length)      <span class="comment">//2</span></span><br><span class="line"><span class="built_in">console</span>.log(item[<span class="number">0</span>])          <span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(item[<span class="number">1</span>])          <span class="comment">//2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> item = <span class="built_in">Array</span>.of(<span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(item.length)      <span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(item[<span class="number">0</span>])          <span class="comment">//2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> item = <span class="built_in">Array</span>.of(<span class="string">"2"</span>)</span><br><span class="line"><span class="built_in">console</span>.log(item.length)      <span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(item[<span class="number">0</span>])          <span class="comment">//"2"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Array-from-方法"><a href="#Array-from-方法" class="headerlink" title="Array.from()方法"></a>Array.from()方法</h3><p>该方法将类数组对象转化为数组对象,同时，可以向from传入一个映射函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> args = <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>)</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">translate</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>, (value) =&gt; value + <span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> number = translate(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="built_in">console</span>.log(number)                  <span class="comment">//2,3,4</span></span><br></pre></td></tr></table></figure>
+<p>如果映射函数需要在对象上工作，可以手动传递第三个参数给Array.from()方法，从而<strong>指定映射函数内部</strong>的this值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> diff = <span class="number">2</span></span><br><span class="line"><span class="keyword">let</span> helper = &#123;</span><br><span class="line">    diff: <span class="number">1</span>,</span><br><span class="line">    add(value) &#123;</span><br><span class="line">    	<span class="built_in">console</span>.log(<span class="keyword">this</span>.diff)</span><br><span class="line">        <span class="keyword">return</span> value + <span class="keyword">this</span>.diff</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">translate</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.diff = <span class="number">3</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>, helper.add, helper) <span class="comment">//1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>, helper.add)         <span class="comment">//2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> numbers = translate(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"><span class="built_in">console</span>.log(numbers)       <span class="comment">//1     2,3,4   2    4,5,6</span></span><br></pre></td></tr></table></figure>
+<p>Array.from()方法不仅可以用于类数组对象，也可以用于迭代对象，这意味着该方法可以将任意包含Symbol.iterator属性的对象转换为数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> numbers = &#123;</span><br><span class="line">    *[<span class="built_in">Symbol</span>.iterator] () &#123;</span><br><span class="line">        <span class="keyword">yield</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">yield</span> <span class="number">2</span></span><br><span class="line">        <span class="keyword">yield</span> <span class="number">3</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> numbers2 = <span class="built_in">Array</span>.from(numbers, (value)=&gt;value+<span class="number">1</span>)</span><br><span class="line"><span class="built_in">console</span>.log(numbers2)</span><br></pre></td></tr></table></figure>
+<h3 id="数组上的新方法"><a href="#数组上的新方法" class="headerlink" title="数组上的新方法"></a>数组上的新方法</h3><p>find()与findIndex()方法。ES5中增加了indexOf()和lastIndexOf()方法，从而允许开发者在数组中查找特定值，但仍存在限制。<br>find()和findIndex()方法均接受两个参数：一个回调函数、一个可选值用于指定回调函数内部的this。该回调函数可接受三个参数：数组的某个元素、该元素对应的索引位置以及该数组自身，这与map()和forEach()方法的回调函数所用的参数一致。<strong>该回调函数应当在给定的元素满足你定义的条件时返回true</strong>，而find()和findIndex()方法均会在回调函数第一次返回true时停止查找。find()会返回匹配的值，findIndex()会返回匹配位置的索引。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> numbers = [<span class="number">25</span>, <span class="number">30</span>, <span class="number">35</span>, <span class="number">40</span>, <span class="number">45</span>]</span><br><span class="line"><span class="built_in">console</span>.log(numbers.find(<span class="function"><span class="params">n</span>=&gt;</span> n &gt; <span class="number">30</span>))</span><br><span class="line"><span class="built_in">console</span>.log(numbers.findIndex(<span class="function"><span class="params">n</span>=&gt;</span> n &gt; <span class="number">30</span>))</span><br></pre></td></tr></table></figure>
+<p><strong>find()与findIndex()方法在查找满足特定条件的数组元素时非常有用。但若想查找特定值，则使用 indexOf() 与 lastIndexOf() 方法会是更好的选择。</strong><br>fill()方法能使用特定值填充数组中的一个或多个元素，当只使用一个参数的时候，该方法会用该参数的值填充整个数组，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">numbers.fill(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">console</span>.log(numbers.toString())   <span class="comment">//1,1,1,1</span></span><br></pre></td></tr></table></figure>
+<p>当只改变部分值时，可设置起始位置和结束位置的参数（不包括结束位置）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">numbers.fill(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(numbers.toString())   <span class="comment">//1,2,1,1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">numbers.fill(<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line"><span class="built_in">console</span>.log(numbers.toString())   <span class="comment">//1,1,1,4</span></span><br></pre></td></tr></table></figure>
+<p>copyWithin()方法和fill()方法类似，可以一次性修改数组的多个元素。copyWithin()方法允许在数组内部复制自身元素，为此你需要传毒两个参数给copyWithin()方法：从什么位置开始填充，被用来复制的数据的起始位置索引以及终止位置索引</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">numbers.copyWithin()(<span class="number">2</span>,<span class="number">0</span>)</span><br><span class="line"><span class="built_in">console</span>.log(numbers.toString())  <span class="comment">//1,2,1,2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">numbers.copyWithin(<span class="number">2</span>,<span class="number">0</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">console</span>.log(numbers.toString())</span><br></pre></td></tr></table></figure>
+<h2 id="类型化数组"><a href="#类型化数组" class="headerlink" title="类型化数组"></a>类型化数组</h2><p>类型化数组是有特殊用途的数组，被设计用来处理数值类型数据（而不像名称暗示的那样，能处理所有类型）。引入类型化数组突破了格式限制并带来了更好的<br>数学运算性能，其设计概念是：单个数值可以被视为由“位”构成的数组，并且可以对其使用与JS 数组现有方法类似的方法。</p>
+<h3 id="数值数据类型"><a href="#数值数据类型" class="headerlink" title="数值数据类型"></a>数值数据类型</h3><p>JS 数值使用 IEEE 754 标准格式存储，使用64位来存储一个数值的浮点数表示形式，该格式在JS中被同时用来表示整数与浮点数；当值改变时，可能会频繁发生整数与浮点数之间的格式转换。而类型化数组则允许存储并操作八种不同的数值类型：</p>
+<ol>
+<li>8 位有符号整数（int8）</li>
+<li>8 位无符号整数（uint8）</li>
+<li>16 位有符号整数（int16）</li>
+<li>16 位无符号整数（uint16）</li>
+<li>32 位有符号整数（int32）</li>
+<li>32 位无符号整数（uint32）</li>
+<li>32 位浮点数（float32）</li>
+<li>64 位浮点数（float64）<br>所有与类型化数组相关的操作和对象都围绕着这八种数据类型。为了使用它们，你首先需要创建一个数组缓冲区用于存储数据。<h3 id="数组缓冲区"><a href="#数组缓冲区" class="headerlink" title="数组缓冲区"></a>数组缓冲区</h3>数组缓冲区（array buffer）是内存中包含一定数量字节的区域，而所有的类型化数组都基于数组缓冲区。使用ArrayBuffer构造器来创建一个数组缓冲区；调用ArrayBuffer构造器时，只需要传入单个数值用于指定缓冲区包含的字节数。可以通过byteLength属性来获取缓冲区的字节数。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">10</span>)</span><br><span class="line"><span class="built_in">console</span>.log(buffer.byteLength)</span><br></pre></td></tr></table></figure>
+可以使用slice()方法来创建一个新的、包含已有缓冲区部分的内容数组缓冲区，和数组的slice()方法类似，可以使用起始位置与结束位置参数，返回由原缓冲区元素组成的一个新的ArrayBuffer实例。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">let</span> buffer2 = buffer.slice(<span class="number">4</span>,<span class="number">6</span>)</span><br><span class="line"><span class="built_in">console</span>.log((buffer2.byteLength))</span><br></pre></td></tr></table></figure>
+<h2 id="使用视图操作数组缓冲区"><a href="#使用视图操作数组缓冲区" class="headerlink" title="使用视图操作数组缓冲区"></a>使用视图操作数组缓冲区</h2>数组缓冲区代表了一块内存区域，而视图（views）则是操作这块区域的接口。视图工作在数组缓冲区或其子集上，可以读写某种数值数据类型的数据。DataView类型时数组缓冲区的通用视图，允许对前述所有8中数值数据类型进行操作。同时可以对数据缓冲区的部分上创建视图，需要提供字节偏移量以及要包含的字节数。<strong>使用这种方式，你可以在同一个数组缓冲区上创建多个不同的视图，这样有助于将单块内存区域供给整个应用使用，而不必每次在有需要时才动态分配内存。</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">let</span> view = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> buffer2 = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">let</span> view = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer, <span class="number">5</span>,<span class="number">2</span>) <span class="comment">//包含位置5和位置6的字节</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>获取视图信息<br>可以通过查询一下只读属性来获取视图的信息：<br>buffer: 概述图所绑定的数组缓冲区；<br>byteOffset：传给DataView构造器的第二个参数，如果当时提供了的话（默认为0）；<br>byte Length：传给DataView构造器的第三个参数，如果当时提供的话（默认为该缓冲区的byteLength属性）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">let</span> view1 = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer)</span><br><span class="line"><span class="keyword">let</span> view2 = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer, <span class="number">5</span>, <span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(view1.buffer === buffer)            <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(view2.buffer === buffer)            <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(view1.byteOffset)</span><br><span class="line"><span class="built_in">console</span>.log(view2.byteOffset)</span><br><span class="line"><span class="built_in">console</span>.log(view1.byteLength)</span><br><span class="line"><span class="built_in">console</span>.log(view2.byteLength)</span><br></pre></td></tr></table></figure>
+
+<p>读取和写入数据<br>对应JS所有8种数值数据类型，DataView视图的原型别提供了在数组缓冲区上写入数据的一个方法以及读取数据的一个方法，说有方法名都以“set”或“get”开始，气候跟随这对应数据类型的缩写,例如操作int8或unit8类型的读取/写入方法：<br>“get”方法接受两个参数：开始进行读取的字节偏移量、以及一个可选的布尔值，后者用于指定读取的值是否采用低字节优先方式（注：默认值为 false ）。“set”方法则接受三个参数：开始进行写入的字节偏移量、需要写入的数据值、以及一个可选的布尔值用于指定是否采用低字节优先方式存储数据。<br>**<br>getInt8(byteOffset,littleEndian): 从byteOffset处开始读取一个int8值；<br>setInt8(byteOffset, value, littleEndian): 从byteOffset处开始写入一个int8值；<br>**<br><strong>译注：低字节优先（Little-endian）也被翻译作“小端字节序”，指的是在存储数据的多个内存字节中，第一个内存字节存储着数据的最低字节数据，而最后一个内存字节存储着最高字节数据。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">2</span>),</span><br><span class="line">view = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer);</span><br><span class="line">view.setInt8(<span class="number">0</span>, <span class="number">5</span>);</span><br><span class="line">view.setInt8(<span class="number">1</span>, <span class="number">-1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(view.getInt8(<span class="number">0</span>)); <span class="comment">// 5</span></span><br><span class="line"><span class="built_in">console</span>.log(view.getInt8(<span class="number">1</span>)); <span class="comment">// -1</span></span><br></pre></td></tr></table></figure>
+
+<p>视图允许你使用任意格式对任意位置进行读写，而无须考虑这些数据此前是使用什么格式存储的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">2</span>)</span><br><span class="line"><span class="keyword">let</span> view = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer)</span><br><span class="line">view.setInt8(<span class="number">0</span>, <span class="number">5</span>)</span><br><span class="line">view.setInt8(<span class="number">1</span>, <span class="number">-1</span>)</span><br><span class="line"><span class="built_in">console</span>.log(view.getInt16(<span class="number">0</span>))</span><br><span class="line"><span class="built_in">console</span>.log(view.getInt8(<span class="number">0</span>))</span><br><span class="line"><span class="built_in">console</span>.log(view.getInt8(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<p>在混用不同的数据类型时，使用DataView对象是一种完美方式，不过，若尽享使用特定的一种数据类型，那么特定类型试图会是更好的选择。</p>
+<p>类型化数组即为视图</p>
+<p>开始时，该数组缓冲区 16 个位均为 0 ；使用 setInt8() 向第一个字节写入 5 之后，该字节的内容就出现了一对 1 （因为 5 可以写为 8 位二进制数 00000101 ）；向第二个字节写入-1 会使得该字节的所有位都变成 1 （即 -1 的二进制补码形式）。接下来使用 getInt16() 就能将前面写入的 16 位数据以单个 16 位整数的方式读取出来，其十进制值就是1535。<br>ES6 的类型化数组实际上也是针对数组缓冲区的特定类型视图，你可以使用这些数组对象来处理特定的数据类型，而不必使用通用的 DataView 对象。一共存在八种特定类型视图，对应着八种数值数据类型，为处理 uint8 值提供了额外的选择。</p>
+<p>构造器名称                          元素大小<br>Int8Array                               1<br>Uint8Array                              1<br>Uint8ClampedArray                       1<br>Int16Array                              2<br>Uint16Array                             2<br>Int32Array                              4<br>Uint32Array                             4<br>Float32Array                            4<br>Float64Array                            8<br><strong>类型化数组的构造器可以接受多种类型的参数</strong>，因此存在几种创建类型化数组的方式。<br>第一种方式是使用与创建 DataView 时相同的参数，即：一个数组缓冲区、一个可选的字节偏移量、以及一个可选的字节数量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">let</span> view1 = <span class="keyword">new</span> <span class="built_in">Int8Array</span>(buffer)</span><br><span class="line"><span class="keyword">let</span> view2 = <span class="keyword">new</span> <span class="built_in">Int8Array</span>(buffer, <span class="number">5</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(view1.buffer === buffer)                    <span class="comment">//true               </span></span><br><span class="line"><span class="built_in">console</span>.log(view2.buffer === buffer)                    <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(view1.byteOffset)                           <span class="comment">//0</span></span><br><span class="line"><span class="built_in">console</span>.log(view2.byteOffset)                           <span class="comment">//5</span></span><br><span class="line"><span class="built_in">console</span>.log(view1.byteLength)                           <span class="comment">//10</span></span><br><span class="line"><span class="built_in">console</span>.log(view2.byteLength)                           <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<p>第二种方法是传递单个数值给类型化数组的构造器，<strong>此数值表示该数组包含的元素数量（而不是分配的字节数）</strong>。构造器会创建一个新的缓冲区，分配正确的字节数以便容纳指定数量的数组元素。可以通过length属性来获取这个元素数量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ints = <span class="keyword">new</span> <span class="built_in">Int16Array</span>(<span class="number">2</span>)</span><br><span class="line"><span class="keyword">let</span> floats = <span class="keyword">new</span> <span class="built_in">Float32Array</span>(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(ints.byteLength)</span><br><span class="line"><span class="built_in">console</span>.log(ints.length)</span><br><span class="line"><span class="built_in">console</span>.log(floats.byteLength)</span><br><span class="line"><span class="built_in">console</span>.log(floats.length)</span><br></pre></td></tr></table></figure>
+<p><strong>如果调用类型化数组构造器时没有传入参数，构造器会认为传入了 0 ，这种方式创建的类型化数组不会被分配任何存储空间，因此也就不能被用于保存数据。</strong><br>第三种方式是向构造器传递单个对象参数<br><strong>类型化数组</strong>：数组所有元素都会被复制到新的类型化数组中。例如，如果你传递一个 int8类型的数组给 Int16Array 构造器，这些 int8 的值会被复制到 int16 数组中。新的类型化数组与原先的类型化数组会使用不同的数组缓冲区。<br><strong>可迭代对象</strong>：该对象的迭代器会被调用以便将数据插入到类型化数组中。如果其中包含了不匹配视图类型的值，那么构造器就会抛出错误。<br><strong>数组</strong>：该数组的元素会被插入到新的类型化数组中。如果其中包含了不匹配视图类型的值，那么构造器就会抛出错误。<br><strong>类数组对象</strong>：与传入数组的表现一致。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ints1 = <span class="keyword">new</span> <span class="built_in">Int16Array</span>([<span class="number">25</span>, <span class="number">50</span>]),</span><br><span class="line">ints2 = <span class="keyword">new</span> <span class="built_in">Int32Array</span>(ints1);</span><br><span class="line"><span class="built_in">console</span>.log(ints1.buffer === ints2.buffer); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(ints1.byteLength); <span class="comment">// 4</span></span><br><span class="line"><span class="built_in">console</span>.log(ints1.length); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(ints1[<span class="number">0</span>]); <span class="comment">// 25</span></span><br><span class="line"><span class="built_in">console</span>.log(ints1[<span class="number">1</span>]); <span class="comment">// 50</span></span><br><span class="line"><span class="built_in">console</span>.log(ints2.byteLength); <span class="comment">// 8</span></span><br><span class="line"><span class="built_in">console</span>.log(ints2.length); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(ints2[<span class="number">0</span>]); <span class="comment">// 25</span></span><br><span class="line"><span class="built_in">console</span>.log(ints2[<span class="number">1</span>]); <span class="comment">// 50</span></span><br></pre></td></tr></table></figure>
+<h3 id="类型化数组与常规数组的相似点"><a href="#类型化数组与常规数组的相似点" class="headerlink" title="类型化数组与常规数组的相似点"></a>类型化数组与常规数组的相似点</h3><p>类型化数组与常规数组有好几个相似点，类型化数组在很多场景中都可以像常规数组那样被使用。例如，你可以使用length属性来获取类型化数组包含的元素数量，还可以使用数值类型的索引值来直接访问类型化数组的元素。<br><strong>与常规数组不同的是，你不能使用 length 属性来改变类型化数组的大小。该属性是不可写的，在非严格模式下写入操作会被忽略，而严格模式下则会抛出错误。</strong><br>类型化数组也拥有大量与常规数组等效的方法，你可以对类型化数组使用下列这些方法：<br>copyWithin()、entries()、fill()、filter()、find()、findIndex()、forEach()、indexOf()、join()、keys()、lastIndexOf()、map()、reduce()、reduceRight()、reverse()、slice()、some()、sort()、values()<br><strong>注意</strong>虽然这些方法的表现与数组原型上的对应方法相似，但它们并不完全相同。类型化数组的方法会进行额外的类型检查以确保安全，并且返回值会是某种类型化数组，而不是常规数组（归结于 Symbol.species 属性）。这里有个例子用于演示其中的区别：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ints = <span class="keyword">new</span> <span class="built_in">Int16Array</span>([<span class="number">25</span>, <span class="number">50</span>]),</span><br><span class="line">mapped = ints.map(<span class="function"><span class="params">v</span> =&gt;</span> v * <span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(mapped.length); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(mapped[<span class="number">0</span>]); <span class="comment">// 50</span></span><br><span class="line"><span class="built_in">console</span>.log(mapped[<span class="number">1</span>]); <span class="comment">// 100</span></span><br><span class="line"><span class="built_in">console</span>.log(mapped <span class="keyword">instanceof</span> <span class="built_in">Int16Array</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>**相同的迭代器<br>与常规数组相同，类型化数组也拥有三个迭代器，它们是 entries() 方法、 keys() 方法与values() 方法。这就意味着你可以对类型化数组使用扩展运算符，或者对其使用for-of 循环，就像对待常规数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ints = <span class="keyword">new</span> <span class="built_in">Int16Array</span>([<span class="number">25</span>, <span class="number">50</span>]),</span><br><span class="line">intsArray = [...ints];</span><br><span class="line"><span class="built_in">console</span>.log(intsArray <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(intsArray[<span class="number">0</span>]); <span class="comment">// 25</span></span><br><span class="line"><span class="built_in">console</span>.log(intsArray[<span class="number">1</span>]); <span class="comment">// 50</span></span><br></pre></td></tr></table></figure>
+<p>of()和from()方法<br>所有的类型化数组都包含静态的 of() 与 from() 方法，作用类似于 Array.of() 与Array.from() 方法。其中的区别是类型化数组的版本会返回类型化数组，而不返回常规数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ints = <span class="built_in">Int16Array</span>.of(<span class="number">25</span>, <span class="number">50</span>),</span><br><span class="line">floats = <span class="built_in">Float32Array</span>.from([<span class="number">1.5</span>, <span class="number">2.5</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(ints <span class="keyword">instanceof</span> <span class="built_in">Int16Array</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(floats <span class="keyword">instanceof</span> <span class="built_in">Float32Array</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(ints.length); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(ints[<span class="number">0</span>]); <span class="comment">// 25</span></span><br><span class="line"><span class="built_in">console</span>.log(ints[<span class="number">1</span>]); <span class="comment">// 50</span></span><br><span class="line"><span class="built_in">console</span>.log(floats.length); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(floats[<span class="number">0</span>]); <span class="comment">// 1.5</span></span><br><span class="line"><span class="built_in">console</span>.log(floats[<span class="number">1</span>]); <span class="comment">// 2.5</span></span><br></pre></td></tr></table></figure>
+<p>类型化数组与常规数组的区别</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ints = <span class="keyword">new</span> <span class="built_in">Int16Array</span>([<span class="number">25</span>, <span class="number">50</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(ints <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.isArray(ints)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p><strong>行为差异<br>**常规数组可以被伸展或是收缩，然而类型化数组却会始终保持自身大小不变。你可以对常规数组一个不存在的索引位置进行赋值，但在类型化数组上这么做则会被忽略。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ints = <span class="keyword">new</span> <span class="built_in">Int16Array</span>([<span class="number">25</span>, <span class="number">50</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(ints.length); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(ints[<span class="number">0</span>]); <span class="comment">// 25</span></span><br><span class="line"><span class="built_in">console</span>.log(ints[<span class="number">1</span>]); <span class="comment">// 50</span></span><br><span class="line">ints[<span class="number">2</span>] = <span class="number">5</span>;</span><br><span class="line"><span class="built_in">console</span>.log(ints.length); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(ints[<span class="number">2</span>]); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>类型化数组也会对数据类型进行检查以保证只使用有效的值，当无效的值被传入时，将会被替换为0</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ints = <span class="keyword">new</span> <span class="built_in">Int16Array</span>([<span class="string">"hi"</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(ints.length); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(ints[<span class="number">0</span>]); <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+<p>所有在类型化数组上修改项目值的方法都会受到相同的限制，例如当 map() 方法使用的映射函数返回一个无效值的时候，类型化数组会使用 0 来代替返回值：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ints = <span class="keyword">new</span> <span class="built_in">Int16Array</span>([<span class="number">25</span>, <span class="number">50</span>]),</span><br><span class="line">mapped = ints.map(<span class="function"><span class="params">v</span> =&gt;</span> <span class="string">"hi"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(mapped.length); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(mapped[<span class="number">0</span>]); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(mapped[<span class="number">1</span>]); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(mapped <span class="keyword">instanceof</span> <span class="built_in">Int16Array</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(mapped <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>尽管类型化数组拥有常规数组的很多同名方法，但仍然缺少了几个数组方法，包括下列这些：<br>concat()、pop()、push()、shift()、splice()、unshift()<br>除了 concat() 方法之外，该列表中的其余方法都会改变数组的大小，而由于类型化数组的大小不可变，因此这些方法都不能作用于类型化数组。 concat() 方法不可用的原因则是：连接两个类型化数组的结果是不确定的（特别是当它们处理的数据类型不同时），这种不确定情况原本就不应当使用类型化数组。</p>
+<p>**附加的方法<br>类型化数组还有两个常规数组所不具备的方法： set() 方法与 subarray() 方法。这两个方法作用相反： set() 方法从另一个数组中复制元素到当前的类型化数组，而subarray() 方法则是将当前类型化数组的一部分提取为新的类型化数组。<br>set() 方法接受一个数组参数（无论是类型化的还是常规的）、以及一个可选的偏移量参数，后者指示了从什么位置开始插入数据（默认值为 0 ）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ints = <span class="keyword">new</span> <span class="built_in">Int16Array</span>(<span class="number">4</span>);</span><br><span class="line">ints.set([<span class="number">25</span>, <span class="number">50</span>]);</span><br><span class="line">ints.set([<span class="number">75</span>, <span class="number">100</span>], <span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(ints.toString()); <span class="comment">// 25,50,75,100</span></span><br></pre></td></tr></table></figure>
+<p>subarray() 方法接受一个可选的开始位置索引参数、以及一个可选的结束位置索引参数（像slice() 方法一样，结束位置的元素不会被包含在结果中），并会返回一个新的类型化数组。你可以同时省略这两个参数，从而创建原类型化数组的一个复制品。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ints = <span class="keyword">new</span> <span class="built_in">Int16Array</span>([<span class="number">25</span>, <span class="number">50</span>, <span class="number">75</span>, <span class="number">100</span>]),</span><br><span class="line">subints1 = ints.subarray(),</span><br><span class="line">subints2 = ints.subarray(<span class="number">2</span>),</span><br><span class="line">subints3 = ints.subarray(<span class="number">1</span>, <span class="number">3</span>);</span><br><span class="line"><span class="built_in">console</span>.log(subints1.toString()); <span class="comment">// 25,50,75,100</span></span><br><span class="line"><span class="built_in">console</span>.log(subints2.toString()); <span class="comment">// 75,100</span></span><br><span class="line"><span class="built_in">console</span>.log(subints3.toString()); <span class="comment">// 50,75</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E5%8E%9F%E5%9E%8B%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E%E5%AE%9E%E4%BE%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.png" alt="attr"></p>
+<p>上图中展示了Person构造函数、Person的原型属性以及Person现有的两个实例之间的关系，由于所有实现中都无法访问到[[Prototype]]，因此可以通过isPrototypeOf()确定对象对象间是否存在这种关系，如下所示：</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/Blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/Blog/2019/11/30/%E4%BD%9C%E7%94%A8%E5%9F%9F%E3%80%81%E9%97%AD%E5%8C%85%E4%BB%A5%E5%8F%8Athis/" rel="next" title="作用域、闭包以及this">
+      作用域、闭包以及this <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建数组"><span class="nav-number">1.</span> <span class="nav-text">创建数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组索引"><span class="nav-number">2.</span> <span class="nav-text">数组索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检测数组"><span class="nav-number">3.</span> <span class="nav-text">检测数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转换方法"><span class="nav-number">4.</span> <span class="nav-text">转换方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈方法"><span class="nav-number">5.</span> <span class="nav-text">栈方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列方法"><span class="nav-number">6.</span> <span class="nav-text">队列方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重排序方法"><span class="nav-number">7.</span> <span class="nav-text">重排序方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作方法"><span class="nav-number">8.</span> <span class="nav-text">操作方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#位置方法"><span class="nav-number">9.</span> <span class="nav-text">位置方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代方法"><span class="nav-number">10.</span> <span class="nav-text">迭代方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缩小方法"><span class="nav-number">11.</span> <span class="nav-text">缩小方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6增强的数组功能"><span class="nav-number">12.</span> <span class="nav-text">ES6增强的数组功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-of-方法"><span class="nav-number">12.1.</span> <span class="nav-text">Array.of()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-from-方法"><span class="nav-number">12.2.</span> <span class="nav-text">Array.from()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组上的新方法"><span class="nav-number">12.3.</span> <span class="nav-text">数组上的新方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型化数组"><span class="nav-number">13.</span> <span class="nav-text">类型化数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数值数据类型"><span class="nav-number">13.1.</span> <span class="nav-text">数值数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组缓冲区"><span class="nav-number">13.2.</span> <span class="nav-text">数组缓冲区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用视图操作数组缓冲区"><span class="nav-number">14.</span> <span class="nav-text">使用视图操作数组缓冲区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类型化数组与常规数组的相似点"><span class="nav-number">14.1.</span> <span class="nav-text">类型化数组与常规数组的相似点</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">蚂蚁</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Blog/archives/">
+        
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/Blog/lib/anime.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Blog/js/utils.js"></script>
+
+<script src="/Blog/js/motion.js"></script>
+
+
+<script src="/Blog/js/schemes/pisces.js"></script>
+
+
+<script src="/Blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

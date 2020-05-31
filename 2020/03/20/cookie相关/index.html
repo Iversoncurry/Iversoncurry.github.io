@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Blog/css/main.css">
+
+
+<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gitee.com","root":"/Blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="为解决HTTP无状态导致的问题，出现了cookie。但Cookie的存在也不是为了解决通讯协议无状态的问题，只是为了解决客户端与服务端会话状态的问题，这个状态是指后端服务的状态而非通讯协议的状态。 Cookie介绍Cookie（复数形式为Cookies），类型为[小型文本文件]，指某些网站为了辨别用户身份而储存在用户本地终端上的数据。作为一段一般不超过4kb的小型文本数据，它有一个名称（Name）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cookie">
+<meta property="og:url" content="https://gitee.com/iversoncurry/Blog.git/2020/03/20/cookie%E7%9B%B8%E5%85%B3/index.html">
+<meta property="og:site_name" content="蚂蚁的博客">
+<meta property="og:description" content="为解决HTTP无状态导致的问题，出现了cookie。但Cookie的存在也不是为了解决通讯协议无状态的问题，只是为了解决客户端与服务端会话状态的问题，这个状态是指后端服务的状态而非通讯协议的状态。 Cookie介绍Cookie（复数形式为Cookies），类型为[小型文本文件]，指某些网站为了辨别用户身份而储存在用户本地终端上的数据。作为一段一般不超过4kb的小型文本数据，它有一个名称（Name）">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-20T12:27:08.000Z">
+<meta property="article:modified_time" content="2020-05-31T02:37:54.963Z">
+<meta property="article:author" content="蚂蚁">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://gitee.com/iversoncurry/Blog.git/2020/03/20/cookie%E7%9B%B8%E5%85%B3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>cookie | 蚂蚁的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蚂蚁的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/iversoncurry/Blog.git/2020/03/20/cookie%E7%9B%B8%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="蚂蚁">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          cookie
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-20 20:27:08" itemprop="dateCreated datePublished" datetime="2020-03-20T20:27:08+08:00">2020-03-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-31 10:37:54" itemprop="dateModified" datetime="2020-05-31T10:37:54+08:00">2020-05-31</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>为解决HTTP无状态导致的问题，出现了cookie。但Cookie的存在也不是为了解决通讯协议无状态的问题，只是为了解决客户端与服务端会话状态的问题，这个状态是指后端服务的状态而非通讯协议的状态。</p>
+<h2 id="Cookie介绍"><a href="#Cookie介绍" class="headerlink" title="Cookie介绍"></a>Cookie介绍</h2><p>Cookie（复数形式为Cookies），类型为[小型文本文件]，指某些网站为了辨别用户身份而储存在用户本地终端上的数据。<br>作为一段一般不超过4kb的小型文本数据，它有一个名称（Name），一个值（Value）和其他几个用于控制Cookie有效期、安全性、使用范围的可选属性组成。</p>
+<p>Cookie文件不仅可以保存在浏览器中还可以保存在存放在本地文件中，这样的好处是即使关闭了浏览器，Cookie依然可以生效。</p>
+<h2 id="Cookie的保质期"><a href="#Cookie的保质期" class="headerlink" title="Cookie的保质期"></a>Cookie的保质期</h2><p>有永久的也有临时的，每个浏览器都含有自己的Cookie，每次请求的时候都会根据domain来发送相应的Cookie，可通过设置expries、max-age来设定保存日期，不设置的话默认是临时存储，即关闭浏览器就消失。</p>
+<h2 id="满足同源策略"><a href="#满足同源策略" class="headerlink" title="满足同源策略"></a>满足同源策略</h2><p>虽然网站images.google.com和网站<a href="http://www.google.com同属Google，但是域名不一样，二者同样不能相互操作彼此的Cookie。而且path也必须一样才能相互访问彼此的Cookie。需要注意不同浏览器对path的访问规定不一样，对于chorme，path必须为当前目录，设置为其他目录无效，**只能当前页面访问当前目录及以上的cookie" target="_blank" rel="noopener">www.google.com同属Google，但是域名不一样，二者同样不能相互操作彼此的Cookie。而且path也必须一样才能相互访问彼此的Cookie。需要注意不同浏览器对path的访问规定不一样，对于chorme，path必须为当前目录，设置为其他目录无效，**只能当前页面访问当前目录及以上的cookie</a>**</p>
+<h2 id="Cookie的设置"><a href="#Cookie的设置" class="headerlink" title="Cookie的设置"></a>Cookie的设置</h2><p>1.客户端发送HTTP请求到服务器<br>2.当服务器收到HTTP请求时，在响应头里添加一个Set-Cookie字段<br>3.浏览器收到响应后保存在Cookie<br>4.之后对该服务器每一次请求中都通过Cookie字段将Cookie信息发送给服务器。</p>
+<h2 id="前端使用cookie操作cookie"><a href="#前端使用cookie操作cookie" class="headerlink" title="前端使用cookie操作cookie"></a>前端使用cookie操作cookie</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例</span></span><br><span class="line"><span class="built_in">document</span>.cookie=<span class="string">'name=xiaoming;expires='</span>+oDate</span><br></pre></td></tr></table></figure>
+
+<h2 id="Cookies的属性"><a href="#Cookies的属性" class="headerlink" title="Cookies的属性"></a>Cookies的属性</h2><p>1.name字段：一个cookie的名称<br>2.value字段：一个cookie的值</p>
+<h3 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h3><p>Expires用于设置Cookie时间。比如</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set</span>-Cookie: id=a3fWa; Expires=Wed, <span class="number">21</span> Oct <span class="number">2015</span> <span class="number">07</span>:<span class="number">28</span>:<span class="number">00</span> GMT;</span><br></pre></td></tr></table></figure>
+<p>当Expires属性缺省时，表示是绘画性Cookie，例如，当Expires属性的值为Session，表示的就是绘画性Cookie。党委绘画性Cookie的时候，值保存在客户端内存中，并在用户关闭浏览器时失效。需要注意的是，有些浏览器提供了会话恢复功能，这种情况下即使关闭了浏览器，会话期Cookie也会被保留下来。<br>与会话性Cookie相对的是持久性Cookie，持久性Cookies会保存在用户的硬盘中，直至过期或者清除Cookie。值得注意的是，设定的日期和事件至于客户端相关，而不是服务端。</p>
+<h3 id="max-age"><a href="#max-age" class="headerlink" title="max-age"></a>max-age</h3><p>max-age用于设置在Cookie失效之前需要经过的秒数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set</span>-Cookie: id=a3fWa; Max-Age=<span class="number">604800</span>;</span><br></pre></td></tr></table></figure>
+<p>max-age可以为正数，负数，甚至是0<br>如果max-age属性为正数时，浏览器会将其持久化，即写到对应的Cookie文件中<br>当max-age属性为负数，则表示Cookie只是一个会话性Cookie<br>当max-age为0时，则会立即删除这个Cookie<br>假如max-age和expires都存在，max-age优先级更高</p>
+<h3 id="domain"><a href="#domain" class="headerlink" title="domain"></a>domain</h3><p>domain指定了Cookie可以送达的主机名。假如没有指定，那么默认值为当前文档访问地址中的主机部分（但不包含子域名）<br>想淘宝首页设置的domain就是.taobao.com，这样无论是a.taobao.com还是b.taobao.com都可以使用Cookie<br>这里需要注意的是，不能跨域设置Cookie，比如阿里域名下的页面把domain设置成百度是无效的</p>
+<h3 id="path"><a href="#path" class="headerlink" title="path"></a>path</h3><p>path指定了一个URL路径，这个路径必须出现在要请求的资源的路径中才可以发送Cookie首部。<br>比如设置**Path=/docs，/docs/Web/下的资源才会带Cookie首部，/test则不会懈怠Cookie首部<br>domain和path标示共同定义了Cookie的作用域：即Cookie该发送给哪些URL</p>
+<h3 id="Secure属性"><a href="#Secure属性" class="headerlink" title="Secure属性"></a>Secure属性</h3><p>标记为Secure的Cookie只应通过被HTTPs协议吉阿米果的请求发送给服务端。使用HTTPs安全协议，可以保护Cookie在浏览器和Web服务器间的传输过程不被窃取和篡改。</p>
+<h3 id="HTTPOnly"><a href="#HTTPOnly" class="headerlink" title="HTTPOnly"></a>HTTPOnly</h3><p>设置HTTPOnly属性可以防止客户端脚本通过document.cookie等方式访问Cookie，有助于避免XSS攻击。</p>
+<h3 id="SameSite"><a href="#SameSite" class="headerlink" title="SameSite"></a>SameSite</h3><p>作用<br>SameSite属性可以让Cookie在跨站请求时不会被发送，从而可以组织跨站请求伪造攻击（CSRF）</p>
+<p>属性值<br>SameSite可以有下面三种值<br>1.Strict：仅允许一方请求懈怠Cookie，即浏览器将只发送相同站点请求的Cookie，即当前网页URL与请求目标URL完全一致。<br>2.Lax：允许比分第三方请求懈怠Cookie<br>3.None： 无论是否跨站都会发送Cookie</p>
+<p>之前默认是None的，Chorme80后默认是Lax</p>
+<h3 id="跨域和跨站"><a href="#跨域和跨站" class="headerlink" title="跨域和跨站"></a>跨域和跨站</h3><p>首先要理解的一点就是跨站和跨域是不同的。同站（same-site）、跨站（cross-site）和第一方（first-party）、第三方（third-party）是等价的。但是与浏览器同源策略（SOP）中的同源（same-origin）、跨域（corss-origin）是完全不同的概念。</p>
+<p>同源策略的同源是指两个URL的协议、主机名、端口一致。<br>同源策略作为浏览器的安全基石，其同源判断是比较严格的，相对而言，Cookie中的同站判断就比较宽松：只要两个URL的eTLD+1相同即可，不需要考虑协议和端口。其中，eTLD表示有效顶级域名，注册于Mozilla维护的公共后缀列表中。例如.come,.co.uk,.github.io等。eTLD+1则表示，有效顶级域名+二级域名。例如taobao.com等。</p>
+<p>举几个例子，<a href="http://www.taobao.com" target="_blank" rel="noopener">www.taobao.com</a> 和 <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 是跨站，<a href="http://www.a.taobao.com" target="_blank" rel="noopener">www.a.taobao.com</a> 和 <a href="http://www.b.taobao.com" target="_blank" rel="noopener">www.b.taobao.com</a> 是同站，a.github.io 和 b.github.io 是跨站(注意是跨站)。</p>
+<h3 id="由此带来的改变"><a href="#由此带来的改变" class="headerlink" title="由此带来的改变"></a>由此带来的改变</h3><p><strong>此处有图</strong><br>从上图可以看出，对大部分 web 应用而言，Post 表单，iframe，AJAX，Image 这四种情况从以前的跨站会发送三方 Cookie，变成了不发送。<br>Post表单：应该的，学 CSRF 总会举表单的例子。<br>iframe：iframe 嵌入的 web 应用有很多是跨站的，都会受到影响。<br>AJAX：可能会影响部分前端取值的行为和结果。<br>Image：图片一般放 CDN，大部分情况不需要 Cookie，故影响有限。但如果引用了需要鉴权的图片，可能会受到影响。<br>除了这些还有 script 的方式，这种方式也不会发送 Cookie，像淘宝的大部分请求都是 jsonp，如果涉及到跨站也有可能会被影响。</p>
+<h2 id="带来问题"><a href="#带来问题" class="headerlink" title="带来问题"></a>带来问题</h2><p>我们再看看会出现什么的问题？举几个例子：</p>
+<p>天猫和飞猪的页面靠请求淘宝域名下的接口获取登录信息，由于 Cookie 丢失，用户无法登录，页面还会误判断成是由于用户开启了浏览器的“禁止第三方 Cookie”功能导致而给与错误的提示</p>
+<p>淘宝部分页面内嵌支付宝确认付款和确认收货页面、天猫内嵌淘宝的登录页面等，由于 Cookie 失效，付款、登录等操作都会失败</p>
+<p>阿里妈妈在各大网站比如今日头条，网易，微博等投放的广告，也是用 iframe 嵌入的，没有了 Cookie，就不能准确的进行推荐</p>
+<p>一些埋点系统会把用户 id 信息埋到 Cookie 中，用于日志上报，这种系统一般走的都是单独的域名，与业务域名分开，所以也会受到影响。</p>
+<p>一些用于防止恶意请求的系统，对判断为恶意请求的访问会弹出验证码让用户进行安全验证，通过安全验证后会在请求所在域种一个Cookie，请求中带上这个Cookie之后，短时间内不再弹安全验证码。在Chrome80以上如果因为Samesite的原因请求没办法带上这个Cookie，则会出现一直弹出验证码进行安全验证。</p>
+<p>天猫商家后台请求了跨域的接口，因为没有 Cookie，接口不会返回数据</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>解决方案就是设置 SameSite 为 none。<br>不过也会有两点要注意的地方：</p>
+<p>1.HTTP 接口不支持 SameSite=none<br>如果你想加 SameSite=none 属性，那么该 Cookie 就必须同时加上 Secure 属性，表示只有在 HTTPS 协议下该 Cookie 才会被发送。</p>
+<p>2.需要 UA 检测，部分浏览器不能加 SameSite=none<br>IOS 12 的 Safari 以及老版本的一些 Chrome 会把 SameSite=none 识别成 SameSite=Strict，所以服务端必须在下发 Set-Cookie 响应头时进行 User-Agent 检测，对这些浏览器不下发 SameSite=none 属性</p>
+<h2 id="新的解决方式"><a href="#新的解决方式" class="headerlink" title="新的解决方式"></a>新的解决方式</h2><h3 id="cookie存在问题"><a href="#cookie存在问题" class="headerlink" title="cookie存在问题"></a>cookie存在问题</h3><p>1.网络请求耗费资源<br>2.安全性</p>
+<h3 id="session"><a href="#session" class="headerlink" title="session"></a>session</h3><p>session是服务端存储用户信息，当用户登录后返回sessionId，客户端将sessionID存储在cookie中，客户端在请求时携带sessionID，服务端通过sessionId以及相关映射关系获取用户登录状态。</p>
+<p>解决了传递cookie的资源浪费问题，但仍存在安全性的问题。同时服务端需要存储用户状态，增大服务端压力。</p>
+<h3 id="token"><a href="#token" class="headerlink" title="token"></a>token</h3><p>token在session的基础上，解决了服务端存储的问题，同时防止 CSRF攻击。<br>token和sessionId类似不过由用户名和一个服务端提供的数字签名组成。用户成功登陆后，服务端返回token，token可以存在cookie或localstorage等中。token不是随请求自动发送，需要在请求头中添加，即使token放在cookie中，但服务端不是通过cookie中的token进行验证，而是通过请求头中的token进行验证，由此防止了 CSRF攻击。同时token是无状态的，</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Blog/2020/03/17/https/" rel="prev" title="HTTPS">
+      <i class="fa fa-chevron-left"></i> HTTPS
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Blog/2020/03/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98/" rel="next" title="前端缓存">
+      前端缓存 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie介绍"><span class="nav-number">1.</span> <span class="nav-text">Cookie介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie的保质期"><span class="nav-number">2.</span> <span class="nav-text">Cookie的保质期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#满足同源策略"><span class="nav-number">3.</span> <span class="nav-text">满足同源策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie的设置"><span class="nav-number">4.</span> <span class="nav-text">Cookie的设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端使用cookie操作cookie"><span class="nav-number">5.</span> <span class="nav-text">前端使用cookie操作cookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookies的属性"><span class="nav-number">6.</span> <span class="nav-text">Cookies的属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Expires"><span class="nav-number">6.1.</span> <span class="nav-text">Expires</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#max-age"><span class="nav-number">6.2.</span> <span class="nav-text">max-age</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#domain"><span class="nav-number">6.3.</span> <span class="nav-text">domain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#path"><span class="nav-number">6.4.</span> <span class="nav-text">path</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Secure属性"><span class="nav-number">6.5.</span> <span class="nav-text">Secure属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTPOnly"><span class="nav-number">6.6.</span> <span class="nav-text">HTTPOnly</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SameSite"><span class="nav-number">6.7.</span> <span class="nav-text">SameSite</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨域和跨站"><span class="nav-number">6.8.</span> <span class="nav-text">跨域和跨站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#由此带来的改变"><span class="nav-number">6.9.</span> <span class="nav-text">由此带来的改变</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#带来问题"><span class="nav-number">7.</span> <span class="nav-text">带来问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">7.1.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新的解决方式"><span class="nav-number">8.</span> <span class="nav-text">新的解决方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie存在问题"><span class="nav-number">8.1.</span> <span class="nav-text">cookie存在问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#session"><span class="nav-number">8.2.</span> <span class="nav-text">session</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#token"><span class="nav-number">8.3.</span> <span class="nav-text">token</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">蚂蚁</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Blog/archives/">
+        
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/Blog/lib/anime.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Blog/js/utils.js"></script>
+
+<script src="/Blog/js/motion.js"></script>
+
+
+<script src="/Blog/js/schemes/pisces.js"></script>
+
+
+<script src="/Blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

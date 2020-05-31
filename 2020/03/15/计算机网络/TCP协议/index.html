@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Blog/css/main.css">
+
+
+<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gitee.com","root":"/Blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="TCP连接被称为是面向连接的，这是因为在一个应用进程可以开始面向另一个应用进程发送数据之前，这两个进程必须先相互握手，即它们必须相互发送某些预备报文段，已建立确保数据传输的参数。 TCP的三次握手和四次挥手其中涉及几个比较重要的字段1.序号（sequlize number）：seq字段，占32位，用来标示从TCP源端向目的端口发送的字节流，发起方发送数据时对此进行标记 2.确认号（acknowle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP协议">
+<meta property="og:url" content="https://gitee.com/iversoncurry/Blog.git/2020/03/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:site_name" content="蚂蚁的博客">
+<meta property="og:description" content="TCP连接被称为是面向连接的，这是因为在一个应用进程可以开始面向另一个应用进程发送数据之前，这两个进程必须先相互握手，即它们必须相互发送某些预备报文段，已建立确保数据传输的参数。 TCP的三次握手和四次挥手其中涉及几个比较重要的字段1.序号（sequlize number）：seq字段，占32位，用来标示从TCP源端向目的端口发送的字节流，发起方发送数据时对此进行标记 2.确认号（acknowle">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-15T12:27:08.000Z">
+<meta property="article:modified_time" content="2020-05-31T02:24:22.726Z">
+<meta property="article:author" content="蚂蚁">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://gitee.com/iversoncurry/Blog.git/2020/03/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP%E5%8D%8F%E8%AE%AE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>TCP协议 | 蚂蚁的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蚂蚁的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/iversoncurry/Blog.git/2020/03/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP%E5%8D%8F%E8%AE%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="蚂蚁">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          TCP协议
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-15 20:27:08" itemprop="dateCreated datePublished" datetime="2020-03-15T20:27:08+08:00">2020-03-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-31 10:24:22" itemprop="dateModified" datetime="2020-05-31T10:24:22+08:00">2020-05-31</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>TCP连接被称为是面向连接的，这是因为在一个应用进程可以开始面向另一个应用进程发送数据之前，这两个进程必须先相互握手，即它们必须相互发送某些预备报文段，已建立确保数据传输的参数。</p>
+<p>TCP的三次握手和四次挥手<br>其中涉及几个比较重要的字段<br>1.序号（sequlize number）：seq字段，占32位，用来标示从TCP源端向目的端口发送的字节流，发起方发送数据时对此进行标记</p>
+<p>2.确认号（acknowledgement number）：ack序号，占32位，只有ACK标志位为1时，确认序号字段才有效，ack=seq+1；</p>
+<p>3.标志位（flags）：共6个即URG、ACK、PSH、RST、SYN、FiN等。具体含义如下：<br>URG：紧急指针有效<br>ACK：确认序号有效<br>PSH：接收方应该尽快将这个报文交给应用层。<br>RST：重置连接<br>SYN：发起一个新连接。<br>FIN：释放一个新连接。</p>
+<p>TCP是一个面向连接的协议，无论哪一方向另一方发送数据之前，都必须先在双方之间建立一条连接，建立一条连接有以下过程。</p>
+<p>1.首先客户端向服务器端发送一段TCP报文，其中：<br>标记位为SYN=1表示“请求建立新连接”<br>序号为seq=cliend_isn（随机生成）</p>
+<p>2.服务器端接收到来自客户端的TCP报文之后，返回一段TCP报文：<br>标志位为SYN=1和ACK=1，表示确认客户端的报文seq序号有效，服务器能正常接收客户端发送的数据，并且同意创建新连接。<br>序号seq=sever_isn；<br>确认序号为ack=client_isn+1，表示收到客户端的序号seq并且将其值加1作为自己确认号的ack值</p>
+<p>3.客户端接收到来自服务器端的确认收到数据的TCP报文之后，明确了从客户端到服务器的数据传输是正常的，返回最后一段TCP报文。其中：<br>标志位为ACK=1，SYN=0，表示确认收到服务器端同一连接的信号<br>序号seq = client_isn+1,表示收到服务器端的确认号ack=sever_isn+，并将其值作为自己的序号值</p>
+<p>四次挥手<br>1.首先客户端想要释放连接，向服务器端发送一段TCP报文，其中：<br>标记位为FIN=1，表示请求释放连接<br>序号为seq=client_isn1<br>随后客户端进入半关闭阶段。并且停止在客户端到服务器端方向发送数据，但是客户端仍然能接收到从服务器端传输过来的数据。</p>
+<p>2.服务器端接收到从客户端发出的TCP报文之后，确认了客户端想要释放连接，随后服务器端进入半关闭状态，返回一段TCP报文<br>标记位ACK=1，表示接收到客户端发送的释放连接请求<br>序号为seq=sever_isn1<br>确认号为ack=client_isn1+1,表示是在收到客户端报文的基础上，将其序号seq加1作为本段报文确认号ack的值<br>随后服务器端开始准备释放服务器端到客户端方向上的连接。</p>
+<p>3.服务器端锁好了释放服务器端到客户端方向上的连接准备，再次向客户端发出一段TCP报文，其中<br>标记位FIN=1，ACK=1，表示已经准备好释放连接了。<br>序号为seq=sever_isn2<br>确认号为ack=client1+1，表示是在接收到客户端报文的基础上，将其序号seq值加1作为本段报文确认号ack的值。</p>
+<p>4.客户端收到从服务器端发出的TCP报文，确认了服务器端已做好释放连接的准备，并向服务器端发送一段报文：<br>标记位为ACK=1，表示接收到服务器准备好释放连接的信号<br>序号为client_isn1+1,表示是在收到了服务器端报文的基础上，将其却热号ack值作为本段报文序号的值<br>确认号为ack=sever_isn2+1表示是在收到了服务气短报文的基础上，将其序号值seq作为本段报文确认号的值。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/Blog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag"># 计算机网络</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Blog/2020/03/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/http%E5%8D%8F%E8%AE%AE/" rel="prev" title="http协议">
+      <i class="fa fa-chevron-left"></i> http协议
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Blog/2020/03/17/https/" rel="next" title="HTTPS">
+      HTTPS <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">蚂蚁</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Blog/archives/">
+        
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/Blog/lib/anime.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Blog/js/utils.js"></script>
+
+<script src="/Blog/js/motion.js"></script>
+
+
+<script src="/Blog/js/schemes/pisces.js"></script>
+
+
+<script src="/Blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
